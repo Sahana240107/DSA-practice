@@ -7,3 +7,26 @@ Output: [1,2,4]
 Explanation: The array represents the integer 123.
 Incrementing by one gives 123 + 1 = 124.
 Thus, the result should be [1,2,4]*/
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int t;
+        for(int i=digits.size()-1;i>=0;i--)//Looping from end
+        {
+            if(digits[i]<9)
+            {
+                digits[i]++;
+                return digits;
+            }
+            else
+            {
+                digits[i]=0;//digit is 9
+                if(i==0)
+                {
+                    digits.insert(digits.begin(),1);//dealing numbers like 9,99,999
+                }
+            }
+        }
+        return digits;
+    }
+};
