@@ -12,7 +12,7 @@ class Solution {
             temp=arr[i];
             arr[i]=arr[i+1];
             arr[i+1]=temp;
-            i++;//swap alternatively
+            i++;//swap alternatively to create wave
         }
     }
 };
