@@ -3,7 +3,6 @@ The transpose of a matrix is obtained by converting all the rows to columns and 
 class Solution {
   public:
     vector<vector<int>> transpose(vector<vector<int>>& mat) {
-        // code here
         int row=mat.size();
         int col;
         if(row>0)
