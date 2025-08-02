@@ -4,7 +4,7 @@ Examples:
 Input: mat[][] = [[3, 30, 38],[20, 52, 54],[35, 60, 69]], x = 62
 Output: false
 Explanation: 62 is not present in the matrix, so output is false.*/
-// User function template for C++
+
 class Solution {
   public:
     bool matSearch(vector<vector<int>> &mat, int x) {
