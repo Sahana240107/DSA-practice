@@ -6,7 +6,7 @@ text = gffgfg
 pattern = gfg
 Output: 3
 Explanation:  Considering 0-based indexing, substring of text from 3rd to last index is gfg.*/
-// User function Template for C++
+
 
 class Solution {
   public:
