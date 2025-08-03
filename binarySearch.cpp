@@ -5,3 +5,28 @@ Examples:
 Input: arr[] = [1, 2, 3, 4, 5], k = 4
 Output: 3
 Explanation: 4 appears at index 3.*/
+class Solution {
+  public:
+    int binarysearch(vector<int> &arr, int k) {
+        int low=0,high=arr.size()-1,mid,res=-1;
+        while(low<=high)
+        {
+            mid=low+(high-low)/2;
+            if(arr[mid]==k)
+            {
+                res=mid;
+                high=mid-1;//will check for first occurrence
+            }
+            else if(arr[mid]<k)
+            {
+                low=mid+1;
+            }
+            else
+            {
+                high=mid-1;
+            }
+        }
+        return res;
+        
+    }
+};
