@@ -5,7 +5,6 @@ Note: The given array is sorted in ascending order, and modify the given array i
 class Solution {
   public:
     void sortInWave(vector<int>& arr) {
-        // code here
         int temp;
         for(int i=0;i<arr.size()-1;i++)
         {
