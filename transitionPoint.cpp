@@ -7,7 +7,6 @@ Explanation: index 3 is the transition point where 1 begins.*/
 class Solution {
   public:
     int transitionPoint(vector<int>& arr) {
-        // code here
         int low=0,high=arr.size()-1,res=-1,mid;
         while(low<=high)
         {
