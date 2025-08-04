@@ -24,11 +24,11 @@ public:
     string convertDateToBinary(string date) {
         string datestr,monthstr,yearstr,binary;
         int day,month,year;
-        stringstream ss(date);
+        stringstream ss(date);//split input str
         getline(ss,yearstr,'-');
         getline(ss,monthstr,'-');
         getline(ss,datestr,'-');
-        day=stoi(datestr);
+        day=stoi(datestr);//convert to int
         month=stoi(monthstr);
         year=stoi(yearstr);
         datestr=toBinary(day);
