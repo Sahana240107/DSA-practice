@@ -1,5 +1,4 @@
 /*Given a non-negative integer n, your task is to find the nth Fibonacci number.*/
-// User function Template for C++
 class Solution {
   public:
     int nthFibonacci(int n) {
