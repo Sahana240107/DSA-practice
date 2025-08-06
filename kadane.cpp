@@ -4,3 +4,23 @@ Examples:
 Input: arr[] = [2, 3, -8, 7, -1, 2, 3]
 Output: 11
 Explanation: The subarray [7, -1, 2, 3] has the largest sum 11.*/
+class Solution {
+  public:
+    int maxSubarraySum(vector<int> &arr) {
+        long long sum=0,maxi=LONG_MIN;
+        for(int i=0;i<arr.size();i++)
+        {
+            sum+=arr[i];
+            if(maxi<sum)
+            {
+                maxi=sum;
+            }
+            if(sum<0)
+            {
+                sum=0;
+            }
+        }
+        return maxi;
+        
+    }
+};
