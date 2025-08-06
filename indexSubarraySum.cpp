@@ -8,7 +8,7 @@ Explanation: The sum of elements from 2nd to 4th position is 12.*/
 class Solution {
   public:
     vector<int> subarraySum(vector<int> &arr, int target) {
-        long long sum=0;
+        long long sum=0;// works only for positive elements in the array
         int start=0;
         for(int i=0;i<arr.size();i++)
         {
