@@ -1,7 +1,7 @@
 /*Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 You can return the answer in any order .*/
-//using two pointers and nested arrays
+//bruteforce
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -23,3 +23,25 @@ public:
         return res;
     }
 }
+//using two pointer
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<pair<int,int>> arr;
+        for(int i=0;i<nums.size();i++)
+            arr.push_back({nums[i],i});
+        sort(arr.begin(),arr.end());
+        int i=0,j=arr.size()-1,sum=0;
+        while(i<j)
+        {
+            sum=arr[i].first+arr[j].first;
+            if(sum==target)
+                return {arr[i].second,arr[j].second};
+            else if(sum<target)
+                i++;
+            else
+                j--;
+        }
+        return {};
+    }
+};
