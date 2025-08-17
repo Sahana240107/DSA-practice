@@ -6,7 +6,6 @@ Output: [5, 6, 2, 3, 4, 1]*/
 class Solution {
   public:
     void reverseArray(vector<int> &arr) {
-        // code here
         int i=0,j=arr.size()-1,temp;
         while(i<j)
         {
