@@ -6,8 +6,6 @@ Output: [3, 4, 5, 1, 2]
 Explanation: when rotated by 2 elements, it becomes 3 4 5 1 2.*/
 class Solution {
   public:
-
-    // Function to rotate an array by d elements in counter-clockwise direction.
     void rotateArr(vector<int>& arr, int d) {
         int n=arr.size();
         d=d%n;
