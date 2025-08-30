@@ -21,8 +21,7 @@ class Solution {
         string res="";
         for(int i=0;i<s.length();i++)
         {
-            if(s[i]>='a' && s[i]<='z' || s[i]>='A' && 
-            s[i]<='Z'||s[i]>='0' && s[i]<='9')
+            if(isalnum(s[i]))
                 res+=s[i];
             else if(s[i]=='(')
                 st.push(s[i]);
@@ -37,7 +36,7 @@ class Solution {
             }
             else
             {
-                while(!st.empty() && precedence(st.top())>=precedence(s[i]))
+                while(!st.empty() && precedence(st.top())>=precedence(s[i]) && s[i]!='^')
                 {
                     res+=st.top();
                     st.pop();
