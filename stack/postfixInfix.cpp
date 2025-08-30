@@ -3,18 +3,16 @@
 ab*c+ 
 Output: 
 ((a*b)+c)*/
-// User function Template for C++
 
 class Solution {
   public:
     string postToInfix(string exp) {
-        // Write your code here
         stack<string> st;
         for(int i=0;i<exp.length();i++)
         {
             if(isalnum(exp[i]))
             {
-                string s=string(1,exp[i]);
+                string s=string(1,exp[i]);//to convert char to string
                 st.push(s);
             }
             else
