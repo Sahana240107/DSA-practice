@@ -4,3 +4,32 @@ Input:
 *-A/BC-/AKL
 Output: 
 ((A-(B/C))*((A/K)-L))*/
+// User function Template for C++
+
+class Solution {
+  public:
+    string preToInfix(string pre_exp) {
+        // Write your code here
+        int i=pre_exp.length()-1;
+        stack<string> st;
+        string res="";
+        while(i>=0)
+        {
+            if(isalnum(pre_exp[i]))
+            {
+                st.push(string(1,pre_exp[i]));
+            }
+            else
+            {
+                string a=st.top();
+                st.pop();
+                string b=st.top();
+                st.pop();
+                string con="("+a+pre_exp[i]+b+")";
+                st.push(con);
+            }
+            i--;
+        }
+        return st.top();
+    }
+};
