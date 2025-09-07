@@ -1,21 +1,7 @@
 /*Given a Binary Tree, your task is to return its In-Order Traversal.
 
-An inorder traversal first visits the left child (including its entire subtree), then visits the node, and finally visits the right child (including its entire subtree).*//*
-// Tree Node
-class Node {
-  public:
-    int data;
-    Node* left;
-    Node* right;
+An inorder traversal first visits the left child (including its entire subtree), then visits the node, and finally visits the right child (including its entire subtree).*/
 
-    // Constructor to initialize a new node
-    Node(int val) {
-        data = val;
-        left = NULL;
-        right = NULL;
-    }
-};
-*/
 
 class Solution {
   public:
