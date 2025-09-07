@@ -1,11 +1,4 @@
-/* A binary tree node has data, pointer to left child
-   and a pointer to right child
-struct Node
-{
-    int data;
-    struct Node* left;
-    struct Node* right;
-}; */
+
 class Solution {
   public:
     // Function to return a list containing the postorder traversal of the tree.
@@ -18,7 +11,6 @@ class Solution {
         ans.push_back(root->data);
     }
     vector<int> postOrder(Node* root) {
-        // Your code here
         vector<int> res;
         helper(root,res);
         return res;
