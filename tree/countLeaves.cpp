@@ -1,0 +1,1 @@
+/*Given a Binary Tree of size n, You have to count leaves in it. For example, there are two leaves in the following tree*/
