@@ -3,7 +3,7 @@
 If the number of nodes is odd, return the middle node value.
 If the number of nodes is even, there are two middle nodes, so return the second middle node value.
 */
-int getMiddle(Node* head) {
+int getMiddle(Node* head) {//fast and slow pointer technique
         if(head==NULL || head->next==NULL)
             return head->data;
         Node* middle=head;
