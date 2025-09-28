@@ -29,7 +29,7 @@ class Solution {
         return head;
     }
     Node* addTwoLists(Node* head1, Node* head2) {
-        head1=reverse(head1);
+        head1=reverse(head1);//reverse to get number
         head2=reverse(head2);
         Node dummy(0);
         Node *current=&dummy;
@@ -53,7 +53,7 @@ class Solution {
             current=current->next;
         }
         dummy.next=reverse(dummy.next);
-        dummy.next=removeZeros(dummy.next);
+        dummy.next=removeZeros(dummy.next);//remove leading zeros
         return dummy.next;
         
     }
