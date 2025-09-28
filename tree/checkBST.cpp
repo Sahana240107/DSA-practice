@@ -7,12 +7,11 @@ The right subtree of a node contains only nodes with keys greater than the node'
 Both the left and right subtrees must also be binary search trees.*/
 class Solution {
   public:
-    // Function to check whether a Binary Tree is BST or not.
     bool inorder(Node* T,Node* prev)
     {
         if(T==NULL)
             return true;
-        if(!(inorder(T->left,prev)))
+        if(!(inorder(T->left,prev)))//check left subtree
             return false;
         if(prev!=NULL && T->data<=prev->data)
             return false;
@@ -20,7 +19,6 @@ class Solution {
         return inorder(T->right,prev);
     }
     bool isBST(Node* root) {
-        // Your code here
         Node *prev=NULL;
         return inorder(root,prev);
         
