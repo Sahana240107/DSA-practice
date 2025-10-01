@@ -7,3 +7,25 @@ Examples:
 Input: arr[] = [1, 2, 3, 7, 5], target = 12
 Output: [2, 4]
 Explanation: The sum of elements from 2nd to 4th position is 12.*/
+class Solution {
+  public:
+    vector<int> subarraySum(vector<int> &arr, int target) {
+        // code here
+        long sum=0;
+        int left=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            sum+=arr[i];
+            while(sum>target && left<=i)
+            {
+                sum-=arr[left];
+                left++;
+            }
+            if(sum==target)
+            {
+                return {left+1,i+1};
+            }
+        }
+        return {-1};
+    }
+};
