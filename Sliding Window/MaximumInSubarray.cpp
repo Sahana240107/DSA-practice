@@ -12,3 +12,26 @@ Explanation:
 5th contiguous subarray [4, 5, 2], max = 5
 6th contiguous subarray [5, 2, 3], max = 5
 7th contiguous subarray [2, 3, 6], max = 6*/
+class Solution {
+  public:
+    vector<int> maxOfSubarrays(vector<int>& arr, int k) {
+        // code here
+        vector<int> ans;
+        deque<int> dq;
+        for(int i=0;i<arr.size();i++)
+        {
+            if(!dq.empty() && dq.front()<=i-k)//remove index out of window
+            {
+                dq.pop_front();
+            }
+            while(!dq.empty() && arr[dq.back()]<=arr[i])
+            {
+                dq.pop_back();//remove elements in back that is smaller than arr[i] becoz ot cant be max
+            }
+            dq.push_back(i);
+            if(i>=k-1)
+                ans.push_back(arr[dq.front()]);
+        }
+        return ans;
+    }
+};
