@@ -10,7 +10,6 @@ Explanation: arr2 + arr3 = 700, which is maximum.*/
 class Solution {
   public:
     int maxSubarraySum(vector<int>& arr, int k) {
-        // code here
         long maxSum=0,subSum=0;
         for(int i=0;i<k;i++)
         {
