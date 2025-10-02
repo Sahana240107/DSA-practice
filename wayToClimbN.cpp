@@ -3,7 +3,6 @@
  class Solution {
   public:
     int countWays(int n) {
-        // your code here
         int first=1,second=1,next;
         if(n<=1)
         return 1;
