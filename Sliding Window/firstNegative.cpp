@@ -15,15 +15,14 @@ Window [-6, 10] First negative integer is -6.
 class Solution {
   public:
     vector<int> firstNegInt(vector<int>& arr, int k) {
-        // write code here
         vector<int> ans;
         deque<int> dq;
         for(int i=0;i<arr.size();i++)
         {
-            if(!dq.empty() && dq.front()<=i-k)
+            if(!dq.empty() && dq.front()<=i-k)//remove index outside window
                 dq.pop_front();
             if(arr[i]<0)
-                dq.push_back(i);
+                dq.push_back(i);//push negative index
             if(i>=k-1)
             {
                 if(!dq.empty())
