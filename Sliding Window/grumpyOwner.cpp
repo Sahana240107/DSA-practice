@@ -21,3 +21,26 @@ The bookstore owner keeps themselves not grumpy for the last 3 minutes.
 The maximum number of customers that can be satisfied = 1 + 1 + 1 + 1 + 7 + 5 = 16.
 
 */
+class Solution {
+public:
+    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
+        long sumCus=0,maxCus=0;
+        for(int i=0;i<grumpy.size();i++)
+        {
+            if(i<minutes)//trick in initial window
+                sumCus+=customers[i];
+            else if(grumpy[i]==0)//always satisfied customers(base case)
+                sumCus+=customers[i];
+        }
+        maxCus=sumCus;
+        for(int i=minutes;i<grumpy.size();i++)
+        {
+            if(grumpy[i-minutes]!=0)//remove unsatisfied customers outside window
+                sumCus-=customers[i-minutes];
+            if(grumpy[i]!=0)//add unsatisfied customers in the window
+                sumCus+=customers[i];
+            maxCus=max(maxCus,sumCus);
+        }
+        return maxCus;
+    }
+};
