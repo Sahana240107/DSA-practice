@@ -2,8 +2,8 @@
  Your task is to count the number of ways, the person can reach the top (order does matter).*/
  class Solution {
   public:
-    int countWays(int n) {
-        int first=1,second=1,next;
+    int countWays(int n) {// fibonacci pattern
+       int first=1,second=1,next;
         if(n<=1)
         return 1;
         for(int i=2;i<=n;i++)
