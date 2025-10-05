@@ -40,3 +40,34 @@ class Solution {
         
     }
 };
+class Solution {//works for disconnected graph too
+public:
+    // Function to return Breadth First Traversal of given graph.
+    vector<int> bfs(vector<vector<int>> &adj) {
+        vector<int> bfs;                     // stores BFS traversal
+        vector<bool> visited(adj.size(), false);  // track visited nodes
+        
+        for (int start = 0; start < adj.size(); start++) {
+            if (!visited[start]) {           // if not visited, do BFS from here
+                queue<int> q;
+                visited[start] = true;
+                q.push(start);
+                
+                while (!q.empty()) {
+                    int node = q.front();
+                    q.pop();
+                    bfs.push_back(node);
+                    
+                    // Traverse all adjacent vertices
+                    for (int neighbor : adj[node]) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            q.push(neighbor);
+                        }
+                    }
+                }
+            }
+        }
+        return bfs;
+    }
+};
