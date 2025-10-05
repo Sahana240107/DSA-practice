@@ -13,3 +13,30 @@ Visit 2 (first neighbor of 0) → Output: 0, 2
 Visit 3 (next neighbor of 0) → Output: 0, 2, 3 
 Visit 1 (next neighbor of 0) → Output: 0, 2, 3, 
 Visit 4 (neighbor of 2) → Final Output: 0, 2, 3, 1, 4*/
+class Solution {
+  public:
+    // Function to return Breadth First Traversal of given graph.
+    vector<int> bfs(vector<vector<int>> &adj) {//works only for connected graph
+        vector<int> bfs;
+        queue<int> q;
+        vector<bool> visited(adj.size(),false);
+        visited[0]=true;
+        q.push(0);
+        while(!q.empty())
+        {
+            int node=q.front();
+            q.pop();
+            bfs.push_back(node);
+            for(int i: adj[node])
+            {
+                if(!visited[i])
+                {
+                    visited[i]=true;
+                    q.push(i);
+                }
+            }
+        }
+        return bfs;
+        
+    }
+};
