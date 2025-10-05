@@ -4,3 +4,22 @@ Perform a Depth First Search (DFS) traversal starting from vertex 0, visiting ve
 and return a list containing the DFS traversal of the graph.
 
 Note: Do traverse in the same order as they are in the given adjacency list.*/
+class Solution {
+    void dfshelp(int node,vector<vector<int>>& adj,vector<bool>& visited,vector<int>& result)
+    {
+        visited[node]=true;
+        result.push_back(node);
+        for(int i:adj[node])
+        {
+            if(!visited[i])
+                dfshelp(i,adj,visited,result);
+        }
+    }
+  public:
+    vector<int> dfs(vector<vector<int>>& adj) {
+        vector<bool> visited(adj.size(),false);
+        vector<int> ans;
+        dfshelp(0,adj,visited,ans);
+        return ans;
+    }
+};
