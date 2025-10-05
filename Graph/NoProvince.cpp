@@ -33,6 +33,5 @@ class Solution {
             }
         }
         return count;
-        
     }
 };
