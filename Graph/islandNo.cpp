@@ -29,7 +29,6 @@ class Solution {
     }
   public:
     int countIslands(vector<vector<char>>& grid) {
-        // Code here
         int n=grid.size();
         int m=grid[0].size();
         int count=0;
