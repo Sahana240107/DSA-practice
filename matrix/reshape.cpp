@@ -11,3 +11,28 @@ Example 1:
 
 Input: mat = [[1,2],[3,4]], r = 1, c = 4
 Output: [[1,2,3,4]]*/
+class Solution {
+public:
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        int n=mat.size();
+        int m=mat[0].size();
+        if(n*m!=r*c)//invalid
+            return mat;
+        vector<vector<int>> ans(r,vector<int>(c));
+        int row=0,col=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                ans[row][col]=mat[i][j];
+                col++;
+                if(col==c)//if row is filled move to next
+                {
+                    row++;
+                    col=0;
+                }
+            }
+        }
+        return ans;
+    }
+};
