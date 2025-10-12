@@ -8,3 +8,25 @@ Input: mat[][] = [[0, 1, 2],
 Output: [[2, 5, 8],
         [1, 4, 7],
         [0, 3, 6]]*/
+
+class Solution {
+  public:
+    void rotateMatrix(vector<vector<int>>& mat) {
+        long n=mat.size();
+        for(int i=0;i<n;i++)//transpose in place
+        {
+            for(int j=i;j<n;j++)
+                swap(mat[i][j],mat[j][i]);
+        }
+        for(int i=0;i<n;i++)//reverse columns
+        {
+            int j=0,k=n-1;
+            while(j<k)
+            {
+                swap(mat[j][i],mat[k][i]);
+                j++;
+                k--;
+            }
+        }
+    }
+};
