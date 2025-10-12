@@ -7,3 +7,20 @@ Output:
 7 4 1 
 8 5 2
 9 6 3*/
+
+/* matrix : given input matrix, you are require
+ to change it in place without using extra space */
+void rotate(vector<vector<int> >& mat) {
+    long n=mat.size();
+    for(int i=0;i<n;i++)//transpose in place
+    {
+        for(int j=i;j<n;j++)
+        {
+            swap(mat[i][j],mat[j][i]);
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        reverse(mat[i].begin(),mat[i].end());//reverse all rows
+    }
+}
