@@ -46,3 +46,18 @@ int lengthOfLongestSubstring(string s) {
     return maxLen;
 }
 
+//Using ASCII
+int lengthOfLongestSubstring(string s) {
+    vector<int> last(256, -1); // store last seen index of each char
+    int start = 0, maxLen = 0;
+
+    for (int end = 0; end < s.length(); end++) {
+        if (last[s[end]] >= start) {
+            start = last[s[end]] + 1;
+        }
+        last[s[end]] = end;
+        maxLen = max(maxLen, end - start + 1);
+    }
+
+    return maxLen;
+}
