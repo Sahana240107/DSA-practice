@@ -9,3 +9,23 @@ Explanation: 14 is present in the matrix, so output is true.
 Input: mat[][] = [[1, 5, 9, 11], [14, 20, 21, 26], [30, 34, 43, 50]], x = 42
 Output: false
 Explanation: 42 is not present in the matrix.*/
+class Solution {
+  public:
+    bool searchMatrix(vector<vector<int>> &mat, int x) {
+        // code here
+        int n=mat.size();
+        int m=mat[0].size()-1;
+        for(int i=0;i<n;i++)
+        {
+            if(mat[i][m]>=x)
+            {
+                for(int j=0;j<=m;j++)
+                {
+                    if(mat[i][j]==x)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+};
