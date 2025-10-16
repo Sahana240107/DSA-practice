@@ -11,3 +11,19 @@ Explanation:
 Sum of primary diagonal = 1+5+9 = 15.
 Sum of secondary diagonal = 3+5+7 = 15.
 Difference = |15 - 15| = 0.*/
+// User function template for C++
+
+class Solution {
+  public:
+    int diagonalSumDifference(int N, vector<vector<int>> Grid) {
+        // code here
+        int psum=0,ssum=0;
+        for(int i=0;i<N;i++)
+        {
+            psum+=Grid[i][i];
+            ssum=Grid[i][N-1-i];
+        }
+        return abs(psum-ssum);
+        
+    }
+};
