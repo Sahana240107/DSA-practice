@@ -11,3 +11,25 @@ Output: 6
 Explanation: 
 The first, second and third row contains 3, 2 and 1
 zeroes respectively.*/
+//Back-end complete function Template for C++
+
+class Solution {
+  public:
+    int countZeros(vector<vector<int>> A) {
+        // code here
+        int count=0;
+        int n=A.size();
+        int m=A[0].size();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(A[i][j]==0)
+                    count++;
+                else
+                    break;
+            }
+        }
+        return count;
+    }
+};
