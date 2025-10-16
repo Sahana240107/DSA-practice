@@ -16,7 +16,6 @@ Difference = |15 - 15| = 0.*/
 class Solution {
   public:
     int diagonalSumDifference(int N, vector<vector<int>> Grid) {
-        // code here
         int psum=0,ssum=0;
         for(int i=0;i<N;i++)
         {
