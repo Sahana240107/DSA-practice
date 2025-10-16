@@ -13,3 +13,29 @@ Input: image = [[1,1,0],[1,0,1],[0,0,0]]
 Output: [[1,0,0],[0,1,0],[1,1,1]]
 Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
 Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]*/
+class Solution {
+public:
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& image) {
+      
+        int n=image.size();
+        int m=image[0].size();
+        vector<vector<int>> ans(n,vector<int>(m));
+        for(int i=0;i<n;i++)
+        {
+            int left=0,right=m-1;
+            while(left<=right)//reverse and invert at same time
+            {
+                if(left==right)
+                {
+                    ans[i][left]=!(image[i][left]);
+                }
+                ans[i][left]=!(image[i][right]);
+                ans[i][right]=!(image[i][left]);
+                left++;
+                right--;
+            }
+        }
+        return ans;
+
+    }
+};
