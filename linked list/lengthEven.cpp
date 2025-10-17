@@ -10,3 +10,19 @@ Input: Linked list: 9->4->3
 
 Output: false
 Explanation: The length of the linked list is 3 which is odd, hence returned false.*/
+class Solution {
+  public:
+    bool isLengthEven(struct Node **head) {
+        // Code here
+        Node* slow=*head;
+        Node* fast=*head;
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        if(fast==NULL)
+            return true;
+        return false;
+    }
+};
