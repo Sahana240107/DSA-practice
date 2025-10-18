@@ -11,3 +11,23 @@ Output: -1
 Explanation: The given linked list is 10->5->100->5. Since 'k' is more than the number of nodes, the output is -1.
 
 */
+class Solution {
+  public:
+    int getKthFromLast(Node* head, int k) {
+        // code here
+        Node* first=head;
+        Node* second=head;
+        for(int i=1;i<=k;i++)
+        {
+            if(first==NULL)
+                return -1;
+            first=first->next;
+        }
+        while(first!=NULL)
+        {
+            first=first->next;
+            second=second->next;
+        }
+        return second->data;
+    }
+};
