@@ -14,7 +14,6 @@ class Solution {
   public:
     // Should return head of the modified linked list
     Node* sortedInsert(Node* head, int key) {
-        // Code here
         Node* p=new Node(key);
         if(!head)
             return p;
