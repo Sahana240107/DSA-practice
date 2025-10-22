@@ -14,7 +14,6 @@ Explanation: After removing every 3rd node of the linked list, the resultant lin
 class Solution {
   public:
     Node* deleteK(Node* head, int k) {
-        // code here
         if(head==NULL || k==0)
             return
         if(k==1)
