@@ -10,3 +10,15 @@ Example 2:
 Input: p = [1,2], q = [1,null,2]
 Output: false
 */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(!p && !q)
+            return true;
+        else if(p && !q || !p && q)
+            return false;
+        else if(p->val!=q->val)
+            return false;
+        return isSameTree(p->left,q->left)&&isSameTree(p->right,q->right);
+    }
+};
