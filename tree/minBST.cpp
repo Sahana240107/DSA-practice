@@ -7,3 +7,13 @@ ex-1
 Output: 1
 Explanation: The minimum element in the given BST is 1.
 */
+class Solution {
+  public:
+    int minValue(Node* root) {
+        // code here
+        if(root->left==NULL)
+            return root->data;
+        return minValue(root->left);
+        
+    }
+};
