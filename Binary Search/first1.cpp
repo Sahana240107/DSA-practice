@@ -11,3 +11,22 @@ Input : arr[] = [0, 0, 0, 0]
 Output : -1
 Explanation: 1's are not present in the array.
 */
+class Solution {
+  public:
+    int firstIndex(vector<int> &arr) {
+        // Your code goes here
+        int low=0,high=arr.size()-1,first=-1;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(arr[mid]==1)
+            {
+                first=mid;
+                high=mid-1;
+            }
+            else 
+                low=mid+1;
+        }
+        return first;
+    }
+};
