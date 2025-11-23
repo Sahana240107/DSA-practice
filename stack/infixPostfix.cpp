@@ -1,0 +1,54 @@
+/*Given an infix expression in the form of string s. Convert this infix expression to a postfix expression.
+Infix expression: The expression of the form a op b. When an operator is in between every pair of operands.
+Postfix expression: The expression of the form a b op. When an operator is followed for every pair of operands.
+Note: The order of */
+#include<bits/stdc++.h>
+class Solution {
+  public:
+    int precedence(char c)
+    {
+        if(c=='^')
+        return 3;
+        else if(c=='*' || c=='/')
+        return 2;
+        else if(c=='+' || c=='-')
+        return 1;
+        else 
+        return -1;
+    }
+    string infixToPostfix(string& s) {
+        stack<char> st;
+        string res="";
+        for(int i=0;i<s.length();i++)
+        {
+            if(isalnum(s[i]))
+                res+=s[i];
+            else if(s[i]=='(')
+                st.push(s[i]);
+            else if(s[i]==')')
+            {
+                while(!st.empty() && st.top()!='(')
+                {
+                    res+=st.top();
+                    st.pop();
+                }
+                st.pop();
+            }
+            else
+            {
+                while(!st.empty() && precedence(st.top())>=precedence(s[i]) && s[i]!='^')
+                {
+                    res+=st.top();
+                    st.pop();
+                }
+                st.push(s[i]);
+            }
+        }
+        while(!st.empty())
+        {
+          res+=st.top();
+           st.pop();
+        }
+            return res;
+    }
+};

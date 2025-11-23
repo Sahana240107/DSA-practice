@@ -1,0 +1,73 @@
+/*Given a connected undirected graph containing V vertices, represented by a 2-d adjacency list adj[][], where each adj[i] represents the list of vertices connected to vertex i. Perform a Breadth First Search (BFS) traversal starting from vertex 0, visiting vertices from left to right according to the given adjacency list, and return a list containing the BFS traversal of the graph.
+
+Note: Do traverse in the same order as they are in the given adjacency list.
+
+Examples:
+
+Input: adj[][] = [[2, 3, 1], [0], [0, 4], [0], [2]]
+
+Output: [0, 2, 3, 1, 4]
+Explanation: Starting from 0, the BFS traversal will follow these steps: 
+Visit 0 → Output: 0 
+Visit 2 (first neighbor of 0) → Output: 0, 2 
+Visit 3 (next neighbor of 0) → Output: 0, 2, 3 
+Visit 1 (next neighbor of 0) → Output: 0, 2, 3, 
+Visit 4 (neighbor of 2) → Final Output: 0, 2, 3, 1, 4*/
+class Solution {
+  public:
+    // Function to return Breadth First Traversal of given graph.
+    vector<int> bfs(vector<vector<int>> &adj) {//works only for connected graph
+        vector<int> bfs;
+        queue<int> q;
+        vector<bool> visited(adj.size(),false);
+        visited[0]=true;
+        q.push(0);
+        while(!q.empty())
+        {
+            int node=q.front();
+            q.pop();
+            bfs.push_back(node);
+            for(int i: adj[node])
+            {
+                if(!visited[i])
+                {
+                    visited[i]=true;
+                    q.push(i);
+                }
+            }
+        }
+        return bfs;
+        
+    }
+};
+class Solution {//works for disconnected graph too
+public:
+    // Function to return Breadth First Traversal of given graph.
+    vector<int> bfs(vector<vector<int>> &adj) {
+        vector<int> bfs;                     // stores BFS traversal
+        vector<bool> visited(adj.size(), false);  // track visited nodes
+        
+        for (int start = 0; start < adj.size(); start++) {
+            if (!visited[start]) {           // if not visited, do BFS from here
+                queue<int> q;
+                visited[start] = true;
+                q.push(start);
+                
+                while (!q.empty()) {
+                    int node = q.front();
+                    q.pop();
+                    bfs.push_back(node);
+                    
+                    // Traverse all adjacent vertices
+                    for (int neighbor : adj[node]) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            q.push(neighbor);
+                        }
+                    }
+                }
+            }
+        }
+        return bfs;
+    }
+};
