@@ -15,3 +15,25 @@ Explanation:
 Terms are 0, 1, 2, 3, 6.
 So the 5th term is 6
 */
+// User function Template for C++
+
+class Solution {
+  public:
+    long long solve(int N, int K, vector<long long> GeekNum) {
+        // code here
+        long long sum=0;
+        vector<long long> ans;
+        for(int i=0;i<K;i++)
+        {
+            ans.push_back(GeekNum[i]);
+            sum+=GeekNum[i];
+        }
+        ans.push_back(sum);
+        for(int i=K;i<N;i++)
+        {
+            sum+=ans[i]-ans[i-K];
+            ans.push_back(sum);
+        }
+        return ans[N-1];
+    }
+};
