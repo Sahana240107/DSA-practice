@@ -8,3 +8,20 @@ Explanation: After the first iteration, we'll have: ab bcd ab. We can't further 
 Input: arr[] = ["tom", "jerry", "jerry", "tom"]
 Output: 0
 Explanation: After the first iteration, we'll have: tom tom. After the second iteration: 'empty-array' .Hence, the result is 0.*/
+// User function Template for C++
+class Solution {
+  public:
+    int removeConsecutiveSame(vector<string>& arr) {
+        // Your code goes here
+        stack<string> st;
+        int n=arr.size();
+        for(int i=0;i<n;i++)
+        {
+            if(!st.empty() && st.top()==arr[i])
+                st.pop();
+            else
+                st.push(arr[i]);
+        }
+        return st.size();
+    }
+};
