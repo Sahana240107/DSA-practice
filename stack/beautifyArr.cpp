@@ -20,3 +20,27 @@ Explanation: As at indices 0 and 1, 2 and -2 have
 different sign, so they are removed. Now the array
 is 1 -1.Now 1 and -1 are also removed as they have
 different sign. So the final array is empty. */
+// User function Template for C++
+
+class Solution {
+  public:
+    vector<int> makeBeautiful(vector<int> arr) {
+        // code here
+        int n=arr.size();
+        stack<int> st;
+        for(int i=0;i<n;i++)
+        {
+            if(!st.empty() && (st.top()>=0 && arr[i]<0 || st.top()<0 && arr[i]>=0))
+                st.pop();
+            else
+                st.push(arr[i]);
+        }
+        vector<int> ans(st.size());
+        for(int i=st.size()-1;i>=0;i--)
+        {
+            ans[i]=st.top();
+            st.pop();
+        }
+        return ans;
+    }
+};
