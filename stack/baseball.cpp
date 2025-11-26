@@ -28,3 +28,55 @@ Explanation:
 "+" - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].
 The total sum is 5 + 10 + 15 = 30.
 */
+class Solution {
+public:
+    int calPoints(vector<string>& operations) {
+        stack<int> st;
+        int sum=0;
+        for(int i=0;i<operations.size();i++)
+        {
+            string s=operations[i];
+            if(s=="+")
+            {
+                int a=0,b=0;
+                if(!st.empty())
+                {
+                    a=st.top();
+                    st.pop();
+                }
+                if(!st.empty())
+                {
+                    b=st.top();     
+                }
+                st.push(a);
+                st.push(a+b);   
+                sum+=a+b;    
+            }
+            else if(s=="D")
+            {
+                int a=0;
+                if(!st.empty())
+                    a=st.top();
+                st.push(a*2);
+                sum+=a*2;
+            }
+            else if(s=="C")
+            {
+                int a=0;
+                if(!st.empty())
+                {
+                    a=st.top();
+                    st.pop();
+                }
+                sum-=a;
+            }
+            else
+            {
+                int num=stoi(s);
+                st.push(num);
+                sum+=num;
+            }
+        }
+        return sum;
+    }
+};
