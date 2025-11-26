@@ -13,3 +13,25 @@ Output:
 Explanation:
 After insertion of 2, the final stack will be {2,4,3,2,1,8}.
 */
+// User function Template for C++
+
+class Solution {
+  public:
+    void insertHelper(stack<int>& st,int x)
+    {
+        if(st.empty())
+        {
+            st.push(x);
+            return;
+        }
+        int top=st.top();
+        st.pop();
+        insertHelper(st,x);
+        st.push(top);
+    }
+    stack<int> insertAtBottom(stack<int> st, int x) 
+    {
+        insertHelper(st,x);
+        return st;
+    }
+};
