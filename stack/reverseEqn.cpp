@@ -1,0 +1,10 @@
+/*Given a mathematical equation that contains only numbers and +, -, *, /. Print the equation in reverse, such that the equation is reversed, but the numbers remain the same.
+It is guaranteed that the given equation is valid, and there are no leading zeros.
+
+Example 1:
+
+Input:
+S = "20-3+5*2"
+Output: 2*5+3-20
+Explanation: The equation is reversed with
+numbers remaining the same.*/
