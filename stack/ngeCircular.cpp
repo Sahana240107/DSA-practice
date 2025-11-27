@@ -14,3 +14,26 @@ The next greater element for 3 is 4.
 The next greater element for 2 is 4.
 The next greater element for 4 does not exist, so return -1.
 */
+class Solution {
+  public:
+    vector<int> nextGreater(vector<int> &arr) {
+        // code here
+        stack<int> st;
+        int n=arr.size();
+        vector<int> nge(n);
+        for(int i=2*n-1;i>=0;i--)
+        {
+            int ind=i%n;
+            while(!st.empty() && st.top()<=arr[ind])
+            {
+                st.pop();
+            }
+            if(i<n)
+            {
+                nge[i]=(st.empty())?-1:st.top();
+            }
+            st.push(arr[ind]);
+        }
+        return nge;
+    }
+};
