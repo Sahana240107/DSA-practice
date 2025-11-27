@@ -18,3 +18,21 @@ For 40, no element on the left greater than 40, so answer is -1.
 For 12, previous greater element is 40.
 For 30, previous greater element is 40.
 */
+class Solution {
+  public:
+    vector<int> preGreaterEle(vector<int>& arr) {
+        //  code here
+        vector<int> pge(arr.size());
+        stack<int> st;
+        for(int i=0;i<arr.size();i++)
+        {
+            while(!st.empty() && st.top()<=arr[i])
+            {
+                st.pop();
+            }
+            pge[i]=(st.empty())?-1:st.top();
+            st.push(arr[i]);
+        }
+        return pge;
+    }
+};
