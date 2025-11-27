@@ -15,3 +15,22 @@ The first element smaller than 5 having index > 2 is 2.
 There are no elements smaller than 4 having index > 3.
 There are no elements smaller than 4 having index > 4.
 */
+class Solution {
+  public:
+    vector<int> nextSmallerEle(vector<int>& arr) {
+        //  code here
+        int n=arr.size();
+        vector<int> nse(n);
+        stack<int> st;
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.empty() && st.top()>=arr[i])
+            {
+                st.pop();
+            }
+            nse[i]=(st.empty())?-1:st.top();
+            st.push(arr[i]);
+        }
+        return nse;
+    }
+};
