@@ -27,3 +27,67 @@ remove the element 3 from the top of the stack
 return maximum element from the stack i.e 2
 push(1) into the stack
 return maximum element from the stack i.e 2*/
+class SpecialStack {
+  public:
+    stack<long long> st;
+    long long maxi;
+    SpecialStack() {
+        // Define Stack
+        maxi=-1;
+    }
+
+    void push(int x) {
+        // Push an element into the stack
+        if(st.empty())
+        {
+            st.push(x);
+            maxi=x;
+        }
+        else
+        {
+            if(maxi<x)
+            {
+                st.push(2LL*x-maxi);
+                maxi=x;
+            }
+            else
+                st.push(x);
+        }
+    }
+
+    void pop() {
+        // Remove the top element from the Stack
+        if(st.empty())
+            return;
+        long long top=st.top();
+        st.pop();
+        if(top>maxi)
+        {
+            maxi=2LL*maxi-top;
+        }
+        if(st.empty())//edge case
+            maxi=-1;
+    }
+
+    int peek() {
+        // Returns the top element
+        if(st.empty())
+            return -1;
+        long long top=st.top();
+        if(top>maxi)
+        {
+            top=maxi;
+        }
+        return (int)top;
+    }
+
+    bool isEmpty() {
+        // Check if stack is empty
+        return st.empty();
+    }
+
+    int getMax() {
+        // Return maximum element of Stack
+        return maxi;
+    }
+};
