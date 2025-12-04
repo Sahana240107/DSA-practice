@@ -13,3 +13,22 @@ Input: s = "   fly me   to   the moon  "
 Output: 4
 Explanation: The last word is "moon" with length 4.
 */
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        string word;
+        int last=0;
+        for(char c:s)
+        {
+            if(c==' ')
+            {
+                if(word.length()!=0)
+                    last=word.length();
+                word="";
+            }
+            else
+                word+=c;
+        }
+        return (word.length()==0)?last:word.length();
+    }
+};
