@@ -5,3 +5,35 @@ Spiral Order Traversal mean: Starting from level 0 for root node, for all the ev
  we print the node's value from right to left and for all the odd levels we print the node's value from left to right.
 
 */
+class Solution {
+  public:
+    vector<int> findSpiral(Node* root) {
+        // code here
+        if(!root)
+            return {};
+        int lvl=0;
+        vector<int> levelOrder;
+        queue<Node*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int size=q.size();
+            vector<int> level;
+            for(int i=0;i<size;i++)
+            {
+                Node* node=q.front();
+                q.pop();
+                level.push_back(node->data);
+                if(node->left)
+                    q.push(node->left);
+                if(node->right)
+                    q.push(node->right);
+            }
+            if(lvl%2==0)
+                reverse(level.begin(),level.end());
+            levelOrder.insert(levelOrder.end(),level.begin(),level.end());
+            lvl++;
+        }
+        return levelOrder;
+    }
+};
