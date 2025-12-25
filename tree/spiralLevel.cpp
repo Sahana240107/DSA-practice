@@ -37,3 +37,39 @@ class Solution {
         return levelOrder;
     }
 };
+//alternate solution
+class Solution {
+  public:
+    vector<int> findSpiral(Node* root) {
+        if(!root)
+            return {};
+        bool evenlevel=true;
+        vector<int> levelOrder;
+        queue<Node*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int size=q.size();
+            deque<int> level;
+            for(int i=0;i<size;i++)
+            {
+                Node* node=q.front();
+                q.pop();
+                if(evenlevel)
+                    level.push_front(node->data);
+                else
+                    level.push_back(node->data);
+                if(node->left)
+                    q.push(node->left);
+                if(node->right)
+                    q.push(node->right);
+            }
+            for(int x:level)
+            {
+                levelOrder.push_back(x);
+            }
+            evenlevel=!evenlevel;
+        }
+        return levelOrder;
+    }
+};
