@@ -27,3 +27,4 @@ public:
     }
 };
 
+/*Using 1 stack*/
