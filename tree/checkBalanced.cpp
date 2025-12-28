@@ -8,3 +8,23 @@ Input: root = [10, 20, 30, 40, 60]
     
 Output: true 
 Explanation: The height difference between the left and right subtrees at all nodes is at most 1. Hence, the tree is balanced.*/
+class Solution {
+    int height(Node* root)
+    {
+        if(!root)
+            return 0;
+        int lh=height(root->left);
+        if(lh==-1)
+            return -1;
+        int rh=height(root->right);
+        if(rh==-1)
+            return -1;
+        if(abs(lh-rh)>1)
+            return -1;
+        return 1+max(lh,rh);
+    }
+  public:
+    bool isBalanced(Node* root) {
+        return height(root)!=-1;
+    }
+};
