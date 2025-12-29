@@ -10,3 +10,21 @@ Example 1:
 Input: root = [1,2,3,4,5]
 Output: 3
 Explanation: 3 is the length of the path [4,2,1,3] or [5,2,1,3].*/
+
+class Solution {
+    int dia=0;
+    int height(TreeNode* root)
+    {
+        if(!root)
+            return 0;
+        int lh=height(root->left);
+        int rh=height(root->right);
+        dia=max(dia,lh+rh);
+        return 1+max(lh,rh);
+    }
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        height(root);
+        return dia;
+    }
+};
