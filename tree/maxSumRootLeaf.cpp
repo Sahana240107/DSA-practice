@@ -29,3 +29,17 @@ sum of 17, which is the maximum path sum
 from leaf to root for the given tree.
 
 */
+class Solution {
+  public:
+    int maxPathSum(Node* root) {
+        // code here
+        if(!root)
+            return INT_MIN;
+        if(!root->left && !root->right)
+            return root->data;
+        int ls=maxPathSum(root->left);
+        int rs=maxPathSum(root->right);
+        
+        return root->data+max(ls,rs);
+    }
+};
