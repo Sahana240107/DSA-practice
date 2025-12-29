@@ -15,3 +15,20 @@ Input: root = [-10,9,20,null,null,15,7]
 Output: 42
 Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 42.
 */
+class Solution {
+    int maxi=INT_MIN;
+    int maxPath(TreeNode* root)
+    {
+        if(!root)
+            return 0;
+        int ls=max(0,maxPath(root->left));
+        int rs=max(0,maxPath(root->right));
+        maxi=max(maxi,root->val+ls+rs);
+        return root->val+max(ls,rs);
+    }
+public:
+    int maxPathSum(TreeNode* root) {
+        maxPath(root);
+        return maxi;
+    }
+};
