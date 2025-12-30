@@ -8,3 +8,17 @@ Example 1:
 
 Input: root = [3,9,20,null,null,15,7]
 Output: 2*/
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(root==NULL)
+            return 0;
+        if(!root->left)
+            return 1+minDepth(root->right);
+        if(!root->right)
+            return 1+minDepth(root->left);
+        int ld=minDepth(root->left);
+        int rd=minDepth(root->right); 
+        return 1+min(ld,rd);
+    }
+};
