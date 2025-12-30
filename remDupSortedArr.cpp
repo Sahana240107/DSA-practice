@@ -40,3 +40,11 @@ vector<int> removeDuplicate(vector<int> a)
     }
     return ans;
 }
+
+//using unordered_set O(n) space O(n) [does not maintain order]
+
+vector<int> removeDuplicates(vector<int> a)
+{
+    unordered_set<int> s(a.begin(),a.end());
+    return vector<int> ans(s.begin(),s.end());
+}
