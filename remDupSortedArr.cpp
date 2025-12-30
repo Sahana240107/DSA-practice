@@ -48,3 +48,20 @@ vector<int> removeDuplicates(vector<int> a)
     unordered_set<int> s(a.begin(),a.end());
     return vector<int> ans(s.begin(),s.end());
 }
+
+//using unordered_set maintining order
+
+vector<int> removeDuplicates(vector<int> a)
+{
+    unordered_set<int> s;
+    vector<int> ans;
+    for(int x:a)
+    {
+        if(s.find(x)==s.end())
+        {
+            s.insert(x);
+            ans.push_back(x);
+        }
+    }
+    return ans;
+}
