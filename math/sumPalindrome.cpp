@@ -9,3 +9,25 @@ Input: n = 73
 Output: 121
 Explanation: reverse(73) = 37, then 37+73 = 110 which is not a palindrome, again reverse(110)= 011, then 110+11 = 121 which is a palindrome.
 */
+class Solution {
+    int reverseN(int n) {
+        int rev = 0;
+        while (n > 0) {
+            rev = rev * 10 + (n % 10);
+            n /= 10;
+        }
+        return rev;
+    }
+
+public:
+    int isSumPalindrome(int n) {
+        for (int i = 0; i < 5; i++) {
+            int rev = reverseN(n);
+            n = n + rev;
+
+            if (n == reverseN(n))
+                return n;
+        }
+        return -1;
+    }
+};
