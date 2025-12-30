@@ -17,3 +17,18 @@ Output: No
 Explanation: The given string can't be
 converted into a palindrome.
 */
+int isPossible(string S) {
+    // your code here
+    unordered_map<char,int> freq;
+    for(char c:S)
+    {
+        freq[c]++;
+    }
+    int odd=0;
+    for(auto it:freq)
+    {
+        if(it.second%2!=0)
+            odd++;
+    }
+    return (odd<=1);
+}
