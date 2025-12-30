@@ -27,3 +27,16 @@ vector<int> removeDuplicates(vector<int> a)
     return ans;
 }
 
+//using sorting O(n log n)
+
+vector<int> removeDuplicate(vector<int> a)
+{
+    sort(a.begin(),a.end());
+    vector<int> ans;
+    for(int i=0;i<a.size();i++)
+    {
+        if(i==0 || a[i]!=a[i-1])
+            ans.push_back(a[i]);
+    }
+    return ans;
+}
