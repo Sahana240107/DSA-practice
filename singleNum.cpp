@@ -13,3 +13,14 @@ Input: nums = [4,1,2,1,2]
 Output: 4
 
 */
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int xorx=0;
+        for(int x:nums)
+        {
+            xorx^=x;
+        }
+        return xorx;
+    }
+};
