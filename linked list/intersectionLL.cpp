@@ -31,6 +31,43 @@ node* intersection(node* h1,node* h2)
     return NULL;
 }
 
+//difference approach
+
+intgetLength(ListNode* head) {
+int len =0;
+while(head) {
+        len++;
+        head = head->next;
+    }
+return len;
+}
+
+ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
+int lenA =getLength(headA);
+int lenB =getLength(headB);
+
+int diff =abs(lenA - lenB);
+
+// Move longer list ahead
+if(lenA > lenB) {
+while(diff--) headA = headA->next;
+    }else {
+while(diff--) headB = headB->next;
+    }
+
+// Traverse together
+while(headA && headB) {
+if(headA == headB)
+return headA;
+        headA = headA->next;
+        headB = headB->next;
+    }
+
+returnNULL;
+}
+
+
+
 //optimal approach time:O(N+M)
 
 class Solution {
