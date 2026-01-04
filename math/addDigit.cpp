@@ -9,3 +9,23 @@ Explanation: The process is
 11 --> 1 + 1 --> 2 
 Since 2 has only one digit, return it.
 */
+class Solution {
+    int helper(int n)
+    {
+        int sum=0;
+        while(n>0)
+        {
+            sum+=n%10;
+            n/=10;
+        }
+        return sum;
+    }
+public:
+    int addDigits(int num) {
+        while(num>9)
+        {
+            num=helper(num);
+        }
+        return num;
+    }
+};
