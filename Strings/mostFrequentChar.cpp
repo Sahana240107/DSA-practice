@@ -26,7 +26,30 @@ class Solution {
                 ans = char(i + 'a');
             }
         }
-
         return ans;
+    }
+};
+//Unordered_map method
+class Solution {
+  public:
+    char getMaxOccuringChar(string& s) {
+        //  code here
+        char maxi;
+        int maxfreq=0;
+        unordered_map<char,int> freq;
+        for(char c:s)
+        {
+            freq[c]++;
+            if(freq[c]>maxfreq)
+            {
+                maxi=c;
+                maxfreq=freq[c];
+            }
+            else if(freq[c]==maxfreq)
+            {
+                maxi=maxi<c?maxi:c;
+            }
+        }
+        return maxi;
     }
 };
