@@ -9,3 +9,24 @@ Input: s = "output"
 Output: 't'
 Explanation: 't' and 'u' are the characters with the same frequency, but 't' is lexicographically smaller.
 */
+class Solution {
+  public:
+    char getMaxOccuringChar(string& s) {
+        int freq[26] = {0};
+
+        for(char c : s)
+            freq[c - 'a']++;
+
+        int maxfreq = 0;
+        char ans = 'a';
+
+        for(int i = 0; i < 26; i++) {
+            if(freq[i] > maxfreq) {
+                maxfreq = freq[i];
+                ans = char(i + 'a');
+            }
+        }
+
+        return ans;
+    }
+};
