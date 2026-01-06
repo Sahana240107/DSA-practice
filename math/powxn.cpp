@@ -16,3 +16,26 @@ Input: x = 2.00000, n = -2
 Output: 0.25000
 Explanation: 2-2 = 1/22 = 1/4 = 0.25
 */
+class Solution {
+public:
+    double myPow(double x, int n) {
+        long long pow=n;
+        double res=1.0;
+        if(n<0)
+        {
+            x=1/x;
+            pow=-pow;
+        }
+        while(pow>0)
+        {
+            if(pow%2==1)
+            {
+                res*=x;
+                pow--;
+            }
+            x*=x;
+            pow/=2;
+        }
+        return res;
+    }
+};
