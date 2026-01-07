@@ -20,3 +20,17 @@ Input: n = 14
 Output: false
 Explanation: 14 is not ugly since it includes the prime factor 7.
 */
+class Solution {
+public:
+    bool isUgly(int n) {
+        if(n<=0)
+            return false;
+        int factor[]={2,3,5};
+        for(int f:factor)
+        {
+            while(n%f==0)
+                n/=f;
+        }
+        return n==1;
+    }
+};
