@@ -13,3 +13,31 @@ Explanation: After removing extra dots and reversing the whole string, the input
 Input: s = "..home....."
 Output: "home"
 Explanation: The input string contains only one word with extra dots around it. After removing the extra dots, the output is "home".*/
+class Solution {
+public:
+    string reverseWords(string &s) {
+        string ans = "";
+        int i = s.size() - 1;
+
+        while (i >= 0) {
+            // Skip dots
+            while (i >= 0 && s[i] == '.')
+                i--;
+
+            if (i < 0) break;
+
+            // Extract word
+            int j = i;
+            while (j >= 0 && s[j] != '.')
+                j--;
+
+            // Append word
+            if (!ans.empty())
+                ans += '.';
+            ans += s.substr(j + 1, i - j);
+
+            i = j - 1;
+        }
+        return ans;
+    }
+};
