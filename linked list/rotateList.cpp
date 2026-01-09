@@ -45,3 +45,30 @@ Rotate 3: 40 -> 50 -> 10 -> 20 -> 30
 Rotate 4: 50 -> 10 -> 20 -> 30 -> 40
    
 */
+class Solution {
+  public:
+    Node* rotate(Node* head, int k) {
+        // code here
+        if(!head||!head->next||k==0)
+            return head;
+        int len=1;
+        Node* last=head;
+        while(last->next)
+        {
+            last=last->next;
+            len++;
+        }
+        k=k%len;
+        if(k==0)
+            return head;
+        last->next=head;
+        Node* newTail=head;
+        for(int i=1;i<k;i++)
+        {
+            newTail=newTail->next;
+        }
+        Node* newHead=newTail->next;
+        newTail->next=NULL;
+        return newHead;
+    }
+};
