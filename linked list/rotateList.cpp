@@ -31,3 +31,17 @@ public:
         return newHead;
     }
 };
+/*You are given the head of a singly linked list, you have to left rotate the linked list k times. Return the head of the modified linked list.
+
+Examples:
+
+Input: k = 4,
+   
+Output: 50 -> 10 -> 20 -> 30 -> 40
+Explanation:
+Rotate 1: 20 -> 30 -> 40 -> 50 -> 10
+Rotate 2: 30 -> 40 -> 50 -> 10 -> 20
+Rotate 3: 40 -> 50 -> 10 -> 20 -> 30
+Rotate 4: 50 -> 10 -> 20 -> 30 -> 40
+   
+*/
