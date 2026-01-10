@@ -21,13 +21,13 @@ Explanation: Alternative nodes in the given linked list are 4,1,5,4.
             return;
         Node* last=head;
         while(last->next)
-            last=last->next;
+            last=last->next;//find last node
         int i=1;
         Node* prev=NULL;
         Node* temp=head;
         while(temp!=last)
         {
-            if(i%2==0)
+            if(i%2==0)//even node moved to last nodes next
             {
 
                 Node* front=temp->next;
@@ -44,5 +44,42 @@ Explanation: Alternative nodes in the given linked list are 4,1,5,4.
             }
             i++;
         }
+    }
+};
+
+//clear alternate solution
+class Solution {
+  public:
+    void rearrange(Node* head) {
+        if (!head || !head->next) return;
+
+        Node* odd = head;
+        Node* even = head->next;
+        Node* evenHead = even;
+
+        // Step 1: Separate odd and even nodes
+        while (even && even->next) {
+            odd->next = even->next;
+            odd = odd->next;
+
+            even->next = odd->next;
+            even = even->next;
+        }
+        odd->next = NULL;
+
+        // Step 2: Reverse the even list
+        Node* prev = NULL;
+        Node* curr = evenHead;
+        while (curr) {
+            Node* next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        // Step 3: Append reversed even list to odd list
+        odd = head;
+        while (odd->next) odd = odd->next;
+        odd->next = prev;
     }
 };
