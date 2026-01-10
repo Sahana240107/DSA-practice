@@ -97,3 +97,37 @@ Example 1:
 
 Input: head = [1,2,3,4]
 Output: [1,4,2,3]*/
+
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast && fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next->next;//find the middle 
+        }
+        ListNode* temp=slow->next;
+        slow->next=NULL;//partititon into two parts
+        ListNode* prev=NULL;
+        while(temp)//reverse 
+        {
+            ListNode* front=temp->next;
+            temp->next=prev;
+            prev=temp;
+            temp=front;
+        }
+        ListNode* first=head;
+        ListNode* second=prev;//alternately merging two parts
+        while(second)
+        {
+            ListNode* t1=first->next;
+            ListNode* t2=second->next;
+            first->next=second;
+            second->next=t1;
+            first=t1;
+            second=t2;
+        }
+    }
+};
