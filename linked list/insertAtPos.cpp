@@ -10,6 +10,11 @@ Input: pos = 2, val = 5,
     
 Output: 1 -> 5 -> 2 -> 9
 */
+class Node
+{
+    int data;
+    Node* next;
+};
 class Solution {
   public:
     Node *insertPos(Node *head, int pos, int val) {
