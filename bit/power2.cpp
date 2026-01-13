@@ -9,3 +9,11 @@ Input: n = 98
 Output: false
 Explanation: 98 cannot be obtained by any power of 2.
 */
+class Solution {
+  public:
+    bool isPowerofTwo(int n) {
+        if(n<=0)
+            return false;
+        return (n&(n-1))==0;
+    }
+};
