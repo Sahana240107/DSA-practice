@@ -1,0 +1,1 @@
+/*Given a non-negative integer n. You have to check if it is a power of 3 or not.*/
