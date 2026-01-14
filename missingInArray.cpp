@@ -17,3 +17,19 @@ class Solution {
         return expectedSum-sum;//Total sum-actual sum will give missing number
     }
 };
+
+//Alternate method
+
+class Solution {
+  public:
+    int missingNum(vector<int>& arr) {
+        int xor1=0,xor2=0,i;
+        for(i=0;i<arr.size();i++)
+        {
+            xor1=xor1^arr[i];
+            xor2=xor2^(i+1);
+        }
+        xor2=xor2^(i+1);
+        return xor1^xor2;
+    }
+};
