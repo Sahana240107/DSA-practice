@@ -21,3 +21,27 @@ word1:  a   b
 word2:    p   q   r   s
 merged: a p b q   r   s
 */
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        string ans;
+        int i=0,n=word1.length(),m=word2.length();
+        while(i<n && i<m)
+        {
+            ans+=word1[i];
+            ans+=word2[i];
+            i++;
+        }
+        while(i<n)
+        {
+            ans+=word1[i];
+            i++;
+        }
+        while(i<m)
+        {
+            ans+=word2[i];
+            i++;
+        }
+        return ans;
+    }
+};
