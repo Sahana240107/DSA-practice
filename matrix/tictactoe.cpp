@@ -98,3 +98,40 @@ board[] = {'O', 'X', 'X',
 Output: Invalid
 Explanation: Both X and O cannot win.
 */
+
+// User function template for C++
+
+class Solution {
+    int win(char b[9]) {
+        int count=0;
+        int lines[8][3] = {
+            {0,1,2},{3,4,5},{6,7,8}, // rows
+            {0,3,6},{1,4,7},{2,5,8}, // columns
+            {0,4,8},{2,4,6}          // diagonals
+        };
+
+        for (int i = 0; i < 8; i++) {
+            if (b[lines[i][0]] ==b[lines[i][1]]  && b[lines[i][1]]==b[lines[i][2]])
+                count++;
+        }
+        return count;
+    }
+  public:
+    bool isValid(char board[9]) {
+        int x=0,o=0;
+        for(int i=0;i<9;i++)
+        {
+            char c=board[i];
+            if(c=='O')
+                o++;
+            else 
+                x++;
+        }
+        if(x!=5 || o!=4)
+            return false;
+        int count=win(board);
+        if(count>1)
+            return false;
+        return true;
+    }
+};
