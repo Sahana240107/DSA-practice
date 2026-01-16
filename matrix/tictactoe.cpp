@@ -31,3 +31,47 @@ Input: moves = [[0,0],[1,1],[2,0],[1,0],[1,2],[2,1],[0,1],[0,2],[2,2]]
 Output: "Draw"
 Explanation: The game ends in a draw since there are no moves to make.
  */
+class Solution {
+public:
+    string tictactoe(vector<vector<int>>& moves) {
+        vector<vector<int>> grid(3,vector<int> (3,-1));
+        for(int i=0;i<moves.size();i++)
+        {
+            int r=moves[i][0];
+            int c=moves[i][1];
+            (i%2==0)?grid[r][c]=1:grid[r][c]=0;
+        }
+        for(int i=0;i<3;i++)
+        {
+            if(grid[i][0]==-1)
+            {
+                continue;
+            }
+            else if(grid[i][0]==grid[i][1] && grid[i][1]==grid[i][2])
+            {
+                return (grid[i][0]==1)?"A":"B";
+            }
+        }
+        for(int j=0;j<3;j++)
+        {
+            if(grid[0][j]==-1)
+                continue;
+            else if(grid[0][j]==grid[1][j] && grid[1][j]==grid[2][j])
+            {
+                return (grid[0][j]==1)?"A":"B";
+            }
+        }
+        if(grid[1][1]!=-1)
+        {
+            if(grid[0][0]==grid[1][1] && grid[1][1]==grid[2][2])
+            {
+               return (grid[0][0]==1)?"A":"B";
+            }
+            else if(grid[0][2]==grid[1][1] && grid[1][1]==grid[2][0])
+            {
+                return (grid[0][2]==1)?"A":"B";
+            }
+        }
+        return moves.size()==9?"Draw":"Pending";
+    }
+};
