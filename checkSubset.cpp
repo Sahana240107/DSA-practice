@@ -12,3 +12,28 @@ Input: a[] = [10, 5, 2, 23, 19], b[] = [19, 5, 3]
 Output: false
 Explanation: b[] is not a subset of a[]
 */
+
+class Solution {
+  public:
+    // Function to check if b is a subset of a
+    bool isSubset(vector<int> &a, vector<int> &b) {
+        unordered_map<int,int> frq;
+        for(int x:b)
+        {
+            frq[x]++;
+        }
+        for(int x:a)
+        {
+            if(frq.count(x))
+            {
+                frq[x]--;
+                if(frq[x]==0)
+                    frq.erase(x);
+            }
+            if(frq.empty())
+                return true;
+        }
+        return frq.empty();
+        
+    }
+};
