@@ -26,3 +26,17 @@ public:
       return ans;
     }
 };
+
+/*Given a non-negative integer n. Reverse the bits of n and print the number obtained after reversing the bits.
+Note:  The actual binary representation of the number is being considered for reversing the bits, no leading 0’s are being considered.
+ 
+Example 1:
+Input : 
+N = 11
+Output:
+13
+Explanation:
+(11)10 = (1011)2.
+After reversing the bits we get:
+(1101)2 = (13)10.
+*/
