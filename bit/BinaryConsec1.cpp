@@ -6,3 +6,22 @@ Input: n = 14
 Output: 3
 Explanation: Binary representation of 14 is 1110, in which 111 is the longest consecutive set bits of length is 3.
 */
+class Solution {
+  public:
+    int maxConsecutiveOnes(int n) {
+        // code here
+        int count=0,maxCount=0;
+        while(n)
+        {
+            if(n&1)
+            {
+                count++;
+                maxCount=max(maxCount,count);
+            }
+            else
+                count=0;
+            n>>=1;
+        }
+        return maxCount;
+    }
+};
