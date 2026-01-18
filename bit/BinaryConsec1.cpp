@@ -25,3 +25,14 @@ class Solution {
         return maxCount;
     }
 };
+
+
+//Brian Kernighan Method
+int maxConsecutiveOnes(int n) {
+    int count = 0;
+    while (n) {
+        n = n & (n << 1);
+        count++;
+    }
+    return count;
+}
