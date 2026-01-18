@@ -7,3 +7,32 @@ Output: 1 -> 2 -> 3 -> 4 -> 6 -> 8 -> 9
 
 Explanation: All the distinct numbers from two lists, when sorted form the list in the output. 
 */
+
+class Solution {
+  public:
+    struct Node* makeUnion(struct Node* head1, struct Node* head2) {
+        // code here
+        set<int> st;
+        Node* t1=head1;
+        Node* t2=head2;
+        while(t1)
+        {
+            st.insert(t1->data);
+            t1=t1->next;
+        }
+        while(t2)
+        {
+            st.insert(t2->data);
+            t2=t2->next;
+        }
+        Node* dummy=new Node(0);
+        Node* cur=dummy;
+        for(int it:st)
+        {
+            cur->next=new Node(it);
+            cur=cur->next;
+        }
+        return dummy->next;
+        
+    }
+};
