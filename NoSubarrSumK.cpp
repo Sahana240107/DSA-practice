@@ -12,3 +12,25 @@ Example 2:
 
 Input: nums = [1,2,3], k = 3
 Output: 2*/
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int count=0;
+        unordered_map<long long,int> mp;
+        long long sum=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            if(sum==k)
+                count++;
+            long long rem=sum-k;
+            if(mp.find(rem)!=mp.end())
+            {
+                count+=mp[rem];
+            }
+            mp[sum]++;
+        }
+        return count;
+    }
+};
