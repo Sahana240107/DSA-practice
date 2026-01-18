@@ -12,3 +12,13 @@ Input: Linked List = 1 -> 2, del_node = 1
 Output: 2
 Explanation: After deleting 1 from the linked list, we have remaining nodes as 2.
 */
+class Solution {
+  public:
+    void deleteNode(Node* del_node) {
+        // code here
+        Node* nextNode=del_node->next;
+        del_node->data=nextNode->data;
+        del_node->next=nextNode->next;
+        
+    }
+};
