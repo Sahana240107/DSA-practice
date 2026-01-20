@@ -14,3 +14,33 @@ Explanation:
 The above figure represents the given linked list. The indices of the nodes are written below.
 Since n = 7, node 3 with value 7 is the middle node, which is marked in red.
 We return the new list after removing this node.*/
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+        if(!head || !head->next)
+            return NULL;
+        ListNode* slow=head;
+        ListNode* fast=head;
+        ListNode* prev=NULL;
+        while(fast && fast->next)
+        {
+            prev=slow;
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        if(prev)
+            prev->next=slow->next;
+        return head;
+    }
+};
