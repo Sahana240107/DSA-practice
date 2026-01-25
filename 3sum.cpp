@@ -70,3 +70,36 @@ Explanation: All possible triplets
 [2, 2, 4], sum = 2 + 2 + 4 = 8
 Triplet [-1, 2, 2], [-1, 2, 4] and [-1, 2, 4] have sum closest to target, so return the maximum one, that is 5.
 */
+class Solution {
+  public:
+    int closest3Sum(vector<int> &arr, int target) {
+        // code here
+        int n=arr.size();
+        sort(arr.begin(),arr.end());
+        int close,closedif=INT_MAX;
+        for(int i=0;i<n;i++)
+        {
+            int j=i+1,k=n-1;
+            while(j<k)
+            {
+                long long sum=arr[i]+arr[j]+arr[k];
+                if(sum==target)
+                    return target;
+                else
+                {
+                    int dif=abs(target-sum);
+                    if(closedif>dif || closedif==dif && sum>close)
+                    {
+                        closedif=dif;
+                        close=sum;
+                    }
+                    if(sum<target)
+                        j++;
+                    else
+                        k--;
+                }
+            }
+        }
+        return close;
+    }
+};
