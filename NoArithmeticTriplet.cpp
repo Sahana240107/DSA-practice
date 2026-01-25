@@ -14,3 +14,17 @@ Output: 2
 Explanation:
 (1, 2, 4) is an arithmetic triplet because both 7 - 4 == 3 and 4 - 1 == 3.
 (2, 4, 5) is an arithmetic triplet because both 10 - 7 == 3 and 7 - 4 == 3. */
+
+class Solution {
+public:
+    int arithmeticTriplets(vector<int>& nums, int diff) {
+        unordered_set<int> st(nums.begin(),nums.end());
+        int count=0;
+        for(int x:nums)
+        {
+            if(st.count(x+diff) && st.count(x+2*diff))
+                count++;
+        }
+        return count;
+    }
+};
