@@ -53,3 +53,20 @@ public:
         return ans;
     }
 };
+
+//3SUM CLOSEST
+/*Given an array arr[] and an integer target, the task is to find the sum of three integers in arr[] such that the sum is closest to target. 
+
+Note: If multiple sums are closest to target, return the maximum one.
+
+Examples:
+
+Input: arr[] = [-1, 2, 2, 4], target = 4
+Output: 5
+Explanation: All possible triplets
+[-1, 2, 2], sum = (-1) + 2 + 2 = 3
+[-1, 2, 4], sum = (-1) + 2 + 4 = 5
+[-1, 2, 4], sum = (-1) + 2 + 4 = 5
+[2, 2, 4], sum = 2 + 2 + 4 = 8
+Triplet [-1, 2, 2], [-1, 2, 4] and [-1, 2, 4] have sum closest to target, so return the maximum one, that is 5.
+*/
