@@ -18,3 +18,29 @@ Input: intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
 Output: [[1,2],[3,10],[12,16]]
 Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 */
+class Solution {
+public:
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        vector<vector<int>> ans;
+        int n=intervals.size();
+        int x=newInterval[0],y=newInterval[1],i=0;
+        while(i<n && intervals[i][1]<x)
+        {
+            ans.push_back(intervals[i]);
+            i++;
+        }
+        while(i<n && intervals[i][0]<=y)
+        {
+            x=min(x,intervals[i][0]);
+            y=max(y,intervals[i][1]);
+            i++;
+        }
+        ans.push_back({x,y});
+        while(i<n)
+        {
+            ans.push_back(intervals[i]);
+            i++;
+        }
+        return ans;
+    }
+};
