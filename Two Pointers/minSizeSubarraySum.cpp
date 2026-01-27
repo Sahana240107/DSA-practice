@@ -33,3 +33,33 @@ public:
         return mini==INT_MAX?0:mini;
     }
 };
+
+//With negatives
+
+class Solution {
+public:
+    int shortestSubarray(vector<int>& nums, int k) {
+        int n=nums.size();
+        vector<long long> pre(n+1,0);
+        for(int i=0;i<n;i++)
+        {
+            pre[i+1]=pre[i]+nums[i];
+        }
+        deque<int> dq;
+        int mini=INT_MAX;
+        for(int i=0;i<=n;i++)
+        {
+            while(!dq.empty() && pre[i]-pre[dq.front()]>=k)
+            {
+                mini=min(mini,i-dq.front());
+                dq.pop_front();
+            }
+            while(!dq.empty() && pre[i]<=pre[dq.back()])
+            {
+                dq.pop_back();
+            }
+            dq.push_back(i);
+        }
+        return mini==INT_MAX?-1:mini;
+    }
+};
