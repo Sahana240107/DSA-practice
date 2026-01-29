@@ -12,3 +12,24 @@ Explanation: You have 3 children and 2 cookies. The greed factors of 3 children 
 And even though you have 2 cookies, since their size is both 1, you could only make the child whose greed factor is 1 content.
 You need to output 1.
 */
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) {
+        int n=g.size(),m=s.size();
+        int l=0,r=0,count=0;
+        sort(g.begin(),g.end());
+        sort(s.begin(),s.end());
+        while(l<n && r<m)
+        {
+            if(g[l]<=s[r])
+            {
+                count++;
+                l++;
+                r++;
+            }
+            else
+                r++;
+        }
+        return count;
+    }
+};
