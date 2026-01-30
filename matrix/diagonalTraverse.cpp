@@ -14,3 +14,27 @@ Output: [1,2,3,4]
  
 
 */
+class Solution {
+public:
+    vector<int> findDiagonalOrder(vector<vector<int>>& mat) {
+        int n=mat.size();
+        int m=mat[0].size();
+        vector<vector<int>> dia(n+m-1);
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                dia[i+j].push_back(mat[i][j]);
+            }
+        }
+        vector<int> ans;
+        for(int i=0;i<dia.size();i++)
+        {
+            if(i%2==0)
+                reverse(dia[i].begin(),dia[i].end());
+            for(int x:dia[i])
+                ans.push_back(x);
+        }
+        return ans;
+    }
+};
