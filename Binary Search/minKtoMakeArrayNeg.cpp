@@ -13,3 +13,32 @@ Output: 3
 Example 2
 Input: nums = [1]
 Output: 1*/
+class Solution {
+public:
+    // Calculates nonPositive(nums, k)
+    long long operationsNeeded(vector<int>& nums, int k) {
+        long long ops = 0;
+        for (int x : nums) {
+            ops += (x + k - 1) / k;   // ceil(x / k)
+        }
+        return ops;
+    }
+
+    int minimumK(vector<int>& nums) {
+        int low = 1;
+        int high = *max_element(nums.begin(), nums.end());
+        int answer = high;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (operationsNeeded(nums, mid) <= 1LL * mid * mid) {
+                answer = mid;       // mid is valid
+                high = mid - 1;     // try smaller k
+            } else {
+                low = mid + 1;      // k too small
+            }
+        }
+        return answer;
+    }
+};
