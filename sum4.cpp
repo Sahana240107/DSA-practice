@@ -16,7 +16,6 @@ Example 2:
 Input: nums = [2,2,2,2,2], target = 8
 Output: [[2,2,2,2]]
 */
-
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
