@@ -14,3 +14,26 @@ Example 2:
 Input: s = "a"
 Output: 1
 Explanation: The longest palindrome that can be built is "a", whose length is 1.*/
+
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        unordered_map<char,int> freq;
+        int count=0;
+        for(char c:s)
+        {
+            freq[c]++;
+            if(freq[c]%2==0)
+                count+=2;
+        }
+        for(auto it:freq)
+        {
+            if(it.second%2!=0)
+            {
+                count+=1;
+                break;
+            }
+        }
+        return count;
+    }
+};
