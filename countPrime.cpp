@@ -20,7 +20,6 @@ public:
                 {
                         prime[j]=false;
                 }
-
             }
         }
         return count(prime.begin(),prime.end(),true);
