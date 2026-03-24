@@ -29,3 +29,16 @@ Sample Output 1
 Explanation 1
 
 The original array should be . So, we can notice that the array has been rotated 3 times.*/
+
+int numberOfRotations(vector<int> nums, int n) {
+    int left=0,right=n-1;
+    while(left<right)
+    {
+        int mid=left+(right-left)/2;
+        if(nums[mid]>nums[right])
+            left=mid+1;
+        else
+            right=mid;
+    }
+    return left;
+}
