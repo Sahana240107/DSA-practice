@@ -33,3 +33,20 @@ Fot the given array, Index: 0 1 2 3 4 Value: -10 -4 -4 4 -8
 wkt left = 1, right = 4
 
 Thus, result = nums[1] + nums[2] + nums[3] + nums[4] = (-4) + (-4) + 4 + (-8) = -12*/
+
+vector<int> buildPrefix(vector<int>& nums, int n) {
+    vector<int> prefix(n);
+    prefix[0] = nums[0];
+
+    for (int i = 1; i < n; i++) {
+        prefix[i] = prefix[i-1] + nums[i];
+    }
+
+    return prefix;
+}
+
+int rangeSum(vector<int>& prefix, int l, int r) {
+    if (l == 0)
+        return prefix[r];
+    return prefix[r] - prefix[l-1];
+}
