@@ -26,3 +26,18 @@ Explanation: You will start at index 0.
 - Pay 1 and climb one step to reach the top.
 The total cost is 6.
 */
+class Solution {
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        int prev2=0,prev1=0,cur=0,n=cost.size();
+        for(int i=2;i<=n;i++)
+        {
+            int oneStep=prev1+cost[i-1];
+            int twoStep=prev2+cost[i-2];
+            cur=min(oneStep,twoStep);
+            prev2=prev1;
+            prev1=cur;
+        }
+        return cur;
+    }
+};
