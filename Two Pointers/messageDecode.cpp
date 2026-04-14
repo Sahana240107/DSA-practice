@@ -18,3 +18,17 @@ Explanation: It's impossible to convert
 the given string into "hello".
 
 */
+
+bool decode(string S) {
+    // your code here
+    string pat="hello";
+    int i=0;
+    for(int j=0;j<S.length();j++)
+    {
+        if(S[j]==pat[i])
+            i++;
+        if(i==5)
+            return 1;
+    }
+    return i==5?1:0;
+}
