@@ -10,3 +10,31 @@ Output: -1 2 3 7 8 10
 Explanation: {2 3 8} and {-1 7 10} are sorted 
 in the original array. The overall sorted 
 version is {-1 2 3 7 8 10}*/
+
+class Solution {
+  public:
+    void sortHalves(int arr[], int n) {
+        // your code here
+        int k=0;
+        for(k=0;k<n;k++)
+        {
+            if(arr[k]>arr[k+1])
+                break;
+        }
+        int i=0,j=k+1;
+        vector<int> temp;
+        while(i<=k && j<n)
+        {
+            if(arr[i]<=arr[j])
+                temp.push_back(arr[i++]);
+            else
+                temp.push_back(arr[j++]);
+        }
+        while(i<=k)
+            temp.push_back(arr[i++]);
+        while(j<n)
+            temp.push_back(arr[j++]);
+        for(int i=0;i<n;i++)
+            arr[i]=temp[i];
+    }
+};
