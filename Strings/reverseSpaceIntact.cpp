@@ -8,3 +8,27 @@ Output: sreh topleH
 Explanation: The space is intact at index 4
 while all other characters are reversed.
 */
+
+class Solution {
+  public:
+
+    string reverseWithSpacesIntact(string s) {
+        // code here.
+        int i=0,j=s.length()-1;
+        while(i<j)
+        {
+            if(s[i]!=' ' && s[j]!=' ')
+                swap(s[i],s[j]);
+            if(s[i]==' ')
+                i++;
+            else if(s[j]==' ')
+                j--;
+            else
+            {
+                i++;
+                j--;
+            }
+        }
+        return s;
+    }
+};
