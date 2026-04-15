@@ -11,3 +11,16 @@ Input: arr[] = [1, 5, 1, 2, 3, 4]
 Output: 1  
 Explanation: The number 1 is the only repeating element.
 */
+// User function Template for C++
+class Solution {
+  public:
+    int findDuplicate(vector<int>& arr) {
+        // code here
+        int xor1=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            xor1=xor1^arr[i]^i;
+        }
+        return xor1;
+    }
+};
