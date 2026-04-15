@@ -24,3 +24,19 @@ class Solution {
         return xor1;
     }
 };
+
+//Summation Formula
+// User function Template for C++
+class Solution {
+  public:
+    int findDuplicate(vector<int>& arr) {
+        // code here
+        int n=arr.size();
+        long long sum=0,Nsum=(long long)(n-1)*(n)/2;
+        for(int i=0;i<arr.size();i++)
+        {
+            sum+=(long long)arr[i];
+        }
+        return sum-Nsum;
+    }
+};
