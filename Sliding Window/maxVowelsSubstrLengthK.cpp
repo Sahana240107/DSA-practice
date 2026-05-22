@@ -20,3 +20,30 @@ Input: s = "leetcode", k = 3
 Output: 2
 Explanation: "lee", "eet" and "ode" contain 2 vowels.
 */
+class Solution {
+public:
+    bool isVowel(char ch)
+    {
+        if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u')
+            return true;
+        return false;
+    }
+    int maxVowels(string s, int k) {
+        int count=0,maxi=INT_MIN;
+        for(int i=0;i<k;i++)
+        {
+            if(isVowel(s[i]))
+                count++;
+        }
+        maxi=count;
+        for(int i=k;i<s.size();i++)
+        {
+            if(isVowel(s[i]))
+                count++;
+            if(isVowel(s[i-k]))
+                count--;
+            maxi=max(maxi,count);
+        }
+        return maxi;
+    }
+};
