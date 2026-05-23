@@ -39,3 +39,32 @@ Example 3:
 
 Input: nums = [4,2,2,2,4,4,2,2], limit = 0
 Output: 3*/
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums, int limit) {
+        deque<int> dmax,dmin;
+        int left=0,n=nums.size();
+        int i=0,len=0;
+        while(left<=i && i<n)
+        {
+            if(!dmax.empty() && dmax.front()<left)
+                dmax.pop_front();
+            if(!dmin.empty() && dmin.front()<left)
+                dmin.pop_front();
+            while(!dmax.empty() && nums[dmax.back()]<=nums[i])
+                dmax.pop_back();
+            while(!dmin.empty() && nums[dmin.back()]>=nums[i])
+                dmin.pop_back();
+            dmax.push_back(i);
+            dmin.push_back(i);
+            if(nums[dmax.front()]-nums[dmin.front()]<=limit)
+            {
+                len=max(len,i-left+1);
+                i++;
+            }
+            else
+                left++;
+        }
+        return len;
+    }
+};
