@@ -30,3 +30,41 @@ public:
         return st.size()==(1<<k);
     }
 };
+
+
+//Optimized O(n)
+class Solution {
+public:
+
+    bool hasAllCodes(string s, int k) {
+
+        int need = 1 << k;
+
+        if(s.size() - k + 1 < need)
+            return false;
+
+        unordered_set<int> st;
+
+        int num = 0;
+
+        // mask to keep only last k bits
+        int mask = need - 1;
+
+        for(int i = 0; i < s.size(); i++)
+        {
+            // shift left and add current bit
+            num = ((num << 1) & mask) | (s[i] - '0');
+
+            // valid window starts after k-1
+            if(i >= k - 1)
+            {
+                st.insert(num);
+
+                if(st.size() == need)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+};
