@@ -16,3 +16,21 @@ Example 2:
 Input: s = "AAAAAAAAAAAAA"
 Output: ["AAAAAAAAAA"]
 */
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        int k=10;
+        vector<string> ans;
+        unordered_map<string,int> mp;
+        for(int i=0;i+k<=s.size();i++)
+        {
+            string str=s.substr(i,k);
+            if(mp[str]==1)
+            {
+                ans.push_back(str);
+            }
+            mp[str]++;
+        }
+        return ans;
+    }
+};
