@@ -17,3 +17,16 @@ Example 3:
 Input: s = "0110", k = 2
 Output: false
 Explanation: The binary code "00" is of length 2 and does not exist in the array.*/
+class Solution {
+public:
+    bool hasAllCodes(string s, int k) {
+        if(s.size()<(1<<k))
+            return false;
+        unordered_set<string> st;
+        for(int i=0;i+k<=s.size();i++)
+        {
+            st.insert(s.substr(i,k));
+        }
+        return st.size()==(1<<k);
+    }
+};
