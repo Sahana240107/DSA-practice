@@ -51,3 +51,24 @@ public:
         return maxi;
     }
 };
+
+//space optimized
+class Solution {
+public:
+    int maxScore(vector<int>& cardPoints, int k) {
+        int sum=0,maxi=0;
+        for(int i=0;i<k;i++)
+        {
+            sum+=cardPoints[i];
+        }
+        maxi=sum;
+        int n=cardPoints.size();
+        int temp=k;
+        for(int i=n-1;i>=n-k;i--)
+        {
+            sum+=-cardPoints[--temp]+cardPoints[i];
+            maxi=max(maxi,sum);
+        }
+        return maxi;
+    }
+};
