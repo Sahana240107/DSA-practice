@@ -22,3 +22,20 @@ Input: nums = [-3,-2,-3]
 Output: -2
 Explanation: Subarray [-2] has maximum sum -2.
 */
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& nums) {
+        int maxi=INT_MIN,mini=INT_MAX,sum=0,cur_max=0,cur_min=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            cur_max=max(nums[i],cur_max+nums[i]);
+            maxi=max(maxi,cur_max);
+            cur_min=min(nums[i],cur_min+nums[i]);
+            mini=min(mini,cur_min);
+        }
+        if(maxi<0)
+            return maxi;
+        return max(maxi,sum-mini);
+    }
+};
