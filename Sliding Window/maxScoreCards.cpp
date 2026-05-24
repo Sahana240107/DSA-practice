@@ -30,3 +30,24 @@ Example 3:
 Input: cardPoints = [9,7,7,9,7,7,9], k = 7
 Output: 55
 Explanation: You have to take all the cards. Your score is the sum of points of all cards.*/
+class Solution {//My first solution with extra space
+public:
+    int maxScore(vector<int>& cardPoints, int k) {
+        vector<int> window;
+        int n=cardPoints.size();
+        for(int i=n-k;i<n;i++)
+            window.push_back(cardPoints[i]);
+        for(int i=0;i<k;i++)
+            window.push_back(cardPoints[i]);
+        int sum=0,maxi=0;
+        for(int i=0;i<k;i++)
+            sum+=window[i];
+        maxi=sum;
+        for(int i=k;i<2*k;i++)
+        {
+            sum+=window[i]-window[i-k];
+            maxi=max(maxi,sum);
+        }
+        return maxi;
+    }
+};
