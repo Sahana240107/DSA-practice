@@ -18,3 +18,23 @@ Input: nums = [5,2,1,2,5,2,1,2,5]
 Output: 8
 Explanation: The optimal subarray here is [5,2,1] or [1,2,5].
  */
+ class Solution {
+public:
+    int maximumUniqueSubarray(vector<int>& nums) {
+        int score=0,max_score=0,left=0;
+        unordered_map<int,int> mp;
+        for(int i=0;i<nums.size();i++)
+        {
+            mp[nums[i]]++;
+            score+=nums[i];
+            while(mp[nums[i]]==2)
+            {
+                mp[nums[left]]--;
+                score-=nums[left];
+                left++;
+            }
+            max_score=max(max_score,score);
+        }
+        return max_score;
+    }
+};
