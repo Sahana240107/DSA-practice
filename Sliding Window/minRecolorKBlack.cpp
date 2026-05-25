@@ -25,3 +25,25 @@ Output: 0
 Explanation:
 No changes need to be made, since 2 consecutive black blocks already exist.
 Therefore, we return 0.*/
+
+class Solution {
+public:
+    int minimumRecolors(string blocks, int k) {
+        int blacks=0,max_blacks=0;
+        for(int i=0;i<k;i++)
+        {
+            if(blocks[i]=='B')
+                blacks++;
+        }
+        max_blacks=blacks;
+        for(int i=k;i<blocks.size();i++)
+        {
+            if(blocks[i]=='B')
+                blacks++;
+            if(blocks[i-k]=='B')
+                blacks--;
+            max_blacks=max(blacks,max_blacks);
+        }
+        return k-max_blacks;
+    }
+};
