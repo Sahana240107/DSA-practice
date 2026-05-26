@@ -37,3 +37,24 @@ Input: fruits = [1,2,3,2,2]
 Output: 4
 Explanation: We can pick from trees [2,3,2,2].
 If we had started at the first tree, we would only pick from trees [1,2].*/
+
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        int left=0,len=0;
+        unordered_map<int,int> mp;
+        for(int i=0;i<fruits.size();i++)
+        {
+            mp[fruits[i]]++;
+            while(mp.size()>2)
+            {
+                mp[fruits[left]]--;
+                if(mp[fruits[left]]==0)
+                    mp.erase(fruits[left]);
+                left++;
+            }
+            len=max(len,i-left+1);
+        }
+        return len;
+    }
+};
