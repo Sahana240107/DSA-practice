@@ -20,3 +20,22 @@ Input: nums = [1,1,1]
 Output: 2
 Explanation: You must delete one element.
 */
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums) {
+        int zeros=0,len=0,start=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]==0)
+                zeros++;
+            while(zeros>1)
+            {
+                if(nums[start]==0)
+                    zeros--;
+                start++;
+            }
+            len=max(len,i-start+1);
+        }
+        return (len!=0)?len-1:0;
+    }
+};
