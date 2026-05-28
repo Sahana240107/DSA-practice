@@ -34,3 +34,22 @@ public:
         return (mini==INT_MAX)?-1:mini;
     }
 };
+
+//Optimal last seen hash approach
+
+class Solution {
+public:
+    int minimumCardPickup(vector<int>& cards) {
+        unordered_map<int,int> last;
+        int mini=INT_MAX;
+        for(int i=0;i<cards.size();i++)
+        {
+           if(last.find(cards[i])!=last.end())
+           {
+            mini=min(mini,i-last[cards[i]]+1);
+           }
+           last[cards[i]]=i;
+        }
+        return (mini==INT_MAX)?-1:mini;
+    }
+};
