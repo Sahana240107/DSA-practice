@@ -16,3 +16,21 @@ Example 2:
 Input: cards = [1,0,5,3]
 Output: -1
 Explanation: There is no way to pick up a set of consecutive cards that contain a pair of matching cards.*/
+class Solution {
+public:
+    int minimumCardPickup(vector<int>& cards) {
+        unordered_map<int,int> mp;
+        int left=0,mini=INT_MAX;
+        for(int i=0;i<cards.size();i++)
+        {
+            mp[cards[i]]++;
+            while(mp[cards[i]]>=2)
+            {
+                mini=min(mini,i-left+1);
+                mp[cards[left]]--;
+                left++;
+            }
+        }
+        return (mini==INT_MAX)?-1:mini;
+    }
+};
