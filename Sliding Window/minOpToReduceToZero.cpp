@@ -18,3 +18,31 @@ Input: nums = [3,2,20,1,1,3], x = 10
 Output: 5
 Explanation: The optimal solution is to remove the last three elements and the first two elements (5 operations in total) to reduce x to zero.*/
 
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int x) {
+        int total=0,len=INT_MAX;
+        for(int num:nums)
+            total+=num;
+        int target=total-x;
+        if(target<0)
+            return -1;
+        if(target==0)
+            return nums.size();
+        int max_len=-1,sum=0,left=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            while(sum>target)
+            {
+                sum-=nums[left];
+                left++;
+            }
+            if(sum==target)
+                max_len=max(max_len,i-left+1);
+        }
+        if(max_len==-1)
+            return -1;
+        return nums.size()-max_len;
+    }
+};
