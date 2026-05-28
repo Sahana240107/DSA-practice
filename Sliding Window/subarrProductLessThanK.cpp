@@ -13,3 +13,22 @@ Example 2:
 
 Input: nums = [1,2,3], k = 0
 Output: 0*/
+class Solution {
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        long long product=1;
+        int count=0,left=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            product*=nums[i];
+            while(product>=k && left<=i)
+            {
+                product/=nums[left];
+                left++;
+            }
+            int len=i-left+1;
+            count+=len;
+        }
+        return count;
+    }
+};
