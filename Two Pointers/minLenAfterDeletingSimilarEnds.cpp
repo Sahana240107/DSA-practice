@@ -31,3 +31,27 @@ Output: 3
 Explanation: An optimal sequence of operations is:
 - Take prefix = "aa" and suffix = "a" and remove them, s = "bccabb".
 - Take prefix = "b" and suffix = "bb" and remove them, s = "cca".*/
+
+class Solution {
+public:
+    int minimumLength(string s) {
+        int left=0,right=s.size()-1,n=s.size();
+        while(left<=right)
+        {
+            if(left!=right && s[left]==s[right])
+            {
+                left++;
+                right--;
+            }
+            else if(left>0 && s[left-1]==s[left])
+                left++;
+            else if(right<n-1 && s[right+1]==s[right])
+                right--;
+            else
+                break;
+        }
+        if(left>right)
+            return 0;
+        return right-left+1;
+    }
+};
