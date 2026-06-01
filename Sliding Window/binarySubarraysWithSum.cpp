@@ -18,3 +18,23 @@ Example 2:
 
 Input: nums = [0,0,0,0,0], goal = 0
 Output: 15*/
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        unordered_map<int,int> prefix;
+        int count=0;
+        long long sum=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            if(sum==goal)
+                count++;
+            if(sum>=goal && prefix.find(sum-goal)!=prefix.end())
+            {
+                count+=prefix[sum-goal];
+            }
+            prefix[sum]++;
+        }
+        return count;
+    }
+};
