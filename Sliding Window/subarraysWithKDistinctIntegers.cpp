@@ -18,3 +18,30 @@ Example 2:
 Input: nums = [1,2,1,3,4], k = 3
 Output: 3
 Explanation: Subarrays formed with exactly 3 different integers: [1,2,1,3], [2,1,3], [1,3,4].*/
+
+class Solution {
+public:
+    int atmostKDistinct(vector<int>& nums,int k)
+    {
+        if(k<0)
+            return 0;
+        unordered_map<int,int> mp;
+        int left=0,count=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            mp[nums[i]]++;
+            while(mp.size()>k)
+            {
+                mp[nums[left]]--;
+                if(mp[nums[left]]==0)
+                    mp.erase(nums[left]);
+                left++;
+            }
+            count+=(i-left+1);
+        }
+        return count;
+    }
+    int subarraysWithKDistinct(vector<int>& nums, int k) {
+        return atmostKDistinct(nums,k)-atmostKDistinct(nums,k-1);
+    }
+};
