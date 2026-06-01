@@ -38,3 +38,32 @@ public:
         return count;
     }
 };
+
+
+//Variable silding window
+
+//atmost(goal)-atmost(goal-1)
+class Solution {
+public:
+    int atmostKsum(vector<int>& nums,int k)
+    {
+        if(k<0)
+            return 0;
+        int left=0,count=0;
+        long long sum=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            while(sum>k)
+            {
+                sum-=nums[left];
+                left++;
+            }
+            count+=(i-left+1);
+        }
+        return count;
+    }    
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        return atmostKsum(nums,goal)-atmostKsum(nums,goal-1);
+    }
+};
