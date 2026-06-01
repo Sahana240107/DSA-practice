@@ -15,3 +15,24 @@ Explanation: Subarrays with at most 1 distinct element are: [1], [1], [1], [1, 1
 Input: arr[] = [1, 2, 1, 1, 3, 3, 4, 2, 1], k = 2
 Output: 24
 Explanation: There are 24 subarrays with at most 2 distinct elements.*/
+class Solution {
+  public:
+    int countAtMostK(vector<int> &arr, int k) {
+        // code here
+        unordered_map<int,int> mp;
+        int left=0,count=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            mp[arr[i]]++;
+            while(mp.size()>k)
+            {
+                mp[arr[left]]--;
+                if(mp[arr[left]]==0)
+                    mp.erase(arr[left]);
+                left++;
+            }
+            count+=(i-left+1);
+        }
+        return count;
+    }
+};
