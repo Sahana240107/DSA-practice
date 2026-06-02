@@ -4,8 +4,6 @@ Given a string s consisting only of characters a, b and c.
 
 Return the number of substrings containing at least one occurrence of all these characters a, b and c.
 
- 
-
 Example 1:
 
 Input: s = "abcabc"
@@ -20,3 +18,24 @@ Example 3:
 
 Input: s = "abc"
 Output: 1*/
+class Solution {
+public:
+    int numberOfSubstrings(string s) {
+        unordered_map<char,int> mp;
+        int n=s.size();
+        int count=0,left=0;
+        for(int i=0;i<s.size();i++)
+        {
+            mp[s[i]]++;
+            while(mp.size()==3)
+            {
+                count+=(n-i);
+                mp[s[left]]--;
+                if(mp[s[left]]==0)
+                    mp.erase(s[left]);
+                left++;
+            }
+        }
+        return count;
+    }
+};
