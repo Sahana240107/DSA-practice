@@ -5,8 +5,6 @@ A vowel substring is a substring that only consists of vowels ('a', 'e', 'i', 'o
 
 Given a string word, return the number of vowel substrings in word.
 
- 
-
 Example 1:
 
 Input: word = "aeiouu"
@@ -31,3 +29,43 @@ Explanation: The vowel substrings of word are as follows (underlined):
 - "cuaieuouac"
 - "cuaieuouac"
 - "cuaieuouac"*/
+class Solution {
+public:
+    bool isVowel(char c)
+    {
+        if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u')
+            return true;
+        return false;
+    }
+    int atmostK(string s,int k)
+    {
+        unordered_map<char,int> mp;
+        int left=0,count=0;
+        for(int i=0;i<s.size();i++)
+        {
+            if(isVowel(s[i]))
+                mp[s[i]]++;
+            else
+            {
+                mp.clear();
+                left=i+1;
+                continue;
+            }
+            while(mp.size()>k)
+            {
+                if(isVowel(s[left]))
+                {
+                    mp[s[left]]--;
+                    if(mp[s[left]]==0)
+                        mp.erase(s[left]);
+                    left++;
+                }
+            }
+            count+=(i-left+1);
+        }
+        return count;
+    }
+    int countVowelSubstrings(string word) {
+        return atmostK(word,5)-atmostK(word,4);
+    }
+};
