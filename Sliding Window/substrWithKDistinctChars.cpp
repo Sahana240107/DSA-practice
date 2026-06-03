@@ -1,0 +1,15 @@
+/*Substrings with K Distinct
+Difficulty: MediumAccuracy: 20.46%Submissions: 197K+Points: 4Average Time: 20m
+You are given a string s consisting of lowercase characters and an integer k, You have to count all possible substrings that have exactly k distinct characters.
+
+Examples :
+
+Input: s = "abc", k = 2
+Output: 2
+Explanation: Possible substrings are ["ab", "bc"]
+Input: s = "aba", k = 2
+Output: 3
+Explanation: Possible substrings are ["ab", "ba", "aba"]
+Input: s = "aa", k = 1
+Output: 3
+Explanation: Possible substrings are ["a", "a", "aa"]*/
