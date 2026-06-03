@@ -29,3 +29,24 @@ Explanation:
 Every subarray except [1,1,1] has a score less than 5.
 [1,1,1] has a score (1 + 1 + 1) * 3 = 9, which is greater than 5.
 Thus, there are 5 subarrays having scores less than 5.*/
+class Solution {
+public:
+    long long countSubarrays(vector<int>& nums, long long k) {
+        long long sum=0;
+        int left=0;
+        long long count=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            int len=i-left+1;
+            while(sum>=k || sum*len>=k)
+            {
+                sum-=nums[left];
+                left++;
+                len--;
+            }
+            count+=len;
+        }
+        return count;
+    }
+};
