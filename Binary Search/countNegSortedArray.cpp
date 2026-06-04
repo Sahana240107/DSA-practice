@@ -63,3 +63,18 @@ public:
         return neg;
     }
 };
+
+//GFG version 
+/*
+Count zeros in a sorted matrix
+Difficulty: BasicAccuracy: 75.99%Submissions: 33K+Points: 1
+Given a n * n binary Square Matrix where each row and column of the matrix is sorted in ascending order. Find the total number of zeros present in the matrix.
+
+Examples:
+
+Input: mat[][] = [[0,0,0], [0,0,1], [0,1,1]]
+ 
+Output: 6
+Explanation: 
+The first, second and third row contains 3, 2 and 1
+zeroes respectively.*/
