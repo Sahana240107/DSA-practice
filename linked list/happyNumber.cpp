@@ -44,3 +44,29 @@ public:
         }
     }
 };
+
+//Floyd's Cycle Detection 
+class Solution {
+public:
+    int next(int n)
+    {
+        int sum=0;
+        while(n)
+        {
+            int a=n%10;
+            n/=10;
+            sum+=(a*a);
+        }
+        return sum;
+    }
+    bool isHappy(int n) {
+        int slow=n;
+        int fast=n;
+        do
+        {
+            slow=next(slow);
+            fast=next(next(fast));
+        }while(slow!=fast);
+        return slow==1;
+    }
+};
