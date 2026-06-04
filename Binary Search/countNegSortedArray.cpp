@@ -78,3 +78,23 @@ Output: 6
 Explanation: 
 The first, second and third row contains 3, 2 and 1
 zeroes respectively.*/
+//Back-end complete function Template for C++
+
+class Solution {
+  public:
+    int countZeros(vector<vector<int>>& mat) {
+        // code here
+        int row=0,n=mat.size(),col=n-1,zeros=0;
+        while(row<n && col>=0)
+        {
+            if(mat[row][col]==0)
+            {
+                zeros+=(col+1);
+                row++;
+            }
+            else
+                col--;
+        }
+        return zeros;
+    }
+};
