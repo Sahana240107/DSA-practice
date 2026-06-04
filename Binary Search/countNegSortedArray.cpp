@@ -42,3 +42,24 @@ public:
         return neg;
     }
 };
+
+//optimal O(m+n)
+class Solution {
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        int neg=0;
+        int m=grid.size(),n=grid[0].size();
+        int row=m-1,col=0;
+        while(row>=0 && col<n)
+        {
+            if(grid[row][col]<0)
+            {
+                neg+=(n-col);
+                row--;
+            }
+            else
+                col++;
+        }
+        return neg;
+    }
+};
