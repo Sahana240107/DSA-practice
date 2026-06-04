@@ -16,3 +16,29 @@ Explanation: There are 8 negatives number in the matrix.
 Input: grid = [[3,2],[1,0]]
 Output: 0
 ```*/
+//Binary Search to find Fist negative in each row
+class Solution {//Binary Search to find First Negative
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        int neg=0;
+        int m=grid.size(),n=grid[0].size();
+        for(int i=0;i<m;i++)
+        {
+            int low=0,high=n-1,firstNeg=-1;
+            while(low<=high)
+            {
+                int mid=low+(high-low)/2;
+                if(grid[i][mid]<0)
+                {
+                    firstNeg=mid;
+                    high=mid-1;
+                }
+                else
+                    low=mid+1;
+            }
+            if(firstNeg!=-1)
+                neg+=(n-firstNeg);
+        }
+        return neg;
+    }
+};
