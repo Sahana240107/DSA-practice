@@ -21,3 +21,26 @@ Example 2:
 
 Input: n = 2
 Output: false*/
+
+class Solution {
+public:
+    unordered_set<int> st;
+    bool isHappy(int n) {
+        int sum=0;
+        while(n)
+        {
+            int a=n%10;
+            n/=10;
+            sum+=(a*a);
+        }
+        if(sum==1)
+            return true;
+        else if(st.find(sum)!=st.end())
+            return false;
+        else
+        {
+            st.insert(sum);
+            return isHappy(sum);
+        }
+    }
+};
