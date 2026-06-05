@@ -21,3 +21,34 @@ Example 3:
 
 Input: piles = [30,11,23,4,20], h = 6
 Output: 23*/
+
+class Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int maxi=INT_MIN;
+        for(int i=0;i<piles.size();i++)
+        {
+            maxi=max(maxi,piles[i]);
+        }
+        int low=1,high=maxi,ans=maxi;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            long long sum=0;
+            for(int i=0;i<piles.size();i++)
+            {
+                sum+=ceil((double)piles[i]/mid);
+            }
+            if(sum<=h)
+            {
+                ans=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+};
