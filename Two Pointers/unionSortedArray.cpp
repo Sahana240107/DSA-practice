@@ -20,3 +20,43 @@ Explanation: Common Elements in arr1 and arr2  are:  2,3,4,5
 Distnict Elements in arr1 are : 1,6,7,8,9,10
 Distnict Elemennts in arr2 are : 11,12
 Union of arr1 and arr2 is {1,2,3,4,5,6,7,8,9,10,11,12}*/
+vector<int> findUnion(int arr1[], int arr2[], int n, int m)
+{
+    vector<int> union;
+    int i=0,j=0;
+    while(i<n && j<m)
+    {
+        if(arr1[i]<arr2[j])
+        {
+            if(union.empty()||union.back()!=arr1[i])
+                union.push_back(arr1[i]);
+            i++;
+        }
+        else if(arr2[j]<arr1[i])
+        {
+            if(union.empty()||union.back()!=arr2[j])
+                union.push_back(arr2[j]);
+            j++;
+        }
+        else
+        {
+            if(union.empty()||union.back()!=arr1[i])
+                union.push_back(arr1[i]);
+            i++;
+            j++;
+        }
+    }
+    while(i<n)
+    {
+        if(union.empty()||union.back()!=arr1[i])
+            union.push_back(arr1[i]);
+        i++;
+    }
+    while(j<m)
+    {
+        if(union.empty()||union.back()!=arr2[j])
+            union.push_back(arr2[j]);
+        j++;
+    }
+    return union;
+}
