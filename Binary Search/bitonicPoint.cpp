@@ -16,3 +16,20 @@ Explanation: Elements before 50 are strictly increasing [10, 20, 30 40] and ther
 Input: arr[] = [120, 100, 80, 20, 0]
 Output: 120
 Explanation: There are no elements before 120 and elements after 120 are strictly decreasing [100, 80, 20, 0].*/
+// User function template for C++
+class Solution {
+  public:
+    int findMaximum(vector<int> &arr) {
+        // code here
+        int low=0,high=arr.size()-1;
+        while(low<high)
+        {
+            int mid=low+(high-low)/2;
+            if(arr[mid]<arr[mid+1])
+                low=mid+1;
+            else
+                high=mid;
+        }
+        return arr[low];
+    }
+};
