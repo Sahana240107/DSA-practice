@@ -37,3 +37,38 @@ Explanation:
 2nd day: 2
 3rd day: 3
 4th day: 1, 1*/
+class Solution {
+public:
+    int shipWithinDays(vector<int>& weights, int days) {
+        long long sum=0;
+        int maxi=INT_MIN;
+        for(int i=0;i<weights.size();i++)
+        {
+            maxi=max(maxi,weights[i]);
+            sum+=weights[i];
+        }
+        int low=maxi,high=sum,ans=-1,n=weights.size();
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            long long sum=0,count=0;
+            for(int i=0;i<weights.size();i++)
+            {
+                sum+=weights[i];
+                if(i==n-1 ||sum+weights[i+1]>mid)
+                {
+                    count++;
+                    sum=0;
+                }
+            }
+            if(count<=days)
+            {
+                ans=mid;
+                high=mid-1;
+            }
+            else
+                low=mid+1;
+        }
+        return ans;
+    }
+};
