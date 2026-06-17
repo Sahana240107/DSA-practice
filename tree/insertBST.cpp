@@ -6,3 +6,36 @@ Example 1:
 
 Input: root = [4,2,7,1,3], val = 5
 Output: [4,2,7,1,3,5]*/
+
+//Iterative
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        TreeNode* node=new TreeNode(val);
+        if(!root)
+            return node;
+        TreeNode* cur=root;
+        while(true)
+        {
+            if(cur->val>val)
+            {
+                if(!cur->left)
+                {
+                    cur->left=node;
+                    break;
+                }
+                cur=cur->left;
+            }
+            else
+            {
+                if(!cur->right)
+                {
+                    cur->right=node;
+                    break;
+                }
+                cur=cur->right;
+            }
+        }
+        return root;
+    }
+};
