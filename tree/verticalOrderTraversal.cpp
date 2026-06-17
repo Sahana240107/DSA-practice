@@ -47,3 +47,35 @@ For each node at position (row, col), its left and right children will be at pos
 The vertical order traversal of a binary tree is a list of top-to-bottom orderings for each column index starting from the leftmost column and ending on the rightmost column. There may be multiple nodes in the same row and same column. In such a case, sort these nodes by their values.
 
 Return the vertical order traversal of the binary tree.*/
+
+class Solution {
+public:
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        map<int,map<int,multiset<int>>> mp;
+        queue<pair<TreeNode*,pair<int,int>>> q;
+        q.push({root,{0,0}});
+        while(!q.empty())
+        {
+            TreeNode* node=q.front().first;
+            int row=q.front().second.first;
+            int col=q.front().second.second;
+            q.pop();
+            mp[col][row].insert(node->val);
+            if(node->left)
+                q.push({node->left,{row+1,col-1}});
+            if(node->right)
+                q.push({node->right,{row+1,col+1}});
+        }
+        vector<vector<int>> ans;
+        for(auto it:mp)
+        {
+            vector<int> lvl;
+            for(auto q:it.second)
+            {
+                lvl.insert(lvl.end(),q.second.begin(),q.second.end());
+            }
+            ans.push_back(lvl);
+        }
+        return ans;
+    }
+};
