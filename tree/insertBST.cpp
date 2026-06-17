@@ -7,6 +7,21 @@ Example 1:
 Input: root = [4,2,7,1,3], val = 5
 Output: [4,2,7,1,3,5]*/
 
+//Recursive
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        if(!root)
+            return new TreeNode(val);
+        else if(root->val>val)
+            root->left=insertIntoBST(root->left,val);
+        else
+            root->right=insertIntoBST(root->right,val);
+        return root;
+        
+    }
+};
+
 //Iterative
 class Solution {
 public:
