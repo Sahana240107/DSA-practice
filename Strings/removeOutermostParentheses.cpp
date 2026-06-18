@@ -55,3 +55,27 @@ public:
         return ans;
     }
 };
+
+//WITHOUT STACK
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        int open=1,close=0;
+        string ans="";
+        int start=0;
+        for(int i=1;i<s.size();i++)
+        {
+            char c=s[i];
+            if(c=='(')
+                open++;
+            else
+                close++;
+            if(open==close)
+            {
+                ans+=s.substr(start+1,i-start-1);
+                start=i+1;
+            }
+        }
+        return ans;
+    }
+};
