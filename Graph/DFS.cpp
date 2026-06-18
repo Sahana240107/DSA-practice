@@ -23,3 +23,33 @@ class Solution {
         return ans;
     }
 };
+
+//USING STACK
+vector<int> dfs(vector<vector<int>>& adj)
+{
+    vector<int> ans;
+    int V=adj.size();
+    vector<bool> visited(V,false);
+    stack<int> st;
+    for(int i=0;i<V;i++)
+    {
+        if(!visited[i])
+        {
+            st.push(i);
+            while(!st.empty())
+            {
+                int node=st.top();
+                st.pop();
+                if(!visited[node])
+                    ans.push_back(node);
+                for(int j=adj[node].size();j>=0;j--)
+                {
+                    int neighbour=adj[node][j];
+                    if(!visited[neighbour])
+                        st.push(neighbour);
+                }
+            }
+        }
+    }
+    return ans;
+}
