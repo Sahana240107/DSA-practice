@@ -30,3 +30,28 @@ Output: ""
 Explanation: 
 The input string is "()()", with primitive decomposition "()" + "()".
 After removing outer parentheses of each part, this is "" + "" = "".*/
+
+//Using stack
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        string ans="";
+        stack<char> st;
+        st.push(s[0]);
+        int start=0;
+        for(int i=1;i<s.size();i++)
+        {
+            char c=s[i];
+            if(c=='(')
+                st.push(c);
+            else
+                st.pop();
+            if(st.empty())
+            {
+                ans+=s.substr(start+1,i-start-1);
+                start=i+1;
+            }
+        }
+        return ans;
+    }
+};
