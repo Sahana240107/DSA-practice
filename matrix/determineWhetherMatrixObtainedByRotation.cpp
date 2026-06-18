@@ -21,3 +21,28 @@ Input: mat = [[0,0,0],[0,1,0],[1,1,1]], target = [[1,1,1],[0,1,0],[0,0,0]]
 Output: true
 Explanation: We can rotate mat 90 degrees clockwise two times to make mat equal target.
  */
+ class Solution {
+    vector<vector<int>> rotate(vector<vector<int>>& mat)
+    {
+        int n=mat.size();
+        vector<vector<int>> ans(n,vector<int> (n));
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                ans[j][n-i-1]=mat[i][j];
+            }
+        }
+        return ans;
+    }
+public:
+    bool findRotation(vector<vector<int>>& mat, vector<vector<int>>& target) {
+        for(int i=0;i<4;i++)
+        {
+            if(mat==target)
+                return true;
+            mat=rotate(mat);
+        }
+        return false;
+    }
+};
