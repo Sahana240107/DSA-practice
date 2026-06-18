@@ -29,3 +29,21 @@ Explanation:
 The pivot index is 0.
 Left sum = 0 (no elements to the left of index 0)
 Right sum = nums[1] + nums[2] = 1 + -1 = 0*/
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        long long tot=0;
+        for(int i=0;i<nums.size();i++)
+            tot+=nums[i];
+        long long prefix=0;
+        int n=nums.size();
+        for(int i=0;i<n-1;i++)
+        {
+            if(prefix==(tot-prefix-nums[i]))
+                return i;
+            prefix+=nums[i];
+        }
+        return -1;
+    }
+
+};
