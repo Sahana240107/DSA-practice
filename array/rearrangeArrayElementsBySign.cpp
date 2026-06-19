@@ -8,8 +8,6 @@ For all integers with the same sign, the order in which they were present in num
 The rearranged array begins with a positive integer.
 Return the modified array after rearranging the elements to satisfy the aforementioned conditions.
 
- 
-
 Example 1:
 
 Input: nums = [3,1,-2,-5,2,-4]
@@ -25,3 +23,26 @@ Output: [1,-1]
 Explanation:
 1 is the only positive integer and -1 the only negative integer in nums.
 So nums is rearranged to [1,-1].*/
+
+
+//BRUTEFORCE
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        vector<int> pos,neg;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]<0)
+                neg.push_back(nums[i]);
+            else
+                pos.push_back(nums[i]);
+        }
+        int n=nums.size();
+        for(int i=0;i<n/2;i++)
+        {
+            nums[2*i]=pos[i];
+            nums[2*i+1]=neg[i];
+        }
+        return nums;
+    }
+};
