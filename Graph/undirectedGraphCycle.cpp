@@ -19,3 +19,48 @@ No cycle in the graph.
 Constraints:
 1 ≤ V, E ≤ 105
 0 ≤ edges[i][0], edges[i][1] < V*/
+
+class Solution {
+    bool bfs(int s,vector<int> adj[],vector<bool>& visited)
+    {
+        queue<pair<int,int>> q;
+        q.push({s,-1});
+        while(!q.empty())
+        {
+            int node=q.front().first;
+            int parent=q.front().second;
+            q.pop();
+            visited[node]=true;
+            for(auto adjNode:adj[node])
+            {
+                if(!visited[adjNode])
+                    q.push({adjNode,node});
+                else if(parent!=adjNode)
+                    return true;
+            }
+        }
+        return false;
+    }
+  public:
+    bool isCycle(int V, vector<vector<int>>& edges) {
+        // Code here
+        vector<int> adj[V];
+        for(int i=0;i<edges.size();i++)
+        {
+            int node1=edges[i][0];
+            int node2=edges[i][1];
+            adj[node1].push_back(node2);
+            adj[node2].push_back(node1);
+        }
+        vector<bool> visited(V,false);
+        for(int i=0;i<V;i++)
+        {
+            if(!visited[i])
+            {
+                if(bfs(i,adj,visited))
+                    return true;
+            }
+        }
+        return false;
+    }
+};
