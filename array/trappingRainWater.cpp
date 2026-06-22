@@ -32,3 +32,32 @@ public:
         return water;
     }
 };
+
+//Space optmized
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int n=height.size();
+        int lMax=height[0],rMax=height[n-1],l=0,r=n-1,water=0;
+        while(l<r)
+        {
+            if(height[l]<=height[r])
+            {
+                if(lMax>height[l])
+                    water+=lMax-height[l];
+                else
+                    lMax=height[l];
+                l++;
+            }
+            else
+            {
+                if(rMax>height[r])
+                    water+=rMax-height[r];
+                else
+                    rMax=height[r];
+                r--;
+            }
+        }
+        return water;
+    }
+};
