@@ -26,3 +26,42 @@ Example 4:
 Input: asteroids = [3,5,-6,2,-1,4]​​​​​​​
 Output: [-6,2,4]
 Explanation: The asteroid -6 makes the asteroid 3 and 5 explode, and then continues going left. On the other side, the asteroid 2 makes the asteroid -1 explode and then continues going right, without reaching asteroid 4.*/
+
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        int n=asteroids.size();
+        stack<int> st;
+        for(int i=0;i<n;i++)
+        {
+            int x=asteroids[i];
+            bool destroyed=false;
+            while(!st.empty() && (st.top()>0 && x<0))
+            {
+                if(abs(st.top())>abs(x))
+                {
+                    destroyed=true;
+                    break;
+                }
+                else if(abs(st.top())==abs(x))
+                {
+                    destroyed=true;
+                    st.pop();
+                    break;
+                }
+                else
+                    st.pop();
+            }
+            if(!destroyed)
+                st.push(x);
+        }
+        vector<int> ans;
+        while(!st.empty())
+        {
+            ans.push_back(st.top());
+            st.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
