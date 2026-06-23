@@ -82,3 +82,44 @@ Output: 0
 Explanation:
 
 Reading stops at the first non-digit character 'w'.*/
+class Solution {
+public:
+    int myAtoi(string s) {
+        long long ans=0;
+        bool sign=false;
+        bool read=false;
+        int i=0,n=s.size();
+        while(i<n)
+        {
+            if(s[i]==' ' && !read)
+                i++;
+            else if(s[i]=='-' && !read)
+            {
+                sign=true;
+                i++;
+                read=true;
+            }
+            else if(s[i]=='+' && !read)
+            {
+                read=true;
+                i++;
+            }
+            else
+            {
+                while(s[i]>='0' && s[i]<='9' && ans>INT_MIN && ans<INT_MAX)
+                {
+                    ans=ans*10+(s[i]-'0');
+                    i++;
+                }
+                break;
+            }
+        }
+        if(sign)
+            ans=-ans;
+        if(ans<INT_MIN)
+            return INT_MIN;
+        if(ans>INT_MAX)
+            return INT_MAX;
+        return (int)ans;
+    }
+};
