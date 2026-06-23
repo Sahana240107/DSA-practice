@@ -22,3 +22,32 @@ Input: s = "Aabb"
 Output: "bbAa"
 Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
 Note that 'A' and 'a' are treated as two different characters.*/
+
+class Solution {
+    static bool comparator(pair<char,int> p1,pair<char,int> p2)
+    {
+        if(p1.second>p2.second)
+            return true;
+        else if(p1.second<p2.second)
+            return false;
+        return p1.first<p2.first;
+    }
+public:
+    string frequencySort(string s) {
+        
+        unordered_map<char,int> mp;
+        for(int i=0;i<s.size();i++)
+        {
+            mp[s[i]]++;
+        }
+        vector<pair<char,int>> freq(mp.begin(),mp.end());
+        sort(freq.begin(),freq.end(),comparator);
+        string ans;
+        for(auto it:freq)
+        {
+            if(it.second>0)
+                ans+=string(it.second,it.first);
+        }
+        return ans;
+    }
+};
