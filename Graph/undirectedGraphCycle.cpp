@@ -64,3 +64,45 @@ class Solution {
         return false;
     }
 };
+
+
+//DFS
+class Solution {
+    bool dfs(int node,int parent,vector<int> adj[],vector<bool>& visited)
+    {
+        visited[node]=true;
+        for(int adjacent:adj[node])
+        {
+            if(!visited[adjacent])
+            {
+                if(dfs(adjacent,node,adj,visited))
+                    return true;
+            }
+            else if(adjacent!=parent)
+                return true;
+        }
+        return false;
+    }
+  public:
+    bool isCycle(int V, vector<vector<int>>& edges) {
+        // Code here
+        vector<int> adj[V];
+        for(int i=0;i<edges.size();i++)
+        {
+            int node1=edges[i][0];
+            int node2=edges[i][1];
+            adj[node1].push_back(node2);
+            adj[node2].push_back(node1);
+        }
+        vector<bool> visited(V,false);
+        for(int i=0;i<V;i++)
+        {
+            if(!visited[i])
+            {
+                if(dfs(i,-1,adj,visited))
+                    return true;
+            }
+        }
+        return false;
+    }
+};
