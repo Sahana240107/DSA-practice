@@ -64,7 +64,7 @@ public:
         int n=heights.size();
         stack<int> st;
         int maxi=0;
-        for(int i=0;i<n;i++)
+        for(int i=0;i<=n;i++)
         {
             while(!st.empty() && (i==n||heights[st.top()]>heights[i]))
             {
@@ -77,6 +77,6 @@ public:
             }
             st.push(i);
         }
-        
+        return maxi;
     }
 };
