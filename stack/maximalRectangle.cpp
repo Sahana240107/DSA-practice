@@ -16,3 +16,44 @@ Example 3:
 
 Input: matrix = [["1"]]
 Output: 1*/
+
+class Solution {
+    int longestRect(vector<int>& height)
+    {
+        int maxi=0;
+        int n=height.size();
+        stack<int> st;
+        for(int i=0;i<=n;i++)
+        {
+            while(!st.empty() && (i==n||height[st.top()]>=height[i]))
+            {
+                int h=height[st.top()];
+                st.pop();
+                int nse=i;
+                int pse=st.empty()?-1:st.top();
+                int width=nse-pse-1;
+                maxi=max(maxi,width*h);
+            }
+            st.push(i);
+        }
+        return maxi;
+    }
+public:
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        int n=matrix.size(),m=matrix[0].size();
+        vector<int> height(m);
+        int maxi=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(matrix[i][j]=='1')
+                    height[i]++;
+                else
+                    height[i]=0;
+            }
+            maxi=max(maxi,longestRect(height));
+        }
+        return maxi;
+    }
+};
