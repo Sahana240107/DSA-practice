@@ -48,9 +48,9 @@ public:
             for(int j=0;j<m;j++)
             {
                 if(matrix[i][j]=='1')
-                    height[i]++;
+                    height[j]++;
                 else
-                    height[i]=0;
+                    height[j]=0;
             }
             maxi=max(maxi,longestRect(height));
         }
