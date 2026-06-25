@@ -12,3 +12,19 @@ Example 2:
 Input: arr = [1,2,3,4], k = 2
 Output: 6
 Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing positive integer is 6.*/
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int n=arr.size(),low=0,high=n-1,miss=0;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            miss=arr[mid]-mid-1;
+            if(miss<k)
+                low=mid+1;
+            else
+                high=mid-1;
+        }
+        return low+k;
+    }
+};
