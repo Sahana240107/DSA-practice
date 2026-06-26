@@ -12,3 +12,41 @@ The largest region has five 1s
 Input: grid[][] = [[0,1]]
 Output: 1
 Explanation: The largest region of 1's is 1.*/
+class Solution {
+    void dfs(int r,int c,vector<vector<bool>>& visited,vector<vector<int>>& grid,int& ones)
+    {
+        ones++;
+        visited[r][c]=true;
+        int n=grid.size(),m=grid[0].size();
+        for(int i=-1;i<=1;i++)
+        {
+            for(int j=-1;j<=1;j++)
+            {
+                int nr=r+i;
+                int nc=c+j;
+                if(nr>=0 && nr<n && nc>=0 && nc<m && grid[nr][nc]==1 && !visited[nr][nc])
+                    dfs(nr,nc,visited,grid,ones);
+            }
+        }
+    }
+  public:
+    int findMaxArea(vector<vector<int>>& grid) {
+        // Code here
+        int maxi=0;
+        int n=grid.size(),m=grid[0].size();
+        vector<vector<bool>> visited(n,vector<bool> (m,false));
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]==1 && !visited[i][j])
+                {
+                    int ones=0;
+                    dfs(i,j,visited,grid,ones);
+                    maxi=max(maxi,ones);
+                }
+            }
+        }
+        return maxi;
+    }
+};
