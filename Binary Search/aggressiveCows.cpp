@@ -51,3 +51,38 @@ class Solution {
         return i-1;
     }
 };
+
+//OPTIMIZED BINARY SEARCH
+class Solution {
+    bool canPlace(int minDis,int cows,vector<int>& stalls)
+    {
+        int cowsPlaced=1,lastCow=stalls[0];
+        for(int i=1;i<stalls.size();i++)
+        {
+            if(stalls[i]-lastCow>=minDis)
+            {
+                cowsPlaced++;
+                lastCow=stalls[i];
+            }
+            if(cowsPlaced>=cows)
+                return true;
+        }
+        return false;
+    }
+  public:
+    int aggressiveCows(vector<int> &stalls, int k) {
+        // code here
+        int n=stalls.size();
+        sort(stalls.begin(),stalls.end());
+        int low=1,high=stalls[n-1]-stalls[0];
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(canPlace(mid,k,stalls))
+                low=mid+1;
+            else
+                high=mid-1;
+        }
+        return high;
+    }
+};
