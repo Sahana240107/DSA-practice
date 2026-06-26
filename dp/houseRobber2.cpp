@@ -22,3 +22,29 @@ Input: nums = [1,2,3,1]
 Output: 4
 Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
 Total amount you can rob = 1 + 3 = 4.*/
+class Solution {
+    int robH(vector<int>& nums,int l,int r) {
+        int n=r-l+1;
+        if(n==1)
+            return nums[l];
+        int prev2=nums[l];
+        int prev1=max(nums[l],nums[l+1]);
+        for(int i=l+2;i<=r;i++)
+        {
+            int pick=nums[i]+prev2;
+            int notPick=prev1;
+            int cur=max(pick,notPick);
+            prev2=prev1;
+            prev1=cur;
+        }
+        return prev1;
+    }
+
+public:
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1)
+            return nums[0];
+        return max(robH(nums,1,n-1),robH(nums,0,n-2));
+    }
+};
