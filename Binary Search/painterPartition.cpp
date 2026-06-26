@@ -19,3 +19,54 @@ Explanation: A valid optimal partition is -
 Painter 1 → [10, 20, 30] → time = 60
 Painter 2 → [40] → time = 40
 Job will be complete at time = max(60, 40) = 60*/
+class Solution {
+    int maxElement(vector<int>& a)
+    {
+        int maxi=a[0];
+        for(int i=1;i<a.size();i++)
+        {
+            maxi=max(maxi,a[i]);
+        }
+        return maxi;
+    }
+    int sumArr(vector<int>& a)
+    {
+        int sum=0;
+        for(int i=0;i<a.size();i++)
+            sum+=a[i];
+        return sum;
+    }
+    int countPainter(int maxi,vector<int> a)
+    {
+        int painter=1,val=0;
+        for(int i=0;i<a.size();i++)
+        {
+            if(val+a[i]<=maxi)
+                val+=a[i];
+            else
+            {
+                painter++;
+                val=a[i];
+            }
+        }
+        return painter;
+    }
+  public:
+    int minTime(vector<int>& arr, int k) {
+        // code here
+        if(arr.size()<k)
+            return -1;
+        int low=maxElement(arr);
+        int high=sumArr(arr);
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(countPainter(mid,arr)>k)
+                low=mid+1;
+            else
+                high=mid-1;
+        }
+        return low;
+        
+    }
+};
