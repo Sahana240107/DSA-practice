@@ -23,3 +23,51 @@ Input: arr[] = [15, 17, 20], k = 5
 Output: -1
 Explanation: Since there are more students than total books, it's impossible to allocate a book to each student.
 */
+
+class Solution {
+    int maxElement(vector<int>& a)
+    {
+        int maxi=a[0];
+        for(int i=1;i<a.size();i++)
+        {
+            maxi=max(maxi,a[i]);
+        }
+        return maxi;
+    }
+    int sumArr(vector<int>& a)
+    {
+        int sum=0;
+        for(int i=0;i<a.size();i++)
+            sum+=a[i];
+        return sum;
+    }
+    int countStudents(int maxi,vector<int>& a)
+    {
+        int students=1,pages=0;
+        for(int i=0;i<a.size();i++)
+        {
+            if(pages+a[i]<=maxi)
+                pages+=a[i];
+            else
+            {
+                students++;
+                pages=a[i];
+            }
+        }
+        return students;
+    }
+  public:
+    int findPages(vector<int> &arr, int k) {
+        // code here
+        if(arr.size()<k)
+            return -1;
+        int low=maxElement(arr);
+        int high=sumArr(arr);
+        for(int i=low;i<=high;i++)
+        {
+            if(countStudents(i,arr)==k)
+                return i;
+        }
+        return -1;
+    }
+};
