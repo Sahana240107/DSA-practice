@@ -71,3 +71,55 @@ class Solution {
         return -1;
     }
 };
+
+//OPTIMIZED BINARY SEARCH
+class Solution {
+    int maxElement(vector<int>& a)
+    {
+        int maxi=a[0];
+        for(int i=1;i<a.size();i++)
+        {
+            maxi=max(maxi,a[i]);
+        }
+        return maxi;
+    }
+    int sumArr(vector<int>& a)
+    {
+        int sum=0;
+        for(int i=0;i<a.size();i++)
+            sum+=a[i];
+        return sum;
+    }
+    int countStudents(int maxi,vector<int>& a)
+    {
+        int students=1,pages=0;
+        for(int i=0;i<a.size();i++)
+        {
+            if(pages+a[i]<=maxi)
+                pages+=a[i];
+            else
+            {
+                students++;
+                pages=a[i];
+            }
+        }
+        return students;
+    }
+  public:
+    int findPages(vector<int> &arr, int k) {
+        // code here
+        if(arr.size()<k)
+            return -1;
+        int low=maxElement(arr);
+        int high=sumArr(arr);
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(countStudents(mid,arr)<=k)
+                high=mid-1;
+            else
+                low=mid+1;
+        }
+        return low;
+    }
+};
