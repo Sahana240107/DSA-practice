@@ -20,3 +20,34 @@ Input: stalls[] = [2, 12, 11, 3, 26, 7], k = 5
 Output: 1
 Explanation: There are 6 stalls and only 5 cows, we try to place the cows such that the minimum distance between any two cows is as large as possible.
 The minimum distance between cows in this case is 1, which is the largest among all possible ways.*/
+
+class Solution {
+    bool canPlace(int minDis,int cows,vector<int>& stalls)
+    {
+        int cowsPlaced=1,lastCow=stalls[0];
+        for(int i=1;i<stalls.size();i++)
+        {
+            if(stalls[i]-lastCow>=minDis)
+            {
+                cowsPlaced++;
+                lastCow=stalls[i];
+            }
+            if(cowsPlaced>=cows)
+                return true;
+        }
+        return false;
+    }
+  public:
+    int aggressiveCows(vector<int> &stalls, int k) {
+        // code here
+        int n=stalls.size();
+        sort(stalls.begin(),stalls.end());
+        int i=1;
+        for(i=1;stalls[n-1]-stalls[0];i++)
+        {
+            if(!canPlace(i,k,stalls))
+                break;
+        }
+        return i-1;
+    }
+};
