@@ -32,6 +32,6 @@ public:
                     ans++;
             }
         }
-        return ans;
+        return ans+open;
     }
 };
