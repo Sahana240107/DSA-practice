@@ -12,3 +12,29 @@ Example 2:
 
 Input: s = "aabcbaa"
 Output: 17*/
+class Solution {
+public:
+    int beautySum(string s) {
+        int sum=0;
+        int n=s.size();
+        for(int i=0;i<n;i++)
+        {
+            vector<int> freq(26,0);
+            for(int j=i;j<n;j++)
+            {
+                freq[s[j]-'a']++;
+                int maxi=0,mini=INT_MAX;
+                for(int k=0;k<26;k++)
+                {
+                    if(freq[k]>0)
+                    {
+                        maxi=max(maxi,freq[k]);
+                        mini=min(mini,freq[k]);
+                    }
+                }
+                sum+=(maxi-mini);
+            }
+        }
+        return sum;
+    }
+};
