@@ -15,3 +15,19 @@ Explanation: If we rotate "geeksforgeeks" by two place in any direction, we won'
 Input: s1 = "ab", s2 = "ab"
 Output: true
 Explanation: If we rotate "ab" by two place in any direction, we always get "ab"*/
+
+class Solution {
+  public:
+    bool isRotated(string& s1, string& s2) {
+        // code here
+        int n=s1.size();
+        int m=s2.size();
+        if(n!=m)
+            return false;
+        if(n==1)
+            return false;
+        string left=s1.substr(2)+s1.substr(0,2);
+        string right=s1.substr(n-2)+s1.substr(0,n-2);
+        return s2==left||s2==right;
+    }
+};
