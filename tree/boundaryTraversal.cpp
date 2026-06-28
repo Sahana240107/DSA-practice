@@ -25,3 +25,73 @@ Leaf nodes: [4]
 Right boundary: [3, 2] (in reverse order)
 Final traversal: [1, 4, 3, 2]
 */
+/*
+Definition for Node
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};
+*/
+
+class Solution {
+    void leaves(Node* root,vector<int>& l)
+    {
+        if(!root->left && !root->right)
+            l.push_back(root->data);
+        if(root->left)
+            leaves(root->left,l);
+        if(root->right)
+            leaves(root->right,l);
+    }
+  public:
+    vector<int> boundaryTraversal(Node *root) {
+        // code here
+        if(!root)
+            return {};
+        vector<int> ans;
+        if(root->left || root->right)//push root only if not leaf node
+            ans.push_back(root->data);
+            
+        //left boundary 
+        Node* cur=root->left;
+        while(cur)
+        {
+            if(cur->left || cur->right)
+                ans.push_back(cur->data);
+            if(cur->left)
+                cur=cur->left;
+            else
+                cur=cur->right;
+        }
+        
+        //add leaves
+        leaves(root,ans);
+        
+        //right traversal 
+        //use stack to get reverse 
+        stack<int> st;
+        cur=root->right;
+        while(cur)
+        {
+            if(cur->left || cur->right)
+                st.push(cur->data);
+            if(cur->right)
+                cur=cur->right;
+            else
+                cur=cur->left;
+        }
+        while(!st.empty())
+        {
+            ans.push_back(st.top());
+            st.pop();
+        }
+        return ans;
+    }
+};
