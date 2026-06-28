@@ -14,3 +14,24 @@ Example 2:
 Input: words = ["the","day","is","sunny","the","the","the","sunny","is","is"], k = 4
 Output: ["the","is","sunny","day"]
 Explanation: "the", "is", "sunny" and "day" are the four most frequent words, with the number of occurrence being 4, 3, 2 and 1 respectively.*/
+
+class Solution {
+    static bool compare(pair<string,int>& a,pair<string,int>& b)
+    {
+        if(a.second==b.second)   
+            return a.first<b.first;
+        return a.second>b.second;
+    }
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        unordered_map<string,int> freq;
+        for(int i=0;i<words.size();i++)
+            freq[words[i]]++;
+        vector<pair<string,int>> vec(freq.begin(),freq.end());
+        sort(vec.begin(),vec.end(),compare);
+        vector<string> ans;
+        for(int i=0;i<k;i++)
+            ans.push_back(vec[i].first);
+        return ans;
+    }
+};
