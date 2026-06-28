@@ -32,3 +32,20 @@ Output: 0
 Explanation:
 
 No harmonic subsequence exists.*/
+
+class Solution {
+public:
+    int findLHS(vector<int>& nums) {
+        unordered_map<int,int> mp;
+        for(int i=0;i<nums.size();i++)
+            mp[nums[i]]++;
+        int ans=INT_MIN;
+        for(auto it:mp)
+        {
+            int num=it.first;
+            if(mp.find(num+1)!=mp.end())
+                ans=max(ans,mp[num+1]+mp[num]);
+        }
+        return ans==INT_MIN?0:ans;
+    }
+};
