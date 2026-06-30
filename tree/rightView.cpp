@@ -14,3 +14,36 @@ Input: root = [3]
   
 Output: [3]
 */
+/*
+Definition for Node
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};
+*/
+
+class Solution {
+    void right(Node* root,int level,vector<int>& vec)
+    {
+        if(!root)
+            return;
+        if(level==vec.size())
+            vec.push_back(root->data);
+        right(root->right,level+1,vec);
+        right(root->left,level+1,vec);
+    }
+  public:
+    vector<int> rightView(Node *root) {
+        //  code here
+        vector<int> ans;
+        right(root,0,ans);
+        return ans;
+    }
+};
