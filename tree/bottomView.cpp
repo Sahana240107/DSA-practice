@@ -17,3 +17,47 @@ Output: [5, 10, 4, 28, 25]
 Explanation: The Green nodes represent the bottom view of below binary tree.
     
 */
+/*
+Definition for Node
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};
+*/
+
+class Solution {
+  public:
+    vector<int> bottomView(Node *root) {
+        // code here
+        unordered_map<int,int> mp;
+        queue<pair<Node*,int>> q;
+        q.push({root,0});
+        int mini=INT_MAX,maxi=INT_MIN;
+        while(!q.empty())
+        {
+            Node* node=q.front().first;
+            int col=q.front().second;
+            mp[col]=node->data;
+            q.pop();
+            mini=min(mini,col);
+            maxi=max(maxi,col);
+            if(node->left)
+                q.push({node->left,col-1});
+            if(node->right)
+                q.push({node->right,col+1});
+        }
+        vector<int> ans;
+        for(int i=mini;i<=maxi;i++)
+        {
+            ans.push_back(mp[i]);
+        }
+        return ans;
+    }
+};
