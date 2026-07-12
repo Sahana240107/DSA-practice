@@ -17,3 +17,20 @@ Input: root = [5,1,4,null,null,3,6]
 Output: false
 Explanation: The root node's value is 5 but its right child's value is 4.
 */
+
+class Solution {
+    bool helper(TreeNode* root,long long mini,long long maxi)
+    {
+        if(!root)
+            return true;
+        if(root->val<=mini ||root->val>=maxi)
+            return false;
+        return helper(root->left,mini,root->val)&&helper(root->right,root->val,maxi);
+    }
+public:
+    bool isValidBST(TreeNode* root) {
+        if(!root)
+            return true;
+        return helper(root,LLONG_MIN,LLONG_MAX);
+    }
+};
