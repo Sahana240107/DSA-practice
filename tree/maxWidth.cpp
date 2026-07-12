@@ -32,10 +32,6 @@ class Solution {
 };
 //LC Max Width 
 /*662. Maximum Width of Binary Tree
-Medium
-Topics
-premium lock icon
-Companies
 Given the root of a binary tree, return the maximum width of the given tree.
 
 The maximum width of a tree is the maximum width among all levels.
@@ -67,3 +63,35 @@ Explanation: The maximum width exists in the second level with length 2 (3,2).
  
 
 */
+class Solution {
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+        if(!root)
+            return 0;
+        unsigned long long maxi=0;
+        queue<pair<TreeNode*,unsigned long long>> q;
+        q.push({root,0});
+        while(!q.empty())
+        {
+            int size=q.size();
+            unsigned long long mini=q.front().second;
+            unsigned long long first,last;
+            for(int i=0;i<size;i++)
+            {
+                TreeNode* node=q.front().first;
+                unsigned long long cur=q.front().second-mini;
+                if(i==0)
+                    first=cur;
+                if(i==size-1)
+                    last=cur;
+                q.pop();
+                if(node->left)
+                    q.push({node->left,cur*2+1});
+                if(node->right)
+                    q.push({node->right,cur*2+2});
+            }
+            maxi=max(maxi,last-first+1);
+        }
+        return (int)maxi;
+    }
+};
