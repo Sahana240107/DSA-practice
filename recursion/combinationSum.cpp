@@ -28,3 +28,28 @@ Example 3:
 Input: candidates = [2], target = 1
 Output: []
 */
+class Solution {
+    void subsum(int i,vector<int>& a,int k,vector<vector<int>>& ans,vector<int>& ds)
+    {
+        if(i==a.size())
+        {
+            if(k==0)
+                ans.push_back(ds);
+            return;
+        }
+        if(a[i]<=k)
+        {
+            ds.push_back(a[i]);
+            subsum(i,a,k-a[i],ans,ds);
+            ds.pop_back();
+        }
+        subsum(i+1,a,k,ans,ds);
+    }
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        subsum(0,candidates,target,ans,ds);
+        return ans;
+    }
+};
