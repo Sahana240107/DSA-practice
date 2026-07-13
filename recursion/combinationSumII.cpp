@@ -31,3 +31,32 @@ Output:
 [5]
 ]
 */
+
+class Solution {
+    void subsum(int ind,vector<int>& a,int k,vector<vector<int>>& ans,vector<int>& ds)
+    {
+        if(k==0)
+        {
+            ans.push_back(ds);
+            return;
+        }
+        for(int i=ind;i<a.size();i++)
+        {
+            if(i>ind && a[i]==a[i-1])
+                continue;
+            if(a[i]>k)
+                break;
+            ds.push_back(a[i]);
+            subsum(i+1,a,k-a[i],ans,ds);
+            ds.pop_back();
+        }
+    }
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        sort(candidates.begin(),candidates.end());
+        subsum(0,candidates,target,ans,ds);
+        return ans;
+    }
+};
