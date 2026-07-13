@@ -24,3 +24,27 @@ Example 3:
 Input: nums = [1,0,1,2]
 Output: 3
 */
+//Sorting
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.size()==0)
+            return 0;
+        sort(nums.begin(),nums.end());
+        int max_len=1,len=1,lastsmall=nums[0];
+        for(int i=1;i<nums.size();i++)
+        {
+            if(nums[i]==lastsmall+1)
+            {
+                len++;
+            }
+            else if(nums[i]!=lastsmall)
+            {
+                len=1;
+            }
+            lastsmall=nums[i];
+            max_len=max(max_len,len);
+        }
+        return max_len;
+    }
+};
