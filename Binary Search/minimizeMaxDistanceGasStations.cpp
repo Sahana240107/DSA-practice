@@ -12,3 +12,39 @@ Input: stations[] = [3, 6, 12, 19, 33], k = 3
 Output: 6.00 
 Explanation: The largest gap is 14 (between 19 and 33). Adding 2 stations there splits it into approx 4.67. The next largest gap is 7 (between 12 and 19). Adding 1 station splits it into 3.5. Now the maximum gap left is 6.
 */
+
+//Brute Force
+class Solution {
+  public:
+    double minMaxDist(vector<int> &stations, int K) {
+        // Code here
+        int n=stations.size();
+        if(n<=1)
+            return 0.0;
+        vector<int> placed(n-1,0);
+        for(int i=0;i<K;i++)
+        {
+            long double maxLen=-1.0;
+            int max_ind=-1;
+            for(int j=0;j<n-1;j++)
+            {
+                long double dif=stations[j+1]-stations[j];
+                long double section=dif/(long double)(placed[j]+1.0);
+                if(section>maxLen)
+                {
+                    maxLen=section;
+                    max_ind=j;
+                }
+            }
+            placed[max_ind]++;
+        }
+        long double ans=-1.0;
+        for(int i=0;i<n-1;i++)
+        {
+            long double dif=stations[i+1]-stations[i];
+            long double section=dif/(long double)(placed[i]+1.0);
+            ans=max(ans,section);
+        }
+        return ans;
+    }
+};
