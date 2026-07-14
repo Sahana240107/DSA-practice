@@ -20,3 +20,56 @@ Input: nums1 = [1,2], nums2 = [3,4]
 Output: 2.50000
 Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
 */
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int n=nums1.size(),m=nums2.size();
+        int cnt=0;
+        int element1=-1,element2=-1;
+        int ind1=(n+m)/2,ind2=(n+m)/2-1;
+        int i=0,j=0;
+        while(i<n && j<m)
+        {
+            if(nums1[i]<=nums2[j])
+            {
+                if(cnt==ind1)
+                    element1=nums1[i];
+                if(cnt==ind2)
+                    element2=nums1[i];
+                i++;
+            }
+            else
+            {
+                if(cnt==ind1)
+                    element1=nums2[j];
+                if(cnt==ind2)
+                    element2=nums2[j];
+                j++;
+            }
+            cnt++;
+        }
+        while(i<n)
+        {
+            if(cnt==ind1)
+                element1=nums1[i];
+            if(cnt==ind2)
+                element2=nums1[i];
+            i++;
+            cnt++;
+        }
+        while(j<m)
+        {
+            if(cnt==ind1)
+                element1=nums2[j];
+            if(cnt==ind2)
+                element2=nums2[j];
+            j++;
+            cnt++;
+        }
+        if((n+m)%2==0)
+        {
+            return (element1+element2)/2.0;
+        }
+        return element1;
+    }
+};
