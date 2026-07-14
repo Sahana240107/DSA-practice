@@ -48,3 +48,30 @@ class Solution {
         return ans;
     }
 };
+
+//better solution with heap
+class Solution {
+  public:
+    double minMaxDist(vector<int> &stations, int K) {
+        // Code here
+        int n=stations.size();
+        if(n<=1)
+            return 0.0;
+        vector<int> placed(n-1,0);
+        priority_queue<pair<long double,int>> pq;
+        for(int i=0;i<n-1;i++)
+        {
+            pq.push({stations[i+1]-stations[i],i});
+        }
+        for(int i=0;i<K;i++)
+        {  
+            int ind=pq.top().second;
+            pq.pop();
+            placed[ind]++;
+            long double dif=stations[ind+1]-stations[ind];
+            long double newSection=dif/(long double)(placed[ind]+1.0);
+            pq.push({newSection,ind});
+        }
+        return pq.top().first;
+    }
+};
