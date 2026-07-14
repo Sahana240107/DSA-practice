@@ -48,3 +48,33 @@ public:
         return max_len;
     }
 };
+
+//Optimal
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.size()==0)
+            return 0;
+        unordered_set<int> st;
+        for(int i=0;i<nums.size();i++)
+        {
+            st.insert(nums[i]);
+        }
+        int max_len=1;
+        for(auto it:st)
+        {
+            if(st.find(it-1)==st.end())
+            {
+                int x=it;
+                int len=1;
+                while(st.find(x+1)!=st.end())
+                {
+                    len++;
+                    x++;
+                }
+                max_len=max(max_len,len);
+            }
+        }
+        return max_len;
+    }
+};
