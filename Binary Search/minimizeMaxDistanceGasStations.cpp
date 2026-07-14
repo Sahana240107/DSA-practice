@@ -75,3 +75,41 @@ class Solution {
         return pq.top().first;
     }
 };
+
+//Optimal BS
+class Solution {
+    int countGasStation(vector<int>& a,long double dis)
+    {
+        int gas=0;
+        for(int i=0;i<a.size()-1;i++)
+        {
+            int gasBetween=(a[i+1]-a[i])/dis;
+            if((a[i+1]-a[i])==(gasBetween*dis))
+                gasBetween--;
+            gas+=gasBetween;
+        }
+        return gas;
+    }
+  public:
+    double minMaxDist(vector<int> &stations, int K) {
+        // Code here
+        int n=stations.size();
+        if(n<=1)
+            return 0.0;
+        long double low=0;
+        long double high=-1;
+        for(int i=0;i<n-1;i++)
+            high=max(high,(long double)stations[i+1]-stations[i]);
+        long double diff=1e-6;
+        while(high-low>diff)
+        {
+            long double mid=low+(high-low)/2.0;
+            int cnt=countGasStation(stations,mid);
+            if(cnt>K)
+                low=mid;
+            else
+                high=mid;
+        }
+        return high;
+    }
+};
