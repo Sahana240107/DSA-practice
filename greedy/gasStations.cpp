@@ -36,3 +36,26 @@ Travel to station 1. Your tank = 3 - 3 + 3 = 3
 You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.
 Therefore, you can't travel around the circuit once no matter where you start.
 */
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int n=gas.size();
+        for(int i=0;i<n;i++)
+        {
+            if(gas[i]>=cost[i])
+            {
+                int tank=0,places=0;
+                int j=i;
+                while(places<n && tank>=0)
+                {
+                    tank+=gas[j]-cost[j];
+                    j=(j+1)%n;
+                    places++;
+                }
+                if(places==n && tank>=0)
+                    return i;
+            }
+        }
+        return -1;
+    }
+};
