@@ -45,3 +45,25 @@ Example 2:
 Input: nums = [0]
 Output: [[],[0]]
 */
+
+class Solution {
+    void helper(int ind,vector<int>& sum,vector<int>& a,vector<vector<int>>& sums)
+    {
+        if(ind==a.size())
+        {
+            sums.push_back(sum);
+            return;
+        }
+        sum.push_back(a[ind]);
+        helper(ind+1,sum,a,sums);
+        sum.pop_back();
+        helper(ind+1,sum,a,sums);
+    }
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> sums;
+        vector<int> sum;
+        helper(0,sum,nums,sums);
+        return sums;
+    }
+};
