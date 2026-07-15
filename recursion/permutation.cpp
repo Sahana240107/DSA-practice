@@ -19,3 +19,32 @@ Example 3:
 
 Input: nums = [1]
 Output: [[1]]*/
+class Solution {
+    void helper(vector<int>& ds,vector<int>& a,vector<vector<int>>& ans,vector<int>& visited)
+    {
+        if(ds.size()==a.size())
+        {
+            ans.push_back(ds);
+            return;
+        }
+        for(int i=0;i<a.size();i++)
+        {
+            if(!visited[i])
+            {
+                ds.push_back(a[i]);
+                visited[i]=1;
+                helper(ds,a,ans,visited);
+                visited[i]=0;
+                ds.pop_back();
+            }
+        }
+    }
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        vector<int> visited(nums.size(),0);
+        helper(ds,nums,ans,visited);
+        return ans;
+    }
+};
