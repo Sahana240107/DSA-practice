@@ -50,3 +50,45 @@ public:
         return (parentx!=parenty && depthx==depthy)?true:false;
     }
 };
+
+//BFS
+class Solution {
+public:
+    bool isCousins(TreeNode* root, int x, int y) {
+        if(!root)
+            return false;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int size=q.size();
+            bool xflag=false,yflag=false;
+            for(int i=0;i<size;i++)
+            {
+                TreeNode* node=q.front();
+                q.pop();
+                if(node->val==x)
+                    xflag=true;
+                if(node->val==y)
+                    yflag=true;
+                //check if siblings
+                if(node->left && node->right)
+                {
+                    int left=node->left->val;
+                    int right=node->right->val;
+                    if((left==x && right==y)||(left==y && right==x))
+                        return false;
+                }
+                if(node->left)  
+                    q.push(node->left);
+                if(node->right)
+                    q.push(node->right);
+            }
+            if(xflag&&yflag)
+                return true;
+            if(xflag||yflag)
+                return false;
+        }
+        return false;
+    }
+};
