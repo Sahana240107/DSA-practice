@@ -27,3 +27,26 @@ Example 3:
 Input: root = [1,2,3,null,4], x = 2, y = 3
 Output: false
 */
+class Solution {
+    bool findParentDepth(TreeNode* root,int x,int parent,int depth,int& ansParent,int& ansDepth)
+    {
+        if(!root)
+            return false;
+        if(root->val==x)
+        {
+            ansParent=parent;
+            ansDepth=depth;
+            return true;
+        }
+        if(findParentDepth(root->left,x,root->val,depth+1,ansParent,ansDepth))
+            return true;
+        return findParentDepth(root->right,x,root->val,depth+1,ansParent,ansDepth);
+    }
+public:
+    bool isCousins(TreeNode* root, int x, int y) {
+        int parentx=-1,depthx=0,parenty=-1,depthy=0;
+        findParentDepth(root,x,-1,0,parentx,depthx);
+        findParentDepth(root,y,-1,0,parenty,depthy);
+        return (parentx!=parenty && depthx==depthy)?true:false;
+    }
+};
