@@ -23,7 +23,7 @@ public:
                 freq[ch-'a']++;
             string key="";
             for(auto it:freq)
-                key+=to_string(it);
+                key+="#"+to_string(it);
             mp[key].push_back(s);
         }
         vector<vector<string>> ans;
