@@ -14,3 +14,29 @@ Explanation:
 
 Diagonal Traversal of binary tree : 8 10 14 3 6 7 13 1 4
 */
+class Solution {
+  public:
+    vector<int> diagonal(Node *root) {
+        // code here
+        if(!root)
+            return {};
+        queue<Node*> q;
+        Node* cur=root;
+        vector<int> ans;
+        while(cur||!q.empty())
+        {
+            if(cur)
+            {
+                q.push(cur);
+                ans.push_back(cur->data);
+                cur=cur->right;
+            }
+            else
+            {
+                cur=q.front()->left;
+                q.pop();
+            }
+        }
+        return ans;
+    }
+};
