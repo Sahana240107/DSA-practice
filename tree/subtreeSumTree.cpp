@@ -16,3 +16,29 @@ Input: root[] = [10, 20, 30, 10, 10]
 Output: false
 Explanation: The given tree is not a Sum Tree. For the root node, the sum of nodes in the left and right subtrees is 40 + 30 = 70, which is not equal to the root value 10.
 */
+
+class Solution {
+    int helper(Node* node)
+    {
+        if(!node)
+            return 0;
+        if(!node->left && !node->right)
+            return node->data;
+        int left=helper(node->left);
+        if(left==-1)
+            return -1;
+        int right=helper(node->right);
+        if(right==-1)
+            return -1;
+        if(node->data!=left+right)
+            return -1;
+        return node->data+left+right;
+    }
+  public:
+    bool isSumTree(Node* node) {
+        // code here
+        if(!node)
+            return true;
+        return helper(node)!=-1;
+    }
+};
