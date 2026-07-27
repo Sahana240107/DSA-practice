@@ -18,3 +18,21 @@ Subtree with largest sum is :
          
 The whole tree sum is also 7. 
 */
+class Solution {
+    int ans=INT_MIN;
+    int maxSum(Node* root)
+    {
+        if(!root)
+            return 0;
+       int left=maxSum(root->left);
+       int right=maxSum(root->right);
+        ans=max(ans,left+right+root->data);
+        return left+right+root->data;
+    }
+  public:
+    int maxSubtreeSum(Node* root) {
+        // code here
+        maxSum(root);
+        return ans;
+    }
+};
