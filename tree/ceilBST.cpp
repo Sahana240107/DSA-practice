@@ -10,3 +10,25 @@ Input: root = [5, 1, 7, N, 2, N, N, N, 3], x = 3
 
 Output: 3
 Explanation: We find 3 in BST, so ceil of 3 is 3.*/
+
+class Solution {
+  public:
+    int findCeil(Node* root, int x) {
+        // code here
+        int ceil=-1;
+        Node* cur=root;
+        while(cur)
+        {
+            if(cur->data==x)
+                return x;
+            else if(cur->data<x)
+                cur=cur->right;
+            else
+            {
+                ceil=cur->data;
+                cur=cur->left;
+            }
+        }
+        return ceil;
+    }
+};
