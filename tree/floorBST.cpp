@@ -12,3 +12,24 @@ Input: root = [10, 7, 15, 2, 8, 11, 16],  k  =  14
 Output: 11
 Explanation: The greatest element in the tree which is less than or equal to 14, is 11.
 */
+class Solution {
+  public:
+    int findMaxFork(Node* root, int k) {
+        // code here
+        int floor=-1;
+        Node* cur=root;
+        while(cur)
+        {
+            if(cur->data==k)
+                return k;
+            else if(cur->data>k)
+                cur=cur->left;
+            else
+            {
+                floor=cur->data;
+                cur=cur->right;
+            }
+        }
+        return floor;
+    }
+};
