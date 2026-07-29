@@ -23,3 +23,39 @@ Example 2:
 Input: edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]
 Output: [1,4]
 */
+class Solution {
+    vector<int> parent,rank;
+    int find(int x)
+    {
+        if(parent[x]==x)
+            return x;
+        return parent[x]=find(parent[x]);
+    }
+    bool unionSet(int x,int y)
+    {
+        int px=find(x);
+        int py=find(y);
+        if(px==py)
+            return false;
+        if(rank[px]<rank[py])
+            swap(px,py);
+        parent[py]=px;
+        if(rank[px]==rank[py])
+            rank[px]++;
+        return true;
+    }
+public:
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+        int n=edges.size();
+        parent.resize(n+1);
+        rank.resize(n+1,0);
+        for(int i=0;i<=n;i++)
+            parent[i]=i;
+        for(auto it:edges)
+        {
+            if(!unionSet(it[0],it[1]))
+                return it;
+        }
+        return {};
+    }
+};
