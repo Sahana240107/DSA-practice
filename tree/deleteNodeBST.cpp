@@ -19,3 +19,50 @@ Example 2:
 Input: root = [5,3,6,2,4,null,7], key = 0
 Output: [5,3,6,2,4,null,7]
 Explanation: The tree does not contain a node with value = 0.*/
+
+class Solution {
+    TreeNode* minNode(TreeNode* root)
+    {
+        if(!root)
+            return NULL;
+        if(!root->left)
+            return root;
+        return minNode(root->left);
+    }
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        if(!root)
+            return NULL;
+        if(root->val<key)
+            root->right=deleteNode(root->right,key);
+        else if(root->val>key)
+            root->left=deleteNode(root->left,key);
+        else
+        {
+            if(!root->left && !root->right)
+            {
+                delete root;
+                return NULL;
+            }
+            else if(!root->left)
+            {
+                TreeNode* temp=root->right;
+                delete root;
+                return temp;
+            }
+            else if(!root->right)
+            {
+                TreeNode* temp=root->left;
+                delete root;
+                return temp;
+            }
+            else
+            {
+                TreeNode* mini=minNode(root->right);
+                root->val=mini->val;
+                root->right=deleteNode(root->right,mini->val);
+            }
+        }
+        return root;
+    }
+};
