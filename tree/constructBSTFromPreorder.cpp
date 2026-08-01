@@ -9,3 +9,20 @@ A preorder traversal of a binary tree displays the value of the node first, then
 Example 1:
 Input: preorder = [8,5,1,7,10,12]
 Output: [8,5,10,1,7,null,12]*/
+class Solution {
+    TreeNode* bst(vector<int>& pre,int& i,long long bound)
+    {
+        if(i==pre.size()||pre[i]>bound)
+            return NULL;
+        TreeNode* root=new TreeNode(pre[i]);
+        i++;
+        root->left=bst(pre,i,root->val);
+        root->right=bst(pre,i,bound);
+        return root;
+    }
+public:
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        int i=0;
+        return bst(preorder,i,LLONG_MAX);
+    }
+};
