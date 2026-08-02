@@ -14,3 +14,23 @@ Output: 10
 Explanation: Inorder traversal: 4 8 10 12 14 20 22. Hence, successor of 8 is 10.
 
 */
+class Solution {
+  public:
+    int inOrderSuccessor(Node *root, Node *k) {
+        // code here
+        Node* cur=root;
+        int suc=-1;
+        while(cur)
+        {
+            if(cur->data<=k->data)
+                cur=cur->right;
+            else
+            {
+                suc=cur->data;
+                cur=cur->left;
+            }
+        }
+        return suc;
+        
+    }
+};
