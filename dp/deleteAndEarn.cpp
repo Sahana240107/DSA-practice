@@ -30,3 +30,26 @@ Explanation: You can perform the following operations:
 - Delete a 3 once more to earn 3 points. nums = [].
 You earn a total of 9 points.
 */
+class Solution {
+public:
+    int deleteAndEarn(vector<int>& nums) {
+        unordered_map<int,int> mp;
+        int maxi=nums[0];
+        for(int i=0;i<nums.size();i++)
+        {
+            maxi=max(maxi,nums[i]);
+            mp[nums[i]]+=nums[i];
+        }
+        int prev1=0,prev2=0;
+        for(int i=1;i<=maxi;i++)
+        {
+            int take=mp[i]+prev2;
+            int notTake=prev1;
+            int cur=max(take,notTake);
+            prev2=prev1;
+            prev1=cur;
+        }
+        return prev1;
+
+    }
+};
