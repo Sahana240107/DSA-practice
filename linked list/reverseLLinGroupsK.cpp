@@ -12,3 +12,52 @@ Example 2:
 Input: head = [1,2,3,4,5], k = 3
 Output: [3,2,1,4,5]
 */
+class Solution {
+    ListNode* kthNode(ListNode* cur,int k)
+    {
+        k--;
+        while(cur && k>0)
+        {
+            cur=cur->next;
+            k--;
+        }
+        return cur;
+    }
+    void reverse(ListNode* head)
+    {
+        ListNode* prev=NULL;
+        ListNode* cur=head;
+        while(cur)
+        {
+            ListNode* front=cur->next;
+            cur->next=prev;
+            prev=cur;
+            cur=front;
+        }
+    }
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+       ListNode* temp=head;
+       ListNode* prev=NULL;
+       while(temp)
+       {
+            ListNode* kth=kthNode(temp,k);
+            if(!kth)
+            {
+                if(prev)
+                    prev->next=temp;
+                break;
+            }
+            ListNode* nextNode=kth->next;
+            kth->next=NULL;
+            reverse(temp);
+            if(temp==head)
+                head=kth;
+            else
+                prev->next=kth;
+            prev=temp;
+            temp=nextNode;
+       } 
+       return head;
+    }
+};
