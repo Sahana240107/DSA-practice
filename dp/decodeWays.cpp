@@ -87,3 +87,48 @@ public:
         return solve(0,s,dp);
     }
 };
+
+//bottom up
+class Solution {
+public:
+    int numDecodings(string s) {
+        int n=s.size();
+        vector<int> dp(n+1,0);
+        dp[0]=1;
+        if(s[0]!='0')
+            dp[1]=1;
+        for(int i=2;i<=n;i++)
+        {
+            if(s[i-1]!='0')
+                dp[i]+=dp[i-1];
+            int num=(s[i-2]-'0')*10+(s[i-1]-'0');
+            if(num>=10 && num<=26)
+                dp[i]+=dp[i-2];
+        }
+        return dp[n];
+    }
+};
+
+//space optimized
+class Solution {
+public:
+    int numDecodings(string s) {
+        int n=s.size();
+        int prev2=1;
+        int prev1=0;
+        if(s[0]!='0')
+            prev1=1;
+        for(int i=2;i<=n;i++)
+        {
+            int cur=0;
+            if(s[i-1]!='0')
+                cur+=prev1;
+            int num=(s[i-2]-'0')*10+(s[i-1]-'0');
+            if(num>=10 && num<=26)
+                cur+=prev2;
+            prev2=prev1;
+            prev1=cur;
+        }
+        return prev1;
+    }
+};
