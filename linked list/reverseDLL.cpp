@@ -15,3 +15,20 @@ Output:
 Explanation: After reversing the given doubly linked list the new list will be 5 <-> 4 <-> 3.
 
 */
+class Solution {
+  public:
+    Node *reverse(Node *head) {
+        // code here
+        Node* temp=head;
+        Node* newHead=NULL;
+        while(temp)
+        {
+            newHead=temp;
+            Node* back=temp->prev;
+            temp->prev=temp->next;
+            temp->next=back;
+            temp=temp->prev;
+        }
+        return newHead;
+    }
+};
