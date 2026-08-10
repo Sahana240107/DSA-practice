@@ -6,7 +6,6 @@ In one step, you can move one cell up, down, left, or right. You cannot step int
 Return the number of steps in the shortest path from the entrance to the nearest exit, or -1 if no such path exists.
 
  
-
 Example 1:
 
 
@@ -34,3 +33,36 @@ Example 3:
 Input: maze = [[".","+"]], entrance = [0,0]
 Output: -1
 Explanation: There are no exits in this maze.*/
+
+class Solution {
+public:
+    int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {
+        int n=maze.size(),m=maze[0].size();
+        queue<pair<pair<int,int>,int>> q;
+        vector<vector<bool>> visited(n,vector<bool>(m,false));
+        q.push({{entrance[0],entrance[1]},0});
+        while(!q.empty())
+        {
+            int sr=q.front().first.first;
+            int sc=q.front().first.second;
+            int time=q.front().second;
+            visited[sr][sc]=true;
+            q.pop();
+            if((sr==0 || sr==n-1 || sc==0 || sc==m-1)&& !(sr==entrance[0]&&sc==entrance[1])) 
+                return time;
+            int dr[]={-1,1,0,0};
+            int dc[]={0,0,-1,1};
+            for(int i=0;i<4;i++)
+            {
+                int r=sr+dr[i];
+                int c=sc+dc[i];
+                if(r>=0 && r<n && c>=0 && c<m && maze[r][c]=='.' && !visited[r][c])
+                {
+                    visited[r][c]=true;
+                    q.push({{r,c},time+1});
+                }
+            }
+        }
+        return -1;
+    }
+};
