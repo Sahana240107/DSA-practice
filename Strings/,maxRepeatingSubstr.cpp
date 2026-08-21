@@ -32,3 +32,23 @@ public:
         return ans;
     }
 };
+
+//dynamic programming
+class Solution {
+public:
+    int maxRepeating(string sequence, string word) {
+        int ans=0;
+        int m=word.size();
+        int n=sequence.size();
+        vector<int> dp(n+1,0);
+        for(int i=m;i<=n;i++)
+        {
+            if(sequence.substr(i-m,m)==word)
+            {
+                dp[i]=dp[i-m]+1;
+                ans=max(ans,dp[i]);
+            }
+        }
+        return ans;
+    }
+};
