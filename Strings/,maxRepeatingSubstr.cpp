@@ -17,3 +17,18 @@ Example 3:
 Input: sequence = "ababc", word = "ac"
 Output: 0
 Explanation: "ac" is not a substring in "ababc". */
+
+//Brute Force
+class Solution {
+public:
+    int maxRepeating(string sequence, string word) {
+        int ans=0;
+        string pattern=word;
+        while(sequence.find(pattern)!=string::npos)
+        {
+            ans++;
+            pattern+=word;
+        }
+        return ans;
+    }
+};
