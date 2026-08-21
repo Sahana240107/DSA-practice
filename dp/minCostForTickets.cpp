@@ -28,3 +28,37 @@ Explanation: For example, here is one way to buy passes that lets you travel you
 On day 1, you bought a 30-day pass for costs[2] = $15 which covered days 1, 2, ..., 30.
 On day 31, you bought a 1-day pass for costs[0] = $2 which covered day 31.
 In total, you spent $17 and covered all the days of your travel.*/
+class Solution {
+    int binSearch(vector<int>& days,int i,int day)
+    {
+        int l=0,h=i,ans=i+1;
+        while(l<=h)
+        {
+            int mid=l+(h-l)/2;
+            if(days[mid]>=day)
+            {
+                ans=mid;
+                h=mid-1;
+            }
+            else
+                l=mid+1;
+        }
+        return ans;
+    }
+public:
+    int mincostTickets(vector<int>& days, vector<int>& cost) {
+        vector<int> dp(days.size()+1,0);
+        dp[0]=0;
+        for(int i=1;i<=days.size();i++)
+        {
+            int currentDay=days[i-1];
+            int day1=dp[i-1]+cost[0];
+            int ind7=binSearch(days,i-1,currentDay-6);
+            int day7=dp[ind7]+cost[1];
+            int ind30=binSearch(days,i-1,currentDay-29);
+            int day30=dp[ind30]+cost[2];
+            dp[i]=min({day1,day7,day30});
+        }
+        return dp[days.size()];
+    }
+};
