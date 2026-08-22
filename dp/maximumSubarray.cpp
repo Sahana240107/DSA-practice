@@ -17,3 +17,17 @@ Example 3:
 Input: nums = [5,4,-1,7,8]
 Output: 23
 Explanation: The subarray [5,4,-1,7,8] has the largest sum 23.*/
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        vector<int> dp(nums.size(),0);
+        dp[0]=nums[0];
+        int ans=dp[0];
+        for(int i=1;i<nums.size();i++)
+        {
+            dp[i]=max(nums[i],dp[i-1]+nums[i]);
+            ans=max(ans,dp[i]);
+        }
+        return ans;
+    }
+};
