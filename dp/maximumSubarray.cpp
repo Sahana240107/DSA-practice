@@ -31,3 +31,19 @@ public:
         return ans;
     }
 };
+
+//Space optimized
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int prev=nums[0];
+        int ans=prev;
+        for(int i=1;i<nums.size();i++)
+        {
+            int cur=max(nums[i],prev+nums[i]);
+            ans=max(ans,cur);
+            prev=cur;
+        }
+        return ans;
+    }
+};
