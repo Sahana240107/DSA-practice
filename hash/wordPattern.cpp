@@ -64,3 +64,41 @@ public:
         return true;
     }
 };
+
+//Two maps
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        unordered_map<char,string> mp1;
+        unordered_map<string,char> mp2;
+        int start=0;
+        for(char c:pattern)
+        {
+            string word="";
+            if(start>=s.size())
+                return false;
+            while(start<s.size() && s[start]!=' ')
+            {
+                word+=s[start];
+                start++;
+            }
+            if(start<s.size())
+                start++;
+            if(mp1.find(c)!=mp1.end())
+            {
+                if(mp1[c]!=word)
+                    return false;
+            }
+            else
+            {
+                if(mp2.find(word)!=mp2.end())
+                    return false;
+                mp1[c]=word;
+                mp2[word]=c;
+            }
+        }
+        if(start<s.size())
+            return false;
+        return true;
+    }
+};
