@@ -29,3 +29,38 @@ Example 3:
 Input: pattern = "aaaa", s = "dog cat cat dog"
 
 Output: false*/
+
+//My first thought with map and set
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        vector<string> mp(26,"");
+        unordered_set<string> words;
+        int wordstart=0;
+        for(char c:pattern)
+        {
+            if(wordstart>=s.size())
+                return false;
+            string w="";
+            while(wordstart<s.size() && s[wordstart]!=' ')
+            {
+                w+=s[wordstart];
+                wordstart++;
+            }
+            if(mp[c-'a']!="" && mp[c-'a']!=w)
+                return false;
+            else if(mp[c-'a']=="")
+            {
+                if(words.find(w)!=words.end())
+                    return false;
+                mp[c-'a']=w;
+                words.insert(w);
+            }
+            if(wordstart<s.size())
+                wordstart++;
+        }
+        if(wordstart<s.size())
+            return false;
+        return true;
+    }
+};
