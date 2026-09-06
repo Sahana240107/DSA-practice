@@ -61,3 +61,23 @@ public:
         return sell[n-1];
     }
 };
+
+//dp optimized
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n=prices.size();
+        vector<int> buy(n);
+        vector<int> sell(n);
+        int buyprev=-prices[0];
+        int sellprev=0;
+        for(int i=1;i<n;i++)
+        {
+            int buy=max(buyprev,sellprev-prices[i]);
+            int sell=max(sellprev,buyprev+prices[i]);
+            buyprev=buy;
+            sellprev=sell;
+        }
+        return sellprev;
+    }
+};
