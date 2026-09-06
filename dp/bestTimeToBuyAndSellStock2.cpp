@@ -30,3 +30,16 @@ Example 3:
 Input: prices = [7,6,4,3,1]
 Output: 0
 Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.*/
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int profit=0;
+        for(int i=1;i<prices.size();i++)
+        {
+            if(prices[i]>prices[i-1])
+                profit+=prices[i]-prices[i-1];
+        }
+        return profit;
+    }
+};
