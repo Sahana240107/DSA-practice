@@ -16,3 +16,24 @@ Example 3:
 Input: ransomNote = "aa", magazine = "aab"
 Output: true
 */
+
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<char,int> mp;
+        for(char c:ransomNote)
+        {
+            mp[c]++;
+        }
+        for(char c:magazine)
+        {
+            if(mp.find(c)!=mp.end())
+            {
+                mp[c]--;
+                if(mp[c]==0)
+                    mp.erase(c);
+            }
+        }
+        return mp.empty();
+    }
+};
