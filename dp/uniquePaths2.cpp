@@ -20,3 +20,34 @@ Example 2:
 
 Input: obstacleGrid = [[0,1],[0,0]]
 Output: 1*/
+
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        
+        int n = obstacleGrid.size();
+        int m = obstacleGrid[0].size();
+
+        if (obstacleGrid[0][0] == 1)
+            return 0;
+
+        obstacleGrid[0][0] = 1;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+
+                if (obstacleGrid[i][j] == 1 && !(i == 0 && j == 0)) {
+                    obstacleGrid[i][j] = 0;
+                }
+                else if (!(i == 0 && j == 0)) {
+                    int up = (i > 0) ? obstacleGrid[i - 1][j] : 0;
+                    int left = (j > 0) ? obstacleGrid[i][j - 1] : 0;
+
+                    obstacleGrid[i][j] = up + left;
+                }
+            }
+        }
+
+        return obstacleGrid[n - 1][m - 1];
+    }
+};
