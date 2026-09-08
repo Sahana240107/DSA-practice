@@ -34,3 +34,43 @@ Example 3:
 Input: words = ["adsdf","sfd"]
 
 Output: ["adsdf","sfd"]*/
+
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        string firstrow="qwertyuiop",secondrow="asdfghjkl",thirdrow="zxcvbnm";
+        vector<string> ans;
+        vector<int> rows(26,0);
+        for(char c:firstrow)
+        {
+            rows[c-'a']=1;
+        }
+        for(char c:secondrow)
+        {
+            rows[c-'a']=2;
+        }
+        for(char c:thirdrow)
+        {
+            rows[c-'a']=3;
+        }
+        for(string str:words)
+        {
+            string s=str;
+            for(char &c:s)
+                c=tolower(c);
+            int row=rows[s[0]-'a'];
+            bool onerow=true;
+            for(char c:s)
+            {
+                if(rows[c-'a']!=row)
+                {
+                    onerow=false;
+                    break;
+                }
+            }
+            if(onerow)
+                ans.push_back(str);
+        }
+        return ans;
+    }
+};
