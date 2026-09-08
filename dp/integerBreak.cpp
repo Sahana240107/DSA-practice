@@ -13,3 +13,20 @@ Example 2:
 Input: n = 10
 Output: 36
 Explanation: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36.*/
+
+class Solution {
+public:
+    int integerBreak(int n) {
+        vector<int> dp(n+1,0);
+        dp[1]=1;
+        for(int i=2;i<=n;i++)
+        {
+            for(int j=1;j<i;j++)
+            {
+                dp[i]=max(dp[i],j*(i-j));
+                dp[i]=max(dp[i],j*dp[i-j]);
+            }
+        }
+        return dp[n];
+    }
+};
