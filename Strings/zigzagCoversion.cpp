@@ -9,8 +9,6 @@ And then read line by line: "PAHNAPLSIIGYIR"
 Write the code that will take a string and make this conversion given a number of rows:
 
 string convert(string s, int numRows);
- 
-
 Example 1:
 
 Input: s = "PAYPALISHIRING", numRows = 3
@@ -25,3 +23,30 @@ A   L S  I G
 Y A   H R
 P     I
 */
+
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if(numRows==1||numRows>=s.size())
+            return s;
+        int n=s.size();
+        vector<string> rows(numRows);
+        int curRow=0;
+        int direction=1;
+        for(char c:s)
+        {
+            rows[curRow]+=c;
+            if(curRow==0)
+                direction=1;
+            if(curRow==numRows-1)
+                direction=-1;
+            curRow+=direction;
+        }
+        string result="";
+        for(string row:rows)
+        {
+            result+=row;
+        }
+        return result;
+    }
+};
