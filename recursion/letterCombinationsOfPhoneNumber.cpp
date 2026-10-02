@@ -43,3 +43,32 @@ public:
         return ans;
     }
 };
+
+//Iterative
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        if (digits.empty()) return {};
+
+        string letters[] = {
+            "abc", "def", "ghi", "jkl",
+            "mno", "pqrs", "tuv", "wxyz"
+        };
+
+        vector<string> ans = {""};
+
+        for (char digit : digits) {
+            vector<string> temp;
+
+            for (string s : ans) {
+                for (char c : letters[digit - '2']) {
+                    temp.push_back(s + c);
+                }
+            }
+
+            ans = temp;
+        }
+
+        return ans;
+    }
+};
