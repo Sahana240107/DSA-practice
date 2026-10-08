@@ -65,3 +65,41 @@ public:
     }
 };
 
+//Optimized
+class Solution {
+public:
+    vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
+        vector<int> req(26,0);
+        for(int i=0;i<words2.size();i++)
+        {
+            vector<int> freq(26,0);
+            for(char c:words2[i])
+            {
+                freq[c-'a']++;
+                if(freq[c-'a']>req[c-'a'])
+                    req[c-'a']=freq[c-'a'];
+            }
+        }
+        vector<string> universal;
+        for(string st:words1)
+        {
+            vector<int> freq(26,0);
+            for(char c:st)
+            {
+                freq[c-'a']++;
+            }
+            bool flag=true;
+            for(int j=0;j<26;j++)
+            {
+                if(freq[j]<req[j])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag)
+                universal.push_back(st);
+        }
+        return universal;
+    }
+};
