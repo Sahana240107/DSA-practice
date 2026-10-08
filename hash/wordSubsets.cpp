@@ -25,3 +25,43 @@ Example 3:
 Input: words1 = ["acaac","cccbb","aacbb","caacc","bcbbb"], words2 = ["c","cc","b"]
 
 Output: ["cccbb"]*/
+
+//Brute force
+class Solution {
+public:
+    vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
+        vector<vector<int>> mp(words2.size(),vector<int> (26,0));
+        for(int i=0;i<words2.size();i++)
+        {
+            for(char c:words2[i])
+            {
+                mp[i][c-'a']++;
+            }
+        }
+        vector<string> universal;
+        for(string st:words1)
+        {
+            vector<int> freq(26,0);
+            for(char c:st)
+            {
+                freq[c-'a']++;
+            }
+            bool flag=true;
+            for(int i=0;i<words2.size();i++)
+            {
+                for(int j=0;j<26;j++)
+                {
+                    if(freq[j]<mp[i][j])
+                    {
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if(flag)
+                universal.push_back(st);
+        }
+        return universal;
+    }
+};
+
