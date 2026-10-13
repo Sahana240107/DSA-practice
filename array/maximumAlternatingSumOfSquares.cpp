@@ -36,3 +36,24 @@ A possible rearrangement for nums is [-3,-1,-2,1,3,2], which gives the maximum a
 The alternating score is calculated as:
 
 score = (-3)2 - (-1)2 + (-2)2 - (1)2 + (3)2 - (2)2 = 9 - 1 + 4 - 1 + 9 - 4 = 16*/
+
+class Solution {
+public:
+    long long maxAlternatingSum(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0;i<nums.size();i++)
+            nums[i]=abs(nums[i]);
+        sort(nums.begin(),nums.end());
+        int mid=n/2;
+        long long sum=0;
+        for(int i=0;i<mid;i++)
+        {
+            sum-=nums[i]*nums[i];
+        }
+        for(int i=mid;i<n;i++)
+        {
+            sum+=nums[i]*nums[i];
+        }
+        return sum;
+    }
+};
