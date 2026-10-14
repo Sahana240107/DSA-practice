@@ -45,3 +45,28 @@ Explanation:
 There are no integers that have exactly 1 digit and whose digits sum to 10. Therefore, the answer is "".
 */
 
+class Solution {
+public:
+    string maxSumOfSquares(int num, int sum) {
+        if(sum==0||sum>9*num)
+            return "";
+        string ans="";
+        while(sum>9)
+        {
+            ans+='9';
+            sum-=9;
+            num--;
+        }
+        if(num>0)
+        {
+            ans+=char('0'+sum);
+            num--;
+        }
+        while(num>0)
+        {
+            ans+='0';
+            num--;
+        }
+        return ans;
+    }
+};
