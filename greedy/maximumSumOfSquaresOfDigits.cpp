@@ -13,7 +13,6 @@ Example 1:
 Input: num = 2, sum = 3
 
 Output: "30"
-
 Explanation:
 
 There are 3 good integers: 12, 21, and 30.
@@ -42,9 +41,7 @@ Example 3:
 Input: num = 1, sum = 10
 
 Output: ""
-
 Explanation:
-
 There are no integers that have exactly 1 digit and whose digits sum to 10. Therefore, the answer is "".
-
 */
+
