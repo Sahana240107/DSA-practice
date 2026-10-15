@@ -29,3 +29,21 @@ Explanation: Three possible subarrays are:
 [1]: 1 distinct value
 [1,1]: 1 distinct value
 The sum of the squares of the distinct counts in all subarrays is equal to 12 + 12 + 12 = 3.*/
+
+class Solution {
+public:
+    int sumCounts(vector<int>& nums) {
+        int ans=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            unordered_set<int> st;
+            for(int j=i;j<nums.size();j++)
+            {
+                st.insert(nums[j]);
+                int distinct=st.size();
+                ans+=distinct*distinct;
+            }
+        }
+        return ans;
+    }
+};
