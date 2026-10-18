@@ -43,3 +43,61 @@ Constraints:
 board.length == 9
 board[i].length == 9
 board[i][j] is a digit 1-9 or '.'.*/
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        int n=9;
+        for(int i=0;i<n;i++)
+        {
+            unordered_set<int> st;
+            for(int j=0;j<n;j++)
+            {
+                if(board[i][j]!='.')
+                {
+                    int num=board[i][j]-'0';
+                    if(st.find(num)!=st.end())
+                        return false;
+                    else
+                        st.insert(num);
+                }
+            }
+        }
+        for(int j=0;j<n;j++)
+        {
+            unordered_set<int> st;
+            for(int i=0;i<n;i++)
+            {
+                if(board[i][j]!='.')
+                {
+                    int num=board[i][j]-'0';
+                    if(st.find(num)!=st.end())
+                        return false;
+                    else
+                        st.insert(num);
+                }
+            }
+        }
+        for(int i=0;i<n;i+=3)
+        {
+            for(int j=0;j<n;j+=3)
+            {
+                unordered_set<int> st;
+                for(int r=i;r<i+3;r++)
+                {
+                    for(int c=j;c<j+3;c++)
+                    {
+                        if(board[r][c]!='.')
+                        {
+                            int num=board[r][c]-'0';
+                            if(st.find(num)!=st.end())
+                                return false;
+                            st.insert(num);
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+};
