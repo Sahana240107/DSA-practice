@@ -76,3 +76,27 @@ public:
     }
 
 };
+
+//O(n) optimized
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        int smaller=0,count=0,n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]<target)
+                smaller++;
+            else if(nums[i]==target)
+                count++;
+        }
+        int i=smaller;
+        vector<int> ans;
+        while(count>0)
+        {
+            ans.push_back(i);
+            i++;
+            count--;
+        }
+        return ans;
+    }
+};
