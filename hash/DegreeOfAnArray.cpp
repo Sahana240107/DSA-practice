@@ -24,3 +24,31 @@ Constraints:
 
 nums.length will be between 1 and 50,000.
 nums[i] will be an integer between 0 and 49,999*/
+
+class Solution {
+public:
+    int findShortestSubArray(vector<int>& nums) {
+        unordered_map<int,int> freq;
+        unordered_map<int,int> first;
+        unordered_map<int,int> last;
+        int n=nums.size(),degree=0;
+        for(int i=0;i<n;i++)
+        {
+            freq[nums[i]]++;
+            if(first.find(nums[i])==first.end())
+                first[nums[i]]=i;
+            last[nums[i]]=i;
+            degree=max(degree,freq[nums[i]]);
+        }
+        int mini_len=n;
+        for(int num:nums)
+        {
+            if(freq[num]==degree)
+            {
+                int len=last[num]-first[num]+1;
+                mini_len=min(len,mini_len);
+            }
+        }
+        return mini_len;
+    }
+};
