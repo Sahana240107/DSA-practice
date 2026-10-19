@@ -17,3 +17,19 @@ Constraints:
 
 The number of nodes in the tree is in the range [1, 1000].
 -1000 <= Node.val <= 1000*/
+
+
+class Solution {
+public:
+    int sumOfLeftLeaves(TreeNode* root) {
+        if(!root)
+            return 0;
+        if(!root->left&&!root->right)
+            return 0;
+        int sum=0;
+        TreeNode* leftNode=root->left;
+        if(leftNode&&!leftNode->left&&!leftNode->right)
+            sum+=leftNode->val;
+        return sum+sumOfLeftLeaves(root->left)+sumOfLeftLeaves(root->right);
+    }
+};
