@@ -43,3 +43,35 @@ Explanation:
 It is impossible to reach [2, 0, 1, 3]. Thus, the answer is -1.
 
 */
+
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        int n=nums.size();
+        int pos=0;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==0)
+            {
+                pos=i;
+                break;
+            }
+        }
+        bool inc=true,dec=true;
+        for(int i=1;i<n;i++)
+        {
+            int value=nums[(pos+i)%n];
+            if(value!=i)
+                inc=false;
+            if(value!=n-i)
+                dec=false;
+            if(!inc && !dec)
+                return -1;
+        }
+        if(inc)
+            return min(pos,n-pos+2);
+        if(dec)
+            return min(pos+2,n-pos);
+        return -1;
+    }
+};
