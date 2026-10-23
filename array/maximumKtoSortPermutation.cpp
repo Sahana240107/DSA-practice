@@ -34,3 +34,19 @@ Output: 0
 Explanation:
 
 Only k = 0 allows sorting since no greater k allows the required swaps where nums[i] AND nums[j] == k.*/
+
+class Solution {
+public:
+    int sortPermutation(vector<int>& nums) {
+        int n=nums.size();
+        int ans=-1;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]!=i)
+            {
+                ans&=nums[i];
+            }
+        }
+        return ans==-1?0:ans;
+    }
+};
