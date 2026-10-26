@@ -34,3 +34,41 @@ n == grid[i].length
 0 <= grid[i][j] <= 106
 1 <= k <= 106
 */
+
+class Solution {
+    void dfs(int r,int c,vector<vector<int>>& grid,vector<vector<bool>>& visited,long long& sum)
+    {
+        int n=grid.size(),m=grid[0].size();
+        sum+=grid[r][c];
+        visited[r][c]=true;
+        int dr[]={-1,1,0,0};
+        int dc[]={0,0,-1,1};
+        for(int i=0;i<4;i++)
+        {
+            int nr=r+dr[i];
+            int nc=c+dc[i];
+            if(nr>=0 && nr<n && nc>=0 && nc<m && !visited[nr][nc] && grid[nr][nc]>0)
+                dfs(nr,nc,grid,visited,sum);
+        }
+    }
+public:
+    int countIslands(vector<vector<int>>& grid, int k) {
+        int n=grid.size(),m=grid[0].size();
+        vector<vector<bool>> visited(n,vector<bool> (m,false));
+        int count=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]>0 && !visited[i][j])
+                {
+                    long long sum=0;
+                    dfs(i,j,grid,visited,sum);
+                    if(sum%k==0)
+                        count++;
+                }
+            }
+        }
+        return count;
+    }
+};
