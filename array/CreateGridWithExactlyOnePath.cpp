@@ -46,3 +46,15 @@ The only valid path is: (0,0) → (0,1) → (0,2) → (0,3)
 Constraints:
 
 1 <= m, n <= 25*/
+
+class Solution {
+public:
+    vector<string> createGrid(int m, int n) {
+        vector<string> grid(m,string(n,'#'));
+        for(int j=0;j<n;j++)
+            grid[0][j]='.';
+        for(int i=1;i<m;i++)
+            grid[i][n-1]='.';
+        return grid;
+    }
+};
