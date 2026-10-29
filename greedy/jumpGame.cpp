@@ -38,7 +38,7 @@ public:
     }
 };
 
-//DP
+//DP soln
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
