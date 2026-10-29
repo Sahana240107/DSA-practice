@@ -60,3 +60,28 @@ public:
         return ans;
     }
 };
+
+//ITERATIVE
+class Solution {
+public:
+    string countAndSay(int n) {
+        string s="1";
+        for(int i=2;i<=n;i++)
+        {
+            string ans="";
+            for(int j=0;j<s.size();)
+            {
+                char ch=s[j];
+                int count=0;
+                while(j<s.size() && s[j]==ch)
+                {
+                    count++;
+                    j++;
+                }
+                ans+=to_string(count)+ch; 
+            }
+            s=ans;
+        }
+        return s;
+    }
+};
