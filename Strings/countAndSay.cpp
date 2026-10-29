@@ -35,3 +35,28 @@ Constraints:
 1 <= n <= 30
 
 */
+
+class Solution {
+public:
+    string countAndSay(int n) {
+        if(n==1)
+            return "1";
+        string st=countAndSay(n-1);
+        string ans="";
+        char ch=st[0];
+        int count=1;
+        for(int i=1;i<st.size();i++)
+        {
+            if(st[i]==ch)
+                count++;
+            else
+            {
+                ans+=to_string(count)+string(1,ch);
+                ch=st[i];
+                count=1;
+            }
+        }
+        ans+=to_string(count)+string(1,ch);
+        return ans;
+    }
+};
