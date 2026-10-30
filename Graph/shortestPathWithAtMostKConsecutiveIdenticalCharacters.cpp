@@ -51,3 +51,51 @@ ui != vi
 labels consists of lowercase English letters
 1 <= k <= 50
 */
+
+class Solution {
+public:
+    int shortestPath(int n, vector<vector<int>>& edges, string labels, int k) {
+        vector<vector<pair<int,int>>> adj(n);
+        for(auto e:edges)
+        {
+            int u=e[0];
+            int v=e[1];
+            int w=e[2];
+            adj[u].push_back({v,w});
+        }
+        vector<vector<long long>> dist(n,vector<long long> (k+1,LLONG_MAX));
+        priority_queue<tuple<long long,int,int>,vector<tuple<long long,int,int>>,greater<tuple<long long,int,int>>> pq;
+        dist[0][1]=0;
+        pq.push({0,0,1});
+        while(!pq.empty())
+        {
+            auto [d,u,c]=pq.top();
+            pq.pop();
+            if(d!=dist[u][c])
+                continue;
+            if(u==n-1)
+                return (int)d;
+            for(auto [v,w]:adj[u])
+            {
+                int newcnt;
+                if(labels[u]==labels[v])
+                {
+                    newcnt=c+1;
+                    if(newcnt>k)
+                        continue;
+                }
+                else
+                {
+                    newcnt=1;
+                }
+                long long newdis=d+w;
+                if(newdis<dist[v][newcnt])
+                {
+                    dist[v][newcnt]=newdis;
+                    pq.push({newdis,v,newcnt});
+                }
+            }
+        }
+        return -1;
+    }
+};
