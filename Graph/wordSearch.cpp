@@ -70,3 +70,46 @@ public:
         return false;
     }
 };
+
+//instead of string we can track index for optimization
+class Solution {
+    bool dfs(int r,int c,int ind,vector<vector<char>>& board,string& word,vector<vector<bool>>& visited)
+    {
+        if(ind==word.length()-1)
+            return true;
+        int n=board.size(),m=board[0].size();
+        int dr[]={-1,1,0,0};
+        int dc[]={0,0,-1,1};
+        for(int i=0;i<4;i++){
+            int nr=r+dr[i];
+            int nc=c+dc[i];
+            if(nr>=0 && nr<n && nc>=0 && nc<m && board[nr][nc]==word[ind+1] && !visited[nr][nc])
+            {
+                visited[nr][nc]=true;
+                if(dfs(nr,nc,ind+1,board,word,visited))
+                    return true;
+                visited[nr][nc]=false;
+            }
+        }
+        return false;
+    }
+public:
+    bool exist(vector<vector<char>>& board, string word) {
+        int n=board.size(),m=board[0].size();
+        vector<vector<bool>> visited(n,vector<bool> (m,false));
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(board[i][j]==word[0])
+                {
+                    visited[i][j]=true;
+                    if(dfs(i,j,0,board,word,visited))
+                        return true;
+                    visited[i][j]=false;
+                }
+            }
+        }
+        return false;
+    }
+};
