@@ -31,3 +31,15 @@ Constraints:
 columnTitle consists only of uppercase English letters.
 columnTitle is in the range ["A", "FXSHRXW"].
 */
+
+class Solution {
+public:
+    int titleToNumber(string columnTitle) {
+        int ans=0;
+        for(int i=0;i<columnTitle.size();i++)
+        {
+            ans=ans*26+(columnTitle[i]-'A'+1);
+        }
+        return ans;
+    }
+};
