@@ -39,6 +39,7 @@ Constraints:
 0 <= d <= 100
 */
 
+//Brute force
 class Solution {
 public:
     int findTheDistanceValue(vector<int>& arr1, vector<int>& arr2, int d) {
@@ -62,7 +63,7 @@ public:
     }
 };
 
-
+//Sorting + Binary Search
 class Solution {
 public:
     int findTheDistanceValue(vector<int>& arr1, vector<int>& arr2, int d) {
@@ -78,6 +79,8 @@ public:
     }
 };
 
+
+//Sorting + Two pointers
 class Solution {
 public:
     int findTheDistanceValue(vector<int>& arr1, vector<int>& arr2, int d) {
