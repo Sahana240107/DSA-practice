@@ -27,3 +27,38 @@ Output: []
 Constraints:
 
 0 <= turnedOn <= 10*/
+
+class Solution {
+    vector<int> hr={1,2,4,8};
+    vector<int> min={1,2,4,8,16,32};
+    void helper(int ind,int count,int hrs,int mins,int& turnedOn,vector<string>& ans)
+    {
+        if(count==turnedOn)
+        {
+            if(hrs<12 && mins<60)
+            {
+                string time=to_string(hrs)+":";
+                if(mins<10)
+                    time+="0";
+                time+=to_string(mins);
+                ans.push_back(time);
+                return;
+            }
+        }
+        if(ind==10)
+            return;
+        if(10-ind<turnedOn-count)
+            return;
+        if(ind<4)
+            helper(ind+1,count+1,hrs+hr[ind],mins,turnedOn,ans);
+        else
+            helper(ind+1,count+1,hrs,mins+min[ind-4],turnedOn,ans);
+        helper(ind+1,count,hrs,mins,turnedOn,ans);
+    }
+public:
+    vector<string> readBinaryWatch(int turnedOn) {
+        vector<string> ans;
+        helper(0,0,0,0,turnedOn,ans);
+        return ans;
+    }
+};
