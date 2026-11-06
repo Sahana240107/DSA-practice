@@ -25,3 +25,28 @@ Constraints:
 1 <= s.length <= 3 * 105
 s consist of printable ASCII characters.
 */
+
+class Solution {
+    bool isVowel(char c)
+    {
+        return c=='a'||c=='A'||c=='e'||c=='E'||c=='i'||c=='I'||c=='o'||c=='O'||c=='u'||c=='U';
+    }
+public:
+    string reverseVowels(string s) {
+        int n=s.size();
+        int left=0,right=n-1;
+        while(left<right)
+        {
+            while(left<right && !isVowel(s[left]))
+                left++;
+            while(left<right && !isVowel(s[right]))
+                right--;
+            char temp=s[left];
+            s[left]=s[right];
+            s[right]=temp;
+            left++;
+            right--;
+        }
+        return s;
+    }
+};
