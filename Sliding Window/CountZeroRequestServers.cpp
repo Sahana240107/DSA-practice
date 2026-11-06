@@ -34,3 +34,38 @@ logs[i].length == 2
 1 <= x <= 105
 x < queries[i] <= 106
 */
+
+//Brute Force
+class Solution {
+public:
+    vector<int> countServers(int n, vector<vector<int>>& logs, int x, vector<int>& queries) {
+        vector<set<int>> vec(n+1);
+        for(int i=0;i<logs.size();i++)
+        {
+            vec[logs[i][0]].insert(logs[i][1]);
+        }
+        vector<int> ans(queries.size());
+        for(int i=0;i<queries.size();i++)
+        {
+            int start=queries[i]-x;
+            int end=queries[i];
+            int count=0;
+            for(int j=1;j<=n;j++)
+            {
+                bool flag=false;
+                for(auto it:vec[j])
+                {
+                    if(it>=start && it<=end)
+                    {
+                        flag=true;
+                        break;
+                    }
+                }
+                if(!flag)
+                    count++;
+            }
+            ans[i]=count;
+        }
+        return ans;
+    }
+};
