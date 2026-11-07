@@ -18,3 +18,21 @@ Constraints:
 
 -231 <= num <= 231 - 1
 */
+
+class Solution {
+public:
+    string toHex(int num) {
+        if(num==0)
+            return "0";
+        string hem="0123456789abcdef";
+        string ans="";
+        while(num!=0)
+        {
+            int rem=num&15;
+            ans+=hem[rem];
+            num=(unsigned int)num>>4;
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;   
+    }
+};
