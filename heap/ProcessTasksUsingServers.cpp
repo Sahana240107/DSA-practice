@@ -12,9 +12,7 @@ A server that is assigned task j at second t will be free again at second t + ta
 
 Build an array ans​​​​ of length m, where ans[j] is the index of the server the j​​​​​​th task will be assigned to.
 
-Return the array ans​​​​.
-
- 
+Return the array ans​​​​. 
 
 Example 1:
 
@@ -47,3 +45,45 @@ servers.length == n
 tasks.length == m
 1 <= n, m <= 2 * 105
 1 <= servers[i], tasks[j] <= 2 * 105*/
+
+class Solution {
+public:
+    vector<int> assignTasks(vector<int>& servers, vector<int>& tasks) {
+        int n=servers.size(),m=tasks.size();
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> available;
+        priority_queue<tuple<long long,int,int>,vector<tuple<long long,int,int>>,greater<tuple<long long,int,int>>> busy;
+        for(int i=0;i<n;i++)
+        {
+            available.push({servers[i],i});
+        }
+        long long time=0;
+        vector<int> ans(m);
+        for(int i=0;i<m;i++)
+        {
+            time=max(time,(long long)i);
+            //release completed servers
+            while(!busy.empty() && get<0>(busy.top())<=time)
+            {
+                auto [finish,weight,ind]=busy.top();
+                busy.pop();
+                available.push({weight,ind});
+            }
+            //if all servers are busy
+            if(available.empty())
+            {
+                time=get<0>(busy.top());
+                while(!busy.empty() && get<0>(busy.top())<=time)
+                {
+                    auto [finish,weight,ind]=busy.top();
+                    busy.pop();
+                    available.push({weight,ind});
+                }
+            }
+            auto [weight,ind]=available.top();
+            available.pop();
+            ans[i]=ind;
+            busy.push({time+tasks[i],weight,ind});
+        }
+        return ans;
+    }
+};
