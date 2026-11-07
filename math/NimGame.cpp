@@ -27,3 +27,10 @@ Output: true
 Constraints:
 
 1 <= n <= 231 - 1*/
+
+class Solution {
+public:
+    bool canWinNim(int n) {
+        return n%4!=0;
+    }
+};
