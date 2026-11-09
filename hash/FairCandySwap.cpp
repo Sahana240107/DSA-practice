@@ -25,3 +25,24 @@ Constraints:
 1 <= aliceSizes[i], bobSizes[j] <= 105
 Alice and Bob have a different total number of candies.
 There will be at least one valid answer for the given input.*/
+
+class Solution {
+public:
+    vector<int> fairCandySwap(vector<int>& aliceSizes, vector<int>& bobSizes) {
+        int sumA=0,sumB=0;
+        for(int a:aliceSizes)
+            sumA+=a;
+        for(int b:bobSizes)
+            sumB+=b;
+        int diff=(sumA-sumB)/2;
+        unordered_set<int> st;
+        for(int b:bobSizes)
+            st.insert(b);
+        for(int a:aliceSizes)
+        {
+            if(st.find(a-diff)!=st.end())
+                return {a,a-diff};
+        }
+        return {};
+    }
+};
