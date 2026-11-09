@@ -27,3 +27,32 @@ n == score.length
 1 <= n <= 104
 0 <= score[i] <= 106
 All the values in score are unique.*/
+
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& score) {
+        priority_queue<pair<int,int>,vector<pair<int,int>>> pq;
+        int n=score.size();
+        vector<string> ans(n);
+        for(int i=0;i<n;i++)
+        {
+            pq.push({score[i],i});
+        }
+        int rank=1;
+        while(!pq.empty())
+        {
+            auto [score,ind]=pq.top();
+            pq.pop();
+            if(rank==1)
+                ans[ind]="Gold Medal";
+            else if(rank==2)
+                ans[ind]="Silver Medal";
+            else if(rank==3)
+                ans[ind]="Bronze Medal";
+            else
+                ans[ind]=to_string(rank);
+            rank++;
+        }
+        return ans;
+    }
+};
