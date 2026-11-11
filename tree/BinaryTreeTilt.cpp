@@ -34,3 +34,21 @@ Constraints:
 
 The number of nodes in the tree is in the range [0, 104].
 -1000 <= Node.val <= 1000*/
+
+class Solution {
+    int total=0;
+    int tilt(TreeNode* root)
+    {
+        if(!root)   
+            return 0;
+        int leftsum=tilt(root->left);
+        int rightsum=tilt(root->right);
+        total+=abs(leftsum-rightsum);
+        return leftsum+rightsum+root->val;
+    }
+public:
+    int findTilt(TreeNode* root) {
+        tilt(root);
+        return total;
+    }
+};
