@@ -24,3 +24,37 @@ The number of nodes in the tree is in the range [1, 104].
 -105 <= Node.val <= 105
 
 Follow up: Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count).*/
+
+class Solution {
+    vector<int> ans;
+    int prev=0,count=0,maxcount=0;
+    bool first=true;
+    void inorder(TreeNode* root)
+    {
+        if(!root)
+            return;
+        inorder(root->left);
+        if(first||root->val!=prev)
+        {
+            first=false;
+            count=1;
+            prev=root->val;
+        }
+        else
+            count++;
+        if(count>maxcount)
+        {
+            maxcount=count;
+            ans.clear();
+            ans.push_back(root->val);
+        }
+        else if(count==maxcount)
+            ans.push_back(root->val);
+        inorder(root->right);
+    }
+public:
+    vector<int> findMode(TreeNode* root) {
+        inorder(root);
+        return ans;
+    }
+};
