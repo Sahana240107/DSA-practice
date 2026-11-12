@@ -53,3 +53,41 @@ public:
         return perimeter;
     }
 };
+
+//DFS
+class Solution {
+    int perimeter=0;
+    void dfs(int r,int c,vector<vector<int>>& grid,vector<vector<bool>>& visited)
+    {   
+        int n=grid.size(),m=grid[0].size();
+        visited[r][c]=true;
+        int dr[]={-1,1,0,0};
+        int dc[]={0,0,-1,1};
+        for(int i=0;i<4;i++)
+        {
+            int nr=r+dr[i];
+            int nc=c+dc[i];
+            if(nr>=n || nr<0 || nc>=m || nc<0 || grid[nr][nc]==0)
+                perimeter++;
+            else if(!visited[nr][nc])
+                dfs(nr,nc,grid,visited);
+        }
+    }
+public:
+    int islandPerimeter(vector<vector<int>>& grid) {
+        int n=grid.size(),m=grid[0].size();
+        vector<vector<bool>> visited(n,vector<bool> (m,false));
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    dfs(i,j,grid,visited);
+                    return perimeter;
+                }
+            }
+        }
+        return perimeter;
+    }
+};
