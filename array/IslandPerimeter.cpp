@@ -30,3 +30,26 @@ col == grid[i].length
 1 <= row, col <= 100
 grid[i][j] is 0 or 1.
 There is exactly one island in grid.*/
+
+class Solution {
+public:
+    int islandPerimeter(vector<vector<int>>& grid) {
+        int perimeter=0;
+        int n=grid.size(),m=grid[0].size();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    perimeter+=4;
+                    if(i>0 && grid[i-1][j]==1)
+                        perimeter-=2;
+                    if(j>0 && grid[i][j-1]==1)
+                        perimeter-=2;
+                }
+            }
+        }
+        return perimeter;
+    }
+};
