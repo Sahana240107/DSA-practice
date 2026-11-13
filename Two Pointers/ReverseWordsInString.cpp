@@ -25,3 +25,24 @@ s contains printable ASCII characters.
 s does not contain any leading or trailing spaces.
 There is at least one word in s.
 All the words in s are separated by a single space.*/
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        int n=s.size();
+        for(int i=0;i<n;i++)
+        {
+            int start=i;
+            while(i<n && s[i]!=' ')
+                i++;
+            int end=i-1;
+            while(start<end)
+            {
+                swap(s[start],s[end]);
+                start++;
+                end--;
+            }
+        }
+        return s;
+    }
+};
