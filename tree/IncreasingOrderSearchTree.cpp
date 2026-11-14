@@ -25,3 +25,26 @@ Constraints:
 The number of nodes in the given tree will be in the range [1, 100].
 0 <= Node.val <= 1000
 */
+
+class Solution {
+    TreeNode* rt;
+    TreeNode* prev;
+    void inorder(TreeNode* root)
+    {
+        if(!root)
+            return;
+        inorder(root->left);
+        if(!rt)
+            rt=root;
+        else
+            prev->right=root;
+        root->left=NULL;
+        prev=root;
+        inorder(root->right);
+    }
+public:
+    TreeNode* increasingBST(TreeNode* root) {
+        inorder(root);
+        return rt;
+    }
+};
