@@ -28,3 +28,28 @@ Constraints:
 1 <= arr.length <= 105
 1 <= arr[i] <= 100
 */
+
+class Solution {
+public:
+    int numOfSubarrays(vector<int>& arr) {
+        int n=arr.size();
+        const int MOD=1e9+7;
+        long long even=1,odd=0,ans=0;
+        int parity=0;
+        for(int x:arr)
+        {
+            parity=(parity+x)%2;
+            if(parity==1)
+            {
+                ans=(ans+even)%MOD;
+                odd++;
+            }
+            else
+            {
+                ans=(ans+odd)%MOD;
+                even++;
+            }
+        }
+        return ans;
+    }
+};
