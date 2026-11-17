@@ -21,3 +21,20 @@ Explanation: The binary representation of 11 is: 1011.
 Constraints:
 
 1 <= n <= 231 - 1*/
+
+class Solution {
+public:
+    bool hasAlternatingBits(int n) {
+        if(n<=1)    
+            return true;
+        int parity=n&1;
+        while(n>0)
+        {
+            parity=!parity;
+            if(((n>>1)&1)!=parity)
+                return false;
+            n=n>>1;
+        }
+        return true;
+    }
+};
