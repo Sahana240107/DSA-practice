@@ -23,3 +23,30 @@ Constraints:
 num1 and num2 consist of only digits.
 num1 and num2 don't have any leading zeros except for the zero itself.
 */
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        int n=num1.size(),m=num2.size();
+        int i=n-1,j=m-1;
+        string ans="";
+        int carry=0;
+        while(i>=0 || j>=0 || carry) 
+        {
+            int sum=carry;
+            if(i>=0)
+            {
+                sum+=num1[i]-'0';
+                i--;
+            }
+            if(j>=0)
+            {
+                sum+=num2[j]-'0';
+                j--;
+            }
+            ans+=to_string(sum%10);
+            carry=sum/10;
+        }   
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
