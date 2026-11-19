@@ -49,3 +49,44 @@ public:
         });
     }
 };
+
+//Optimized without sorting
+class Solution {
+public:
+    int minimizeSum(vector<int>& nums) {
+        int n=nums.size();
+        if(n<=3)
+            return 0;
+        int l1=INT_MIN,l2=INT_MIN,l3=INT_MIN,s1=INT_MAX,s2=INT_MAX,s3=INT_MAX;
+        for(int n:nums)
+        {
+            if(n<s1)
+            {
+                s3=s2;
+                s2=s1;
+                s1=n;
+            }
+            else if(n<s2)
+            {
+                s3=s2;
+                s2=n;
+            }
+            else if(n<s3)
+                s3=n;
+            if(n>l1)
+            {
+                l3=l2;
+                l2=l1;
+                l1=n;
+            }
+            else if(n>l2)
+            {
+                l3=l2;
+                l2=n;
+            }
+            else if(n>l3)
+                l3=n;
+        }
+        return min({l1-s3,l2-s2,l3-s1});
+    }
+};
