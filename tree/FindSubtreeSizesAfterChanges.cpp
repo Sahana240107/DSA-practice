@@ -42,3 +42,40 @@ parent[0] == -1
 parent represents a valid tree.
 s consists only of lowercase English letters.
 */
+
+class Solution {
+public:
+    vector<int> findSubtreeSizes(vector<int>& parent, string s) {
+        int n=parent.size();
+        vector<vector<int>> adj(n),tree(n);
+        for(int i=1;i<n;i++)
+            adj[parent[i]].push_back(i);
+        vector<int> last(26,-1);
+        vector<int> newParent=parent;
+        function<void(int)> dfs=[&](int u)
+        {
+            int c=s[u]-'a';
+            int prev=last[c];
+            if(u!=0 && last[c]!=-1)
+                newParent[u]=last[c];
+            last[c]=u;
+            for(int v:adj[u])
+                dfs(v);
+            last[c]=prev;
+        };
+        dfs(0);
+        for(int i=1;i<n;i++)
+            tree[newParent[i]].push_back(i);
+        vector<int> ans(n,0);
+        function<int(int)> calculate=[&](int u)
+        {
+            int size=1;
+            for(int v:tree[u])
+                size+=calculate(v);
+            ans[u]=size;
+            return size;
+        };
+        calculate(0);
+        return ans;
+    }
+};
