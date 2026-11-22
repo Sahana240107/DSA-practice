@@ -27,3 +27,19 @@ Constraints:
 1 <= s.length <= 100
 s[i] is either 'a' or 'b'.
 */
+
+class Solution {
+public:
+    bool checkString(string s) {
+        int n=s.size();
+        int b=-1;
+        for(char c:s)
+        {
+            if(b==-1 && c=='b')
+                b=1;
+            if(c=='a' && b!=-1)
+                return false;
+        }
+        return true;
+    }
+};
