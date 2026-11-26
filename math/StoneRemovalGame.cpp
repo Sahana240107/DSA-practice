@@ -1,4 +1,4 @@
-*3360. Stone Removal Game
+/*3360. Stone Removal Game
 
 Alice and Bob are playing a game where they take turns removing stones from a pile, with Alice going first.
 
@@ -31,3 +31,19 @@ Alice cannot remove 10 stones, so Alice loses.
 Constraints:
 
 1 <= n <= 50
+*/
+
+class Solution {
+public:
+    bool canAliceWin(int n) {
+        int turn=10;
+        bool isAlice=true;
+        while(n>=turn)
+        {
+            n-=turn;
+            turn--;
+            isAlice=!isAlice;
+        }
+        return !isAlice;
+    }
+};
